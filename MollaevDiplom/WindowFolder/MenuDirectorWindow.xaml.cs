@@ -22,6 +22,7 @@ namespace MollaevDiplom.WindowFolder
         public MenuDirectorWindow()
         {
             InitializeComponent();
+            MainFrame.Navigate(new PageFolder.DirectoFolder.ListStaffPage());
         }
 
         private void Employees_Click(object sender, RoutedEventArgs e)
@@ -61,7 +62,26 @@ namespace MollaevDiplom.WindowFolder
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
+        }
 
+        private void btnRestore_Click(object sender, RoutedEventArgs e)
+        {
+            if (WindowState == WindowState.Normal)
+                WindowState = WindowState.Maximized;
+            else
+                WindowState = WindowState.Normal;
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
         }
     }
 }

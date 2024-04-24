@@ -5,95 +5,91 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MollaevDiplom.WindowFolder"
         mc:Ignorable="d"
-        Title="Меню директора" Height="600" Width="790"
+        Title="Меню директора" Height="600" Width="900"
         ResizeMode="NoResize"
         Topmost="True"
         WindowStartupLocation="CenterScreen" AllowsTransparency="True"
-        WindowStyle="None" Background="Transparent">
-    <Grid Background="Black">
-        <Grid Background="#FFD6D6D6"
+        WindowStyle="None" Background="Transparent"
+        WindowState="Normal" >
+    <Grid Background="Black"
               x:Name="bigGrid"
               Grid.ColumnSpan="3"
               Grid.RowSpan="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid x:Name="sidePanel" 
-              Background="#FF292129" 
-              HorizontalAlignment="Left" 
-              Width="175" Grid.ColumnSpan="2">
-                <StackPanel>
-                    <Grid Height="150" Background="#FF292129">
-                        <Image Source="/ResourceFolder/ImageFolder/Group 13.png"
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="sidePanel" 
+                  Background="#2E333A" 
+                  HorizontalAlignment="Left" 
+                  Width="50" Grid.ColumnSpan="2">
+            <StackPanel>
+                <Grid Height="150" Background="#2E333A">
+                    <Image Source="/ResourceFolder/ImageFolder/Group 13.png"
                            x:Name="img_Panel"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
-                           Height="70"
-                           Width="70"/>
-                        <ToggleButton HorizontalAlignment="Right" 
-                            Height="30"
-                            Width="30"
-                            BorderBrush="Transparent"
-                            VerticalAlignment="Top" 
+                           Height="45"
+                           Width="45"/>
+                    <ToggleButton Style="{StaticResource toggleButtonStyle}"
                             Click="ToggleButton_Click">
-                            <ToggleButton.Background>
-                                <ImageBrush ImageSource="/ResourceFolder/ImageFolder/menu.png" Stretch="Fill"/>
-                            </ToggleButton.Background>
-                            <ToggleButton.Triggers>
-                               
-                                
-                                <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+                        <ToggleButton.Background>
+                            <ImageBrush ImageSource="/ResourceFolder/ImageFolder/menu.png" Stretch="Fill"/>
+                        </ToggleButton.Background>
+                        <ToggleButton.Triggers>
 
-                                    <BeginStoryboard>
 
-                                        <Storyboard x:Name="HideStackPanel">
+                            <EventTrigger RoutedEvent="ToggleButton.Unchecked">
 
-                                            <DoubleAnimation    
+                                <BeginStoryboard>
+
+                                    <Storyboard x:Name="HideStackPanel">
+
+                                        <DoubleAnimation    
                                                 
                                                 Storyboard.TargetName="sidePanel"
                                                 Storyboard.TargetProperty="Width"
                                                 BeginTime="0:0:0"
-                                                From="50" To="175"
+                                                From="50" To="180"
                                                 Duration="0:0:0.2">
 
-                                            </DoubleAnimation>
+                                        </DoubleAnimation>
 
-                                        </Storyboard>
+                                    </Storyboard>
 
-                                    </BeginStoryboard>
+                                </BeginStoryboard>
 
-                                </EventTrigger>
+                            </EventTrigger>
 
-                                <EventTrigger RoutedEvent="ToggleButton.Checked">
+                            <EventTrigger RoutedEvent="ToggleButton.Checked">
 
-                                    <BeginStoryboard>
+                                <BeginStoryboard>
 
-                                        <Storyboard x:Name="ShowStackPanel">
+                                    <Storyboard x:Name="ShowStackPanel">
 
-                                            <DoubleAnimation
+                                        <DoubleAnimation
                                                 
                                                 Storyboard.TargetName="sidePanel"
                                                 Storyboard.TargetProperty="Width"
                                                 BeginTime="0:0:0"
-                                                From="150" To="50"
+                                                From="180" To="50"
                                                 Duration="0:0:0.3">
 
-                                            </DoubleAnimation>
+                                        </DoubleAnimation>
 
-                                        </Storyboard>
+                                    </Storyboard>
 
-                                    </BeginStoryboard>
+                                </BeginStoryboard>
 
-                                </EventTrigger>
+                            </EventTrigger>
 
-                                <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+                            <EventTrigger RoutedEvent="ToggleButton.Unchecked">
 
-                                    <BeginStoryboard>
+                                <BeginStoryboard>
 
-                                        <Storyboard x:Name="ImgStackPanel">
+                                    <Storyboard x:Name="ImgStackPanel">
 
-                                            <DoubleAnimation    
+                                        <DoubleAnimation    
                                                 
                                                 Storyboard.TargetName="img_Panel"
                                                 Storyboard.TargetProperty="Width"
@@ -101,21 +97,21 @@
                                                 From="50" To="70"
                                                 Duration="0:0:0.2">
 
-                                            </DoubleAnimation>
+                                        </DoubleAnimation>
 
-                                        </Storyboard>
+                                    </Storyboard>
 
-                                    </BeginStoryboard>
+                                </BeginStoryboard>
 
-                                </EventTrigger>
+                            </EventTrigger>
 
-                                <EventTrigger RoutedEvent="ToggleButton.Checked">
+                            <EventTrigger RoutedEvent="ToggleButton.Checked">
 
-                                    <BeginStoryboard>
+                                <BeginStoryboard>
 
-                                        <Storyboard x:Name="ImgShowStackPanel">
+                                    <Storyboard x:Name="ImgShowStackPanel">
 
-                                            <DoubleAnimation
+                                        <DoubleAnimation
                                                 
                                                 Storyboard.TargetName="img_Panel"
                                                 Storyboard.TargetProperty="Width"
@@ -123,187 +119,157 @@
                                                 From="70" To="50"
                                                 Duration="0:0:0.3">
 
-                                            </DoubleAnimation>
+                                        </DoubleAnimation>
 
-                                        </Storyboard>
+                                    </Storyboard>
 
-                                    </BeginStoryboard>
+                                </BeginStoryboard>
 
-                                </EventTrigger>
+                            </EventTrigger>
 
-                                <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+                            <!--<EventTrigger RoutedEvent="ToggleButton.Unchecked">
 
-                                    <BeginStoryboard>
+                                <BeginStoryboard>
 
-                                        <Storyboard x:Name="GridHideStackPanel">
+                                    <Storyboard x:Name="GridHideStackPanel">
 
-                                            <DoubleAnimation    
+                                        <DoubleAnimation    
                                                 
                                                 Storyboard.TargetName="minGrid"
                                                 Storyboard.TargetProperty="Width"
                                                 BeginTime="0:0:0"
-                                                From="720" To="640"
+                                                From="850" To="720"
                                                 Duration="0:0:0.2">
 
-                                            </DoubleAnimation>
+                                        </DoubleAnimation>
 
-                                        </Storyboard>
+                                    </Storyboard>
 
-                                    </BeginStoryboard>
+                                </BeginStoryboard>
 
-                                </EventTrigger>
+                            </EventTrigger>
 
-                                <EventTrigger RoutedEvent="ToggleButton.Checked">
+                            <EventTrigger RoutedEvent="ToggleButton.Checked">
 
-                                    <BeginStoryboard>
+                                <BeginStoryboard>
 
-                                        <Storyboard x:Name="GridShowStackPanel">
+                                    <Storyboard x:Name="GridShowStackPanel">
 
-                                            <DoubleAnimation
+                                        <DoubleAnimation
                                                 
                                                 Storyboard.TargetName="minGrid"
                                                 Storyboard.TargetProperty="Width"
                                                 BeginTime="0:0:0"
-                                                From="640" To="720"
+                                                From="720" To="850"
                                                 Duration="0:0:0.3">
 
-                                            </DoubleAnimation>
+                                        </DoubleAnimation>
 
-                                        </Storyboard>
+                                    </Storyboard>
 
-                                    </BeginStoryboard>
+                                </BeginStoryboard>
 
-                                </EventTrigger>
+                            </EventTrigger>-->
 
-                            </ToggleButton.Triggers>
 
-                            <!--<Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Rectangle x:Name="rectangle" 
-                                           Width="30" Height="5" Margin="0 0 0 0" Fill="Gray" 
-                                           HorizontalAlignment="Center" VerticalAlignment="Top">
-                                    <Rectangle.RenderTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform/>
-                                            <SkewTransform/>
-                                        </TransformGroup>
-                                    </Rectangle.RenderTransform>
-                                </Rectangle>
-                                <Rectangle x:Name="rectangle1" 
-                                       Width="30" Height="5" 
-                                       Margin="0 10 0 0" Fill="Gray" HorizontalAlignment="Center" VerticalAlignment="Top">
-                                    <Rectangle.RenderTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform/>
-                                            <SkewTransform/>
-                                        </TransformGroup>
-                                    </Rectangle.RenderTransform>
-                                </Rectangle>
-                                <Rectangle x:Name="rectangle2" Width="30" Height="5" Margin="0 20 0 0" Fill="Gray" HorizontalAlignment="Center" VerticalAlignment="Top">
-                                    <Rectangle.RenderTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform/>
-                                            <SkewTransform/>
-                                        </TransformGroup>
-                                    </Rectangle.RenderTransform>
-                                </Rectangle>
-                            </Grid>-->
-                        </ToggleButton>
-                    </Grid>
-                    <StackPanel ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
 
-                        <RadioButton x:Name="Employees" Style="{StaticResource BtnStyle}"     
+                        </ToggleButton.Triggers>
+
+
+
+                    </ToggleButton>
+                </Grid>
+                <StackPanel ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+
+                    <RadioButton x:Name="Employees" Style="{StaticResource BtnStyle}"     
                                      IsChecked="True"
                                      Click="Employees_Click">
-                            <Grid>
-                                <Image Source="/ResourceFolder/ImageFolder/employees.png"
+                        <Grid>
+                            <Image Source="/ResourceFolder/ImageFolder/employees.png"
                                        Stretch="Fill"
                                        Margin="12,0,0,0"
                                        Style="{StaticResource Image_Style}" />
-                                <TextBlock Text="Сотрудники"
+                            <TextBlock Text="Сотрудники"
                                        Style="{StaticResource Text_Style}" />
-                            </Grid>
-                        </RadioButton>
-                        <RadioButton x:Name="Meetings" Style="{StaticResource BtnStyle}"     
+                        </Grid>
+                    </RadioButton>
+                    <RadioButton x:Name="Meetings" Style="{StaticResource BtnStyle}"     
                                      Click="Meetings_Click">
-                            <Grid>
-                                <Image Source="/ResourceFolder/ImageFolder/meeting.png"
+                        <Grid>
+                            <Image Source="/ResourceFolder/ImageFolder/meeting.png"
                                        Stretch="Fill"
                                        Margin="12,0,0,0"
                                        Style="{StaticResource Image_Style}" />
 
-                                <TextBlock Text="Встречи"
+                            <TextBlock Text="Встречи"
                                        Style="{StaticResource Text_Style}" />
-                            </Grid>
-                        </RadioButton>
-                        <RadioButton x:Name="Tasks" Style="{StaticResource BtnStyle}"     
+                        </Grid>
+                    </RadioButton>
+                    <RadioButton x:Name="Tasks" Style="{StaticResource BtnStyle}"     
                                  Click="Tasks_Click"
                                  Checked="Tasks_Checked"
                                  Unchecked="Tasks_Unchecked">
-                            <Grid>
-                                <Image Source="/ResourceFolder/ImageFolder/tasks.png"
+                        <Grid>
+                            <Image Source="/ResourceFolder/ImageFolder/tasks.png"
                                        Stretch="Fill"
                                        Margin="12,0,0,0"
                                        Style="{StaticResource Image_Style}" />
 
-                                <TextBlock Text="Задачи"
+                            <TextBlock Text="Задачи"
                                        Style="{StaticResource Text_Style}" />
-                            </Grid>
-                        </RadioButton>
-                        <RadioButton x:Name="Document" Style="{StaticResource BtnStyle}"     
+                        </Grid>
+                    </RadioButton>
+                    <RadioButton x:Name="Document" Style="{StaticResource BtnStyle}"     
                                     Click="Document_Click">
-                            <Grid>
-                                <Image Source="/ResourceFolder/ImageFolder/document.png"
+                        <Grid>
+                            <Image Source="/ResourceFolder/ImageFolder/document.png"
                                        Stretch="Fill"
                                        Margin="12,0,0,0"
                                        Style="{StaticResource Image_Style}" />
 
-                                <TextBlock Text="Документ"
+                            <TextBlock Text="Документ"
                                        Style="{StaticResource Text_Style}" />
-                            </Grid>
-                        </RadioButton>
-                    </StackPanel>
+                        </Grid>
+                    </RadioButton>
                 </StackPanel>
-            </Grid>
-            <Grid Grid.Column="0"
-              Grid.ColumnSpan="2"
-              Width="640"
-              HorizontalAlignment="Right"
-              x:Name="minGrid">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="70"/>
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <Label Content="{Binding ElementName=MainFrame,
-                   Path=Content.Title}" 
-                   VerticalContentAlignment="Center"
-                   HorizontalContentAlignment="Center" Margin="26,0,0,0"/>
-                <Frame Grid.Row="5" 
-                   Name="MainFrame" 
-                   Margin="10"
-                   NavigationUIVisibility="Hidden"/>
-            </Grid>
+            </StackPanel>
         </Grid>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"/>
-                <ColumnDefinition />
-                <ColumnDefinition Width="150"/>
-            </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1"
+              Background="#FF212529">
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
-                <RowDefinition />
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Frame x:Name="MaiFrame"
-               Grid.Row="1"
-               Grid.Column="1"
-               Margin="10"
-               NavigationUIVisibility="Hidden"/>
-            <Border Background="Transparent"
-                    Grid.Column="1"
-                    
-                    Grid.ColumnSpan="2"
-                    MouseDown="Border_MouseDown" Margin="26,0,0,0"/>
+            <Label Content="{Binding ElementName=MainFrame,
+                   Path=Content.Title}" 
+                   VerticalContentAlignment="Stretch"
+                   HorizontalContentAlignment="Left" 
+                   FontSize="24"
+                   Foreground="White"
+                   FontFamily="/Fonts/OpenSans-Regular.ttf #Open Sans Regular" />
+            <Frame Grid.Row="1"
+                       Name="MainFrame" 
+                       Margin="5,10,10,10"
+                       NavigationUIVisibility="Hidden"/>
+            <StackPanel Grid.Row="0"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" 
+                            Margin="0,5,10,0" Height="30" 
+                            Orientation="Horizontal" FlowDirection="RightToLeft">
+                <Button x:Name="btnClose" Style="{StaticResource IconButtonsStyle}" Content="{DynamicResource close}" Click="btnClose_Click" Tag="IsCloseButton"/>
+                <Button x:Name="btnRestore" Margin="5 0" Click="btnRestore_Click">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource IconButtonsStyle}">
+                            <Setter Property="Content" Value="{DynamicResource maximize}"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=home, Path=WindowState}" Value="Maximized">
+                                    <Setter Property="Content" Value="{DynamicResource restore}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button x:Name="btnMinimize" Style="{DynamicResource IconButtonsStyle}" Content="{DynamicResource minimize}" Click="btnMinimize_Click"/>
+            </StackPanel>
         </Grid>
     </Grid>
 </Window>

@@ -10,9 +10,10 @@
         MaxHeight="450" MinHeight="450"
         MaxWidth="450"  MinWidth="450"
         WindowStartupLocation="CenterScreen" WindowStyle="None"
-        AllowsTransparency="True" Background="Transparent"
+        AllowsTransparency="True" Background="Transparent" 
+        KeyDown="Window_KeyDown"
         Icon="/ResourceFolder/ImageFolder/IconColizeum-transformed.png">
-    <Border Background="#FF16171B"
+    <Border Background="#2E333A"
             CornerRadius="10">
         <Grid>
             <Grid.RowDefinitions>
@@ -30,31 +31,38 @@
             <Border CornerRadius="10 10 0 0"
                     MouseDown="Border_MouseDown">
                 <Border.Background>
-                    <ImageBrush ImageSource="/ResourceFolder/ImageFolder/ScreenColizeum.png"
+                    <ImageBrush ImageSource="/ResourceFolder/ImageFolder/Group 4.png"
                                 RenderOptions.BitmapScalingMode="HighQuality" 
                                 RenderOptions.EdgeMode="Aliased"/>
                 </Border.Background>
-                <Image Source="/ResourceFolder/ImageFolder/close-button.png"
+                <Image Source="/ResourceFolder/ImageFolder/close.png"
                        Style="{StaticResource imgClose}"
                        RenderOptions.BitmapScalingMode="HighQuality" 
                        RenderOptions.EdgeMode="Aliased"
                        MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
             </Border>
-            <Image Source="/ResourceFolder/ImageFolder/window-minimize.png"
+            <Image Source="/ResourceFolder/ImageFolder/minimize.png"
                    Style="{StaticResource imgClose}"
-                   Margin="0,-4,29,0"
+                   Margin="0 5 29,0"
                    MouseLeftButtonUp="Image_MouseLeftButtonUp"/>
             <TextBox Grid.Row="2"
                      Style="{StaticResource tbox}"
                      Tag="Логин"
+                     Foreground="White"
                      x:Name="LoginTb"
                      TextChanged="LoginTb_TextChanged"/>
+            <TextBox Grid.Row="4"
+                     Style="{StaticResource tboc}"
+                     Tag="Логин"
+                     Visibility="Collapsed"
+                     Foreground="White"
+                     x:Name="LoginTBV"/>
             <PasswordBox Grid.Row="4" 
                          Style="{StaticResource tpass}"
-                         GotFocus="PasswordBox_GotFocus"
-                         LostFocus="PasswordBox_LostFocus"
                          x:Name="PasswordTb"
-                         PasswordChanged="PasswordTb_PasswordChanged"/>
+                         PasswordChanged="PasswordTb_PasswordChanged"
+                         LostFocus="PasswordTb_LostFocus"
+                         GotFocus="PasswordTb_GotFocus"/>
             <TextBlock x:Name="placeholderText"
                        Text="Пароль"
                        Grid.Row="4"
@@ -62,17 +70,34 @@
                        Margin="135,32,0,0"
                        VerticalAlignment="Top"
                        HorizontalAlignment="Left"
-                       Foreground="#FFF2E437"
+                       Foreground="White"
                        MouseDown="placeholderText_MouseDown"/>
+            <Image Source="/ResourceFolder/ImageFolder/hide.png"
+                   Stretch="UniformToFill"
+                   x:Name="HideIco"
+                   Width="20"
+                   Height="20"
+                   Grid.Row="4" Margin="323,30,107,20"
+                   MouseDown="HideIco_MouseDown"
+                   MouseUp="HideIco_MouseUp"/>
+            <Image Source="/ResourceFolder/ImageFolder/eye.png"
+                   x:Name="EyeIco"
+                   Visibility="Collapsed"
+                   Width="20"
+                   Height="20"
+                   Stretch="UniformToFill"
+                   Grid.Row="4" Margin="323,30,107,20"
+                   MouseDown="EyeIco_MouseDown"
+                   MouseUp="EyeIco_MouseUp"/>
             <Border Grid.Row="6"
                     Margin="25 0 25 0"
                     Height="35"
                     Width="255"
-                    Background="#FFDECD00"
+                    Background="Black"
                     BorderThickness="1">
                 <Border.Style>
                     <Style TargetType="{x:Type Border}">
-                        <Setter Property="BorderBrush" Value="#FFF2E437"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
                         <Style.Triggers>
                             <EventTrigger RoutedEvent="PreviewMouseDown">
                                 <BeginStoryboard>
@@ -97,11 +122,12 @@
                         FontSize="16"
                         Foreground="White"
                         x:Name="LogInBtn"
-                        Click="LogInBtn_Click">
+                        Click="LogInBtn_Click" >
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="OverridesDefaultStyle" Value="True"/>
-                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Background" Value="Black"/>
+                            <Setter Property="BorderBrush" Value="Black"/>
                             <Setter Property="Cursor" Value="Hand"/>
                             <Setter Property="Template">
                                 <Setter.Value>
@@ -115,7 +141,7 @@
                                         </Border>
                                         <ControlTemplate.Triggers>
                                             <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Background" Value="#A68900"/>
+                                                <Setter Property="Background" Value="#FF464545"/>
                                             </Trigger>
                                             <EventTrigger RoutedEvent="PreviewMouseDown">
                                                 <BeginStoryboard>
@@ -123,7 +149,7 @@
                                                         <ThicknessAnimation Storyboard.TargetProperty="Margin"
                                                                             Duration="0:0:0.100" To="2,2,0,0"/>
                                                         <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                        To="#A68900" Duration="0:0:0.0002"/>
+                                                                        To="#FF464545" Duration="0:0:0.0002"/>
                                                     </Storyboard>
                                                 </BeginStoryboard>
                                             </EventTrigger>
@@ -133,7 +159,7 @@
                                                         <ThicknessAnimation Storyboard.TargetProperty="Margin"
                                                                             Duration="0:0:0.100" To="0"/>
                                                         <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                        To="#FFF2E437" Duration="0:0:0.0002"/>
+                                                                        To="Black" Duration="0:0:0.0002"/>
                                                     </Storyboard>
                                                 </BeginStoryboard>
                                             </EventTrigger>
@@ -144,14 +170,15 @@
                         </Style>
                     </Button.Style>
                 </Button>
+
             </Border>
             <TextBlock Grid.Row="8"
                        Text="Забыли пароль?"
-                       Foreground="#FFF2E437"
+                       Foreground="White"
                        FontSize="8"
                        HorizontalAlignment="Center"/>
             <TextBlock Text="Обратитесь к администратору для восстановления пароля"
-                       Foreground="#FFF2E437"
+                       Foreground="White"
                        FontSize="8"
                        HorizontalAlignment="Center"
                        Grid.Row="8"
