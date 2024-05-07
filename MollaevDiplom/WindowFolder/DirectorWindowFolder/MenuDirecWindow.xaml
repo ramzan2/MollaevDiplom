@@ -29,7 +29,7 @@
                     </Grid.RowDefinitions>
 
 
-                        <Image Source="/ResourceFolder/ImageFolder/Group 13.png" Stretch="Uniform"
+                    <Image Source="/ResourceFolder/ImageFolder/Group 13.png" Stretch="Uniform"
                                         x:Name="LogoIco" 
                                         MaxHeight="100" 
                                         Margin="6 0 0 0"
@@ -85,6 +85,20 @@
                                        Style="{StaticResource Image_Style}" />
 
                                 <TextBlock Text="Документ"
+                                       Style="{StaticResource Text_Style}" />
+                            </Grid>
+                        </RadioButton>
+                        <RadioButton x:Name="EditAccBtn" Style="{StaticResource BtnStyle}"     
+                                    Click="EditAccBtn_Click"
+                                 VerticalAlignment="Bottom"
+                                 Margin="0 200 0 0">
+                            <Grid>
+                                <Image Source="/ResourceFolder/ImageFolder/logout.png"
+                                       Stretch="Fill"
+                                       Margin="12,0,0,0"
+                                       Style="{StaticResource Image_Style}" />
+
+                                <TextBlock Text="Сменить аккаунт"
                                        Style="{StaticResource Text_Style}" />
                             </Grid>
                         </RadioButton>
@@ -181,8 +195,37 @@
                    Grid.Row="0"
                    Foreground="White"
                    FontFamily="/Fonts/OpenSans-Regular.ttf #Open Sans Regular" Margin="43,0,366,0" />
-
-                <Frame Grid.Row="1"
+                <StackPanel HorizontalAlignment="Right"
+                            Margin="0 0 150 0" Orientation="Horizontal"
+                            Visibility="Collapsed"
+                            x:Name="SidePanel">
+                    <RadioButton x:Name="MeetingsBtn"
+                        Style="{StaticResource VisiStyle}"
+                             Width="90"
+                                 IsChecked="True"
+                                 Click="MeetingsBtn_Click">
+                    <Grid>
+                        <TextBlock Style="{StaticResource Text_Style}"
+                                   Text="Встречи"
+                                   HorizontalAlignment="Left"
+                                   Margin="10"/>
+                    </Grid>
+                </RadioButton>
+                    <RadioButton x:Name="AttendanceBtn"
+                        Style="{StaticResource VisiStyle}"
+                                  Width="100"
+                                 IsChecked="False"
+                                 Margin="5 5 0 0"
+                                 Click="AttendanceBtn_Click">
+                        <Grid>
+                            <TextBlock Style="{StaticResource Text_Style}"
+                                   Text="Участники"
+                                   HorizontalAlignment="Left"
+                                   Margin="10 10 10 10"/>
+                        </Grid>
+                    </RadioButton>
+                </StackPanel>
+                    <Frame Grid.Row="1"
                        Name="MainFrame" 
                        Margin="5,10,10,10"
                        NavigationUIVisibility="Hidden"/>

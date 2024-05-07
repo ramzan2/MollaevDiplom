@@ -41,7 +41,8 @@ namespace MollaevDiplom.PageFolder.DirectoFolder
         }
         private void EditTE_Click(object sender, RoutedEventArgs e)
         {
-
+            if (VariableClass.direcWindow != null) VariableClass.direcWindow.UpdateList();
+            new EditStaffWindow(ListStaffLb.SelectedItem as Staff).ShowDialog();
         }
 
         private void AddStaffBtn_Click(object sender, RoutedEventArgs e)
@@ -52,7 +53,17 @@ namespace MollaevDiplom.PageFolder.DirectoFolder
 
         private void Image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            new InfoStaffWindow().Show();
+            NavigationService.Navigate(new PageFolder.DirectoFolder.InfoStaffPage(ListStaffLb.SelectedItem as Staff));
+        }
+
+        private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateList();
+        }
+
+        private void InfoTE_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new PageFolder.DirectoFolder.InfoStaffPage(ListStaffLb.SelectedItem as Staff));
         }
     }
 }

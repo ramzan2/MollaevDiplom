@@ -12,5 +12,7 @@ namespace MollaevDiplom.ClassFolder
     {
         public static ListStaffPage ListStaffPage1;
         public static MenuDirecWindow direcWindow;
+        public static ListMeetingsPage ListMeetingsPage1;
+        public static ListAttendancePage ListAttendancePage1;
     }
 }

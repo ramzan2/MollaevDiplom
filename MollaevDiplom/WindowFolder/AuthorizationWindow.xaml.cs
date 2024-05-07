@@ -36,15 +36,10 @@ namespace MollaevDiplom.WindowFolder
             PasswordTb.Focus();
         }
 
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton == MouseButton.Left)
-                this.DragMove();
-        }
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Close();
+            MBClass.ExitMB();
         }
 
         private void Image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -95,7 +90,6 @@ namespace MollaevDiplom.WindowFolder
                         {
                             case 1:
                                 new MenuDirecWindow().Show();
-                                MBClass.InfoMB("Успех");
                                 Close();
                                 break;
                         }
@@ -258,6 +252,13 @@ namespace MollaevDiplom.WindowFolder
             }
             HideIco.Visibility = Visibility.Visible;
             EyeIco.Visibility = Visibility.Collapsed;
+        }
+
+
+        private void Border_MouseDown_1(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
         }
     }
 }

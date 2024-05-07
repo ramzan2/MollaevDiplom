@@ -6,15 +6,15 @@
       xmlns:local="clr-namespace:MollaevDiplom.PageFolder.DirectoFolder"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Список сотрудников">
+      Title="Список сотрудников" Style="{StaticResource Page_Style}">
     <Grid Background="#FF23262B">
         <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="190"/>
-            <ColumnDefinition />
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
 
             <!--<ComboBox Height="30"
@@ -26,63 +26,75 @@
                 <ComboBoxItem Content="В отпуске"/>
                 <ComboBoxItem Content="Уволен"/>
             </ComboBox>-->
-
-        <Button Content="Добавить сотрудника" 
-                        FontSize="16"
-                        Grid.Column="1"
-                        Width="180"
-                        Height="35"
-                        HorizontalAlignment="Left"
-                        Margin="12"
-                        Foreground="White"
-                        x:Name="AddStBtn"
-                        Click="AddStaffBtn_Click" >
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="OverridesDefaultStyle" Value="True"/>
-                    <Setter Property="Background" Value="Black"/>
-                    <Setter Property="BorderBrush" Value="Black"/>
-                    <Setter Property="Cursor" Value="Hand"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="Button">
-                                <Border Name="border"
-                                        CornerRadius="5"
-                                                BorderThickness="0"
-                                                BorderBrush="Black"
-                                                Background="{TemplateBinding Background}">
-                                    <ContentPresenter HorizontalAlignment="Center"
-                                                              VerticalAlignment="Center"/>
-                                </Border>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Opacity" Value="0.3"/>
-                                    </Trigger>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Foreground" Value="White"/>
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </Button.Style>
-        </Button>
-
-        <Grid Height="40"
-              Width="180"
+        <StackPanel Grid.ColumnSpan="2"
+                    Orientation="Horizontal">
+            <Grid Height="40"
+              Width="500"
               Grid.ColumnSpan="2"
               HorizontalAlignment="Left"
               VerticalAlignment="Top"
               Margin="10,10,15,0">
 
-            <TextBox x:Name="SearchBox"
+                <TextBox x:Name="SearchBox"
                      Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}"
-                     Style="{StaticResource SearchBoxStyle}" />
+                     Style="{StaticResource SearchBoxStyle}" 
+                         TextChanged="SearchBox_TextChanged"/>
 
-            <TextBlock Text="Search"
+                <TextBlock Text="Поиск"
                        Style="{StaticResource SearchTextStyle}" />
-        </Grid>
+            </Grid>
+            <Button 
+                        FontSize="16"
+                        Grid.Column="1"
+                        Width="140"
+                        Height="35"
+                        HorizontalAlignment="Right"
+                        Margin="12 10 40 0"
+                        Foreground="White"
+                        x:Name="AddStBtn"
+                        Click="AddStaffBtn_Click" >
+                <Grid HorizontalAlignment="Center">
+                    <Image Source="/ResourceFolder/ImageFolder/plus.png"
+                                       Stretch="Fill"
+                                       Margin="0,0,0,0"
+                                       Style="{StaticResource Image_Style}"/>
+
+                    <TextBlock Text="Добавить"
+                               Style="{StaticResource Text_Style}" 
+                               Margin="40 0 0 0"/>
+                </Grid>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="OverridesDefaultStyle" Value="True"/>
+                        <Setter Property="Background" Value="Black"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Name="border"
+                                        CornerRadius="5 5 5 5"
+                                                BorderThickness="0"
+                                                BorderBrush="Black"
+                                                Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                              VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Opacity" Value="0.3"/>
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Foreground" Value="White"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </StackPanel>
 
         <!--<ComboBox Grid.Column="1"
                   Width="170"
@@ -97,12 +109,14 @@
                   ScrollViewer.CanContentScroll="False"
                   Background="#FF23262B"
                   BorderBrush="Transparent"
-                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Left">
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Left"
+                  ScrollViewer.VerticalScrollBarVisibility="Disabled">
                 <ListView.ContextMenu>
                     <ContextMenu>
                         <MenuItem x:Name="EditTE" Header="Редактирование сотрудника"
                               Click="EditTE_Click"/>
-                    <MenuItem x:Name="InfoTE" Header="Подробная информация"/>
+                    <MenuItem x:Name="InfoTE" Header="Подробная информация"
+                              Click="InfoTE_Click"/>
                 </ContextMenu>
                 </ListView.ContextMenu>
             <ListView.ItemsPanel>

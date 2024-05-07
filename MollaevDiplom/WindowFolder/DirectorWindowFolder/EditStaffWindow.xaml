@@ -1,0 +1,251 @@
+﻿<Window x:Class="MollaevDiplom.WindowFolder.DirectorWindowFolder.EditStaffWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MollaevDiplom.WindowFolder.DirectorWindowFolder"
+        mc:Ignorable="d"
+        Title="EditStaffWindow" 
+        Height="500" Width="500"
+        MaxHeight="500" MaxWidth="500"
+        MinHeight="500" MinWidth="500"
+        AllowsTransparency="True" WindowStartupLocation="CenterScreen"
+        WindowStyle="None" ResizeMode="NoResize" Background="Transparent">
+    <Border CornerRadius="7"
+            Background="#FF212529"
+            MouseDown="Border_MouseDown">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="10"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="15"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Редактирование данных"
+                       Style="{StaticResource Text_Style}"
+                       Grid.ColumnSpan="3"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Margin="10"
+                       FontSize="24"/>
+            <TextBox Grid.Row="1"
+                     Grid.Column="0"
+                     Width="200"
+                     Style="{StaticResource  tboH}"
+                     Text="{Binding FIOStaff}"
+                     Tag="Введите ФИО сотрудника"
+                     Foreground="White"
+                     x:Name="FIOTb"/>
+            <TextBox Grid.Row="3"
+                     Grid.Column="0"
+                     Width="200"
+                     Text="{Binding PhoneNumberStaff}"
+                     Style="{StaticResource  tboH}"
+                     Tag="Введите номер телефона"
+                     Foreground="White"
+                     x:Name="PhoneNumberStaffTb"/>
+            <ComboBox Grid.Row="5"
+                      Style="{StaticResource ComboBoxStyle1}"
+                      Width="200"
+                      x:Name="PositionCb"
+                      Tag="Выберите должность"
+                      SelectedItem="{Binding Position}"
+                      DisplayMemberPath="NamePosition" 
+                      SelectedValuePath="IdPosition"/>
+            <ComboBox Grid.Row="7"
+                      Style="{StaticResource ComboBoxStyle1}"
+                      Width="200"
+                      x:Name="DepartmentsCb"
+                      Tag="Выберите отдел"
+                      SelectedItem="{Binding Departments}"
+                      DisplayMemberPath="NameDepartments" 
+                      SelectedValuePath="IdDepartments"/>
+            <Image Source="{Binding PhotoStaff}"
+                    x:Name="PhotoIm"
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Grid.RowSpan="5"
+                    Stretch="Fill"
+                    Margin="6"/>
+            <Button Content="Назад" 
+                        Grid.Row="9"
+                        Width="200" 
+                        Height="35"
+                        FontSize="16"
+                        Foreground="White"
+                        x:Name="BackBtn"
+                        Click="BackBtn_Click" >
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="OverridesDefaultStyle" Value="True"/>
+                        <Setter Property="Background" Value="Black"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Name="border"
+                                                BorderThickness="0"
+                                                BorderBrush="Black"
+                                                Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                              VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FF464545"/>
+                                        </Trigger>
+                                        <EventTrigger RoutedEvent="PreviewMouseDown">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                                                            Duration="0:0:0.100" To="2,2,0,0"/>
+                                                    <ColorAnimation Storyboard.TargetProperty="Background.Color"
+                                                                        To="#FF464545" Duration="0:0:0.0002"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                        <EventTrigger RoutedEvent="PreviewMouseUp">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                                                            Duration="0:0:0.100" To="0"/>
+                                                    <ColorAnimation Storyboard.TargetProperty="Background.Color"
+                                                                        To="Black" Duration="0:0:0.0002"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button Content="Сохранить" 
+                        Grid.Row="9"
+                        Grid.Column="2"
+                        Width="200" 
+                        Height="35"
+                        FontSize="16"
+                        Foreground="White"
+                        x:Name="SaveBtn"
+                        Click="SaveBtn_Click" >
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="OverridesDefaultStyle" Value="True"/>
+                        <Setter Property="Background" Value="Black"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Name="border"
+                                                BorderThickness="0"
+                                                BorderBrush="Black"
+                                                Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                              VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FF464545"/>
+                                        </Trigger>
+                                        <EventTrigger RoutedEvent="PreviewMouseDown">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                                                            Duration="0:0:0.100" To="2,2,0,0"/>
+                                                    <ColorAnimation Storyboard.TargetProperty="Background.Color"
+                                                                        To="#FF464545" Duration="0:0:0.0002"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                        <EventTrigger RoutedEvent="PreviewMouseUp">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                                                            Duration="0:0:0.100" To="0"/>
+                                                    <ColorAnimation Storyboard.TargetProperty="Background.Color"
+                                                                        To="Black" Duration="0:0:0.0002"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button Content="Изменить" 
+                        Grid.Row="7"
+                        Grid.Column="2"
+                        Width="200" 
+                        Height="35"
+                        FontSize="16"
+                        Foreground="White"
+                        x:Name="EditImBtn"
+                        Click="EditImBtn_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="OverridesDefaultStyle" Value="True"/>
+                        <Setter Property="Background" Value="Black"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Name="border"
+                                                BorderThickness="0"
+                                                BorderBrush="Black"
+                                                Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                              VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FF464545"/>
+                                        </Trigger>
+                                        <EventTrigger RoutedEvent="PreviewMouseDown">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                                                            Duration="0:0:0.100" To="2,2,0,0"/>
+                                                    <ColorAnimation Storyboard.TargetProperty="Background.Color"
+                                                                        To="#FF464545" Duration="0:0:0.0002"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                        <EventTrigger RoutedEvent="PreviewMouseUp">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                                                            Duration="0:0:0.100" To="0"/>
+                                                    <ColorAnimation Storyboard.TargetProperty="Background.Color"
+                                                                        To="Black" Duration="0:0:0.0002"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Grid>
+    </Border>
+</Window>

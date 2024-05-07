@@ -105,7 +105,7 @@
     </Style>
 
     <Style x:Key="tbox" TargetType="{x:Type TextBox}">
-        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="FontSize" Value="16"/>
         <Setter Property="FontFamily" Value="Roboto"/>
         <Setter Property="Height" Value="35"/>
         <Setter Property="Width" Value="250"/>
@@ -133,7 +133,6 @@
                             <ScrollViewer x:Name="PART_ContentHost"
                                               Focusable="False"
                                               Grid.Column="1"
-                                              
                                               Margin="5 0 0 0"
                                               HorizontalScrollBarVisibility="Hidden"
                                               VerticalScrollBarVisibility="Hidden"/>
@@ -186,9 +185,9 @@
     </Style>
 
     <Style x:Key="tboc" TargetType="{x:Type TextBox}">
-        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="FontSize" Value="16"/>
         <Setter Property="FontFamily" Value="Roboto"/>
-        <Setter Property="Height" Value="35"/>
+        <Setter Property="Height" Value="45"/>
         <Setter Property="Width" Value="250"/>
         <Setter Property="Background" Value="{StaticResource cs_BackgroundLayer}"/>
         <Setter Property="Foreground" Value="White"/>
@@ -344,7 +343,7 @@
     </Style>
 
     <Style x:Key="tpass" TargetType="{x:Type PasswordBox}">
-        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="FontSize" Value="14"/>
         <Setter Property="FontFamily" Value="Roboto"/>
         <Setter Property="Height" Value="35"/>
         <Setter Property="Width" Value="250"/>
@@ -555,6 +554,103 @@
 
     </Style>
 
+    <Style x:Key="VisiStyle" TargetType="RadioButton">
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="0,5,0,0" />
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+
+                    <Border x:Name="border"
+                            Height="50"
+                            Width="228"
+                            BorderBrush="White"
+                            BorderThickness="0 0 0 0">
+
+                        <Border.Background>
+                            <SolidColorBrush x:Name="BorderBackground"
+                                             Color="Transparent" />
+                        </Border.Background>
+
+                        <Grid>
+
+
+
+                            <ContentPresenter />
+
+                        </Grid>
+
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+
+                            <Setter Property="BorderThickness"
+                                    TargetName="border"
+                                    Value="0 0 0 2" />
+
+                        </Trigger>
+
+                        <Trigger Property="IsMouseOver"
+                                 Value="False">
+
+                            <Setter Property="BorderThickness"
+                                     TargetName="border"
+                                    Value="0 0 0 0" />
+
+                        </Trigger>
+
+                        <!--<EventTrigger RoutedEvent="Border.MouseEnter"
+                                      SourceName="border">
+
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetName="BorderBorderThickness"
+                                                    Storyboard.TargetProperty="Color"
+                                                    From="#2E333A"
+                                                    To="#272B2F"
+                                                    Duration="0:0:0.3" />
+                                </Storyboard>
+                            </BeginStoryboard>
+
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="Border.MouseLeave"
+                                      SourceName="border">
+
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetName="BorderBackground"
+                                                    Storyboard.TargetProperty="Color"
+                                                    From="#2E333A"
+                                                    To="#2E333A"
+                                                    Duration="0:0:0.3" />
+                                </Storyboard>
+                            </BeginStoryboard>
+
+                        </EventTrigger>-->
+
+                        <Trigger Property="IsChecked"
+                                 Value="True">
+
+                            <Setter Property="BorderThickness"
+                                    TargetName="border"
+                                    Value="0 0 0 2" />
+
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
     <Style x:Key="Image_Style"
            TargetType="Image">
 
@@ -571,6 +667,23 @@
         <Setter Property="Margin"
                 Value="22,0,0,0" />
 
+    </Style>
+
+    <Style TargetType="ToolTip" x:Key="tt_style">
+        <Setter Property="Placement" Value="Right"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="Margin" Value="20,0,0,0"/>
+        <Setter Property="Background" Value="#4A5668"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontFamily" Value="Fonts/Roboto-Light.ttf #Roboto"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="PlacementRectangle" Value="60,0,0,0"/>
+        <Setter Property="HorizontalOffset" Value="15"/>
+        <Setter Property="VerticalOffset" Value="6"/>
+        <Setter Property="HasDropShadow" Value="True"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
     </Style>
 
     <Style x:Key="Text_Style"
@@ -636,7 +749,7 @@
         <Setter Property="Height"
                 Value="35" />
         <Setter Property="Width"
-                Value="180" />
+                Value="500" />
         <Setter Property="FontFamily"
                 Value="Fonts/Roboto-Regular.ttf #Roboto Regular" />
         <Setter Property="FontSize"
@@ -994,37 +1107,6 @@
         <Setter Property="Width" Value="12" />
         <Setter Property="Height" Value="12" />
     </Style>-->
-    <Style x:Key="gridEditButton" TargetType="Button">
-        <Setter Property="Background" Value="Blue" />
-        <Setter Property="BorderBrush" Value="Blue" />
-        <Setter Property="Foreground" Value="Black" />
-        <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="Template" >
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" Padding="5" BorderThickness="1" CornerRadius="5">
-                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="WhiteSmoke" />
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-    <Style x:Key="gridRemoveButton" TargetType="Button" BasedOn="{StaticResource gridEditButton}">
-        <Setter Property="Background" Value="#D32F2F" />
-        <Setter Property="BorderBrush" Value="#B71C1C" />
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#F44336" />
-            </Trigger>
-        </Style.Triggers>
-    </Style>
     <Style x:Key="{ComponentResourceKey ResourceId=DataGridSelectAllButtonStyle, TypeInTargetAssembly={x:Type DataGrid}}" TargetType="{x:Type Button}">
         <Setter Property="Template">
             <Setter.Value>
@@ -1110,11 +1192,11 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="WhiteSmoke"/>
+                <Setter Property="Background" Value="Transparent"/>
                 <Setter Property="Foreground" Value="Black"/>
             </Trigger>
             <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Background" Value="WhiteSmoke"/>
+                <Setter Property="Background" Value="Transparent"/>
                 <Setter Property="Foreground" Value="Black"/>
             </Trigger>
             <MultiTrigger>
@@ -1128,7 +1210,7 @@
     </Style>
     <Style x:Key="DataGridRowStyle1" TargetType="{x:Type DataGridRow}">
         <Setter Property="Margin" Value="0 4 0 0" />
-        <Setter Property="Background" Value="#FFFFFF"/>
+        <Setter Property="Background" Value="#2E333A"/>
         <Setter Property="SnapsToDevicePixels" Value="true"/>
         <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
         <Setter Property="ValidationErrorTemplate">
@@ -1162,12 +1244,12 @@
 
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="WhiteSmoke"/>
-                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="Background" Value="Gray"/>
+                <Setter Property="Foreground" Value="White"/>
             </Trigger>
             <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Background" Value="WhiteSmoke"/>
-                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="Background" Value="Gray"/>
+                <Setter Property="Foreground" Value="White"/>
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -1181,7 +1263,7 @@
     </Style>
     <Style x:Key="DataGridCellStyle1" TargetType="{x:Type DataGridCell}">
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Foreground" Value="White"/>
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Margin" Value="15 0" />
@@ -1296,6 +1378,5 @@
             </Setter.Value>
         </Setter>
     </Style>
-
 
 </ResourceDictionary>

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MollaevDiplom.ClassFolder;
 
 namespace MollaevDiplom.WindowFolder
 {
@@ -76,12 +77,18 @@ namespace MollaevDiplom.WindowFolder
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            MBClass.ExitMB();
         }
 
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
+        }
+
+        private void EditAccBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new AuthorizationWindow().Show();
+            Close();
         }
     }
 }

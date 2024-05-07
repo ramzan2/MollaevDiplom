@@ -125,6 +125,15 @@
     <Compile Include="DataFolder\User.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="PageFolder\DirectoFolder\InfoStaffPage.xaml.cs">
+      <DependentUpon>InfoStaffPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\DirectoFolder\ListAttendancePage.xaml.cs">
+      <DependentUpon>ListAttendancePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\DirectoFolder\ListMeetingsPage.xaml.cs">
+      <DependentUpon>ListMeetingsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageFolder\DirectoFolder\ListStaffPage.xaml.cs">
       <DependentUpon>ListStaffPage.xaml</DependentUpon>
     </Compile>
@@ -134,8 +143,8 @@
     <Compile Include="WindowFolder\DirectorWindowFolder\AddStaffWindow.xaml.cs">
       <DependentUpon>AddStaffWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WindowFolder\DirectorWindowFolder\InfoStaffWindow.xaml.cs">
-      <DependentUpon>InfoStaffWindow.xaml</DependentUpon>
+    <Compile Include="WindowFolder\DirectorWindowFolder\EditStaffWindow.xaml.cs">
+      <DependentUpon>EditStaffWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowFolder\DirectorWindowFolder\MenuDirecWindow.xaml.cs">
       <DependentUpon>MenuDirecWindow.xaml</DependentUpon>
@@ -181,6 +190,18 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="PageFolder\DirectoFolder\InfoStaffPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\DirectoFolder\ListAttendancePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\DirectoFolder\ListMeetingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PageFolder\DirectoFolder\ListStaffPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -197,7 +218,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WindowFolder\DirectorWindowFolder\InfoStaffWindow.xaml">
+    <Page Include="WindowFolder\DirectorWindowFolder\EditStaffWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -264,6 +285,16 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="ResourceFolder\ImageFolder\plus.png" />
+    <Resource Include="ResourceFolder\ImageFolder\logout.png" />
+    <Resource Include="ResourceFolder\ImageFolder\eye.png" />
+    <Resource Include="ResourceFolder\ImageFolder\hide.png" />
+    <Resource Include="ResourceFolder\ImageFolder\whiteinformation.png" />
+    <Resource Include="ResourceFolder\ImageFolder\information.png" />
+    <Resource Include="ResourceFolder\ImageFolder\Group 13.png" />
+    <Resource Include="ResourceFolder\ImageFolder\Group 4.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="DataFolder\DBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DBModel.edmx</DependentUpon>
@@ -274,12 +305,7 @@
       <DependentUpon>DBModel.edmx</DependentUpon>
       <LastGenOutput>DBModel.cs</LastGenOutput>
     </Content>
-    <Resource Include="ResourceFolder\ImageFolder\eye.png" />
-    <Resource Include="ResourceFolder\ImageFolder\hide.png" />
-    <Resource Include="ResourceFolder\ImageFolder\whiteinformation.png" />
-    <Resource Include="ResourceFolder\ImageFolder\information.png" />
-    <Resource Include="ResourceFolder\ImageFolder\Group 13.png" />
-    <Resource Include="ResourceFolder\ImageFolder\Group 4.png" />
+    <Resource Include="ResourceFolder\ImageFolder\Group 4%281%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

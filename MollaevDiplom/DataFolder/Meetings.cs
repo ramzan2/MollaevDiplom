@@ -22,7 +22,7 @@ namespace MollaevDiplom.DataFolder
     
         public int IdMeetings { get; set; }
         public System.DateTime MeetinsDate { get; set; }
-        public System.TimeSpan MeetingsTime { get; set; }
+        public string MeetingsTime { get; set; }
         public string MeetingsDuration { get; set; }
         public string AgendaMeetigns { get; set; }
         public int IdStaff { get; set; }

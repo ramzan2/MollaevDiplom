@@ -47,7 +47,7 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
 
         private void Tasks_Click(object sender, RoutedEventArgs e)
         {
-
+            SidePanel.Visibility = Visibility.Collapsed;
         }
 
         private void Tasks_Checked(object sender, RoutedEventArgs e)
@@ -57,17 +57,19 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
 
         private void Meetings_Click(object sender, RoutedEventArgs e)
         {
-
+            MainFrame.Navigate(new PageFolder.DirectoFolder.ListMeetingsPage());
+            SidePanel.Visibility = Visibility.Visible;
         }
 
         private void Document_Click(object sender, RoutedEventArgs e)
         {
-
+            SidePanel.Visibility = Visibility.Collapsed;
         }
 
         private void Employees_Click(object sender, RoutedEventArgs e)
         {
-
+            MainFrame.Navigate(new PageFolder.DirectoFolder.ListStaffPage());
+            SidePanel.Visibility = Visibility.Collapsed;
         }
 
         private void btnRestore_Click(object sender, RoutedEventArgs e)
@@ -85,13 +87,29 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            new AuthorizationWindow().Show();
+            MBClass.ExitMB();
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
+        }
+
+        private void EditAccBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new AuthorizationWindow().Show();
+            Close();
+        }
+
+        private void MeetingsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new PageFolder.DirectoFolder.ListMeetingsPage());
+        }
+
+        private void AttendanceBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new PageFolder.DirectoFolder.ListAttendancePage());
         }
     }
 }
