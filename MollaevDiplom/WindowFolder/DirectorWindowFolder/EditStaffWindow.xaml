@@ -10,7 +10,8 @@
         MaxHeight="500" MaxWidth="500"
         MinHeight="500" MinWidth="500"
         AllowsTransparency="True" WindowStartupLocation="CenterScreen"
-        WindowStyle="None" ResizeMode="NoResize" Background="Transparent">
+        WindowStyle="None" ResizeMode="NoResize" Background="Transparent"
+        Loaded="Window_Loaded">
     <Border CornerRadius="7"
             Background="#FF212529"
             MouseDown="Border_MouseDown">
@@ -61,6 +62,7 @@
                       Width="200"
                       x:Name="PositionCb"
                       Tag="Выберите должность"
+                      ItemsSource="{Binding Position}"
                       SelectedItem="{Binding Position}"
                       DisplayMemberPath="NamePosition" 
                       SelectedValuePath="IdPosition"/>
@@ -69,6 +71,7 @@
                       Width="200"
                       x:Name="DepartmentsCb"
                       Tag="Выберите отдел"
+                      ItemsSource="{Binding Departments}"
                       SelectedItem="{Binding Departments}"
                       DisplayMemberPath="NameDepartments" 
                       SelectedValuePath="IdDepartments"/>

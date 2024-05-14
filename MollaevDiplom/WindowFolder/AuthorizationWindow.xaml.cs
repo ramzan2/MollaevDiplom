@@ -158,7 +158,7 @@ namespace MollaevDiplom.WindowFolder
 
         private void LoginTb_TextChanged(object sender, TextChangedEventArgs e)
         {
-            placeholderText.Visibility = Visibility.Collapsed;
+           
         }
 
         private void PasswordTb_PasswordChanged(object sender, RoutedEventArgs e)

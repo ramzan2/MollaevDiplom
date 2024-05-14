@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,35 +23,44 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
     /// </summary>
     public partial class EditStaffWindow : Window
     {
-        Staff staff = new Staff();
-        public EditStaffWindow(Staff staff)
+        private Staff originalStaff;
+        private Staff editedStaff;
+        Staff existingStaff;
+        public EditStaffWindow(Staff existingStaff)
         {
             InitializeComponent();
-            if (staff != null) selectedFileName = "фото есть";
-            DataContext = staff;
 
-            this.staff.IdStaff = staff.IdStaff;
+            originalStaff = existingStaff;
+            editedStaff = CloneStaff(existingStaff);
+
+            if (editedStaff != null) selectedFileName = "фото есть";
+            DataContext = editedStaff;
+
 
             PositionCb.ItemsSource = DBEntities.GetContext()
-       .Position.ToList();
+                       .Position.ToList();
             DepartmentsCb.ItemsSource = DBEntities.GetContext()
                    .Departments.ToList();
+
+
+            //this.staff.IdStaff = staff.IdStaff;
+
+
         }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                staff = DBEntities.GetContext().Staff
-                   .FirstOrDefault(u => u.IdStaff == staff.IdStaff);
-                staff.FIOStaff = FIOTb.Text;
-                staff.PhoneNumberStaff = PhoneNumberStaffTb.Text;
-                staff.IdPosition = Int32.Parse(
-                    PositionCb.SelectedValue.ToString());
-                staff.IdDepartments = Int32.Parse(
-                    DepartmentsCb.SelectedValue.ToString());
+                originalStaff = DBEntities.GetContext().Staff
+                   .FirstOrDefault(u => u.IdStaff == originalStaff.IdStaff);
+                originalStaff.FIOStaff = editedStaff.FIOStaff;
+                originalStaff.PhoneNumberStaff = editedStaff.PhoneNumberStaff;
+                originalStaff.IdPosition = editedStaff.IdPosition;
+                originalStaff.IdDepartments = editedStaff.IdDepartments;
+                originalStaff.PhotoStaff = editedStaff.PhotoStaff;
                 if (selectedFileName != "фото есть")
-                    staff.PhotoStaff = ImageClass.ConvertImageToByteArray(selectedFileName);
+                    originalStaff.PhotoStaff = ImageClass.ConvertImageToByteArray(selectedFileName);
                 DBEntities.GetContext().SaveChanges();
                 MBClass.InfoMB("Данные успешно отредактированы");
                 if (VariableClass.ListStaffPage1 != null) VariableClass.ListStaffPage1.UpdateList();
@@ -61,6 +71,20 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
             {
                 MBClass.ErrorMB(ex);
             }
+        }
+
+        private Staff CloneStaff(Staff staff)
+        {
+            return new Staff
+            {
+                IdStaff = staff.IdStaff,
+                FIOStaff = staff.FIOStaff,
+                PhoneNumberStaff = staff.PhoneNumberStaff,
+                IdPosition = staff.IdPosition,
+                IdDepartments = staff.IdDepartments,
+                PhotoStaff = staff.PhotoStaff
+
+            };
         }
 
         private void EditImBtn_Click(object sender, RoutedEventArgs e)
@@ -82,8 +106,8 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
                 if (op.ShowDialog() == true)
                 {
                     selectedFileName = op.FileName;
-                    staff.PhotoStaff = ImageClass.ConvertImageToByteArray(selectedFileName);
-                    PhotoIm.Source = ImageClass.ConvertByteArrayToImage(staff.PhotoStaff);
+                    editedStaff.PhotoStaff = ImageClass.ConvertImageToByteArray(selectedFileName);
+                    PhotoIm.Source = ImageClass.ConvertByteArrayToImage(editedStaff.PhotoStaff);
                 }
             }
             catch (Exception ex)
@@ -94,6 +118,7 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
         }
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
+
             Close();
             if (VariableClass.direcWindow != null) VariableClass.direcWindow.Update();
         }
@@ -102,6 +127,14 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
         {
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            PositionCb.SelectedIndex =
+               existingStaff.IdPosition;
+            DepartmentsCb.SelectedIndex =
+              existingStaff.IdDepartments;
         }
     }
 }
