@@ -72,7 +72,7 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
         {
             DBEntities.GetContext().Staff.Add(new Staff()
             {
-                FIOStaff = FIOTb.Text,
+                FirstNameStaff = FIOTb.Text,
                 PhoneNumberStaff = PhoneNumberStaffTb.Text,
                 IdPosition = Int32.Parse(PositionCb.SelectedValue.ToString()),
                 IdDepartments = Int32.Parse(DepartmentsCb.SelectedValue.ToString()),

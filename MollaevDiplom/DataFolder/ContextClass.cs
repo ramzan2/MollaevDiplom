@@ -18,5 +18,10 @@ namespace MollaevDiplom.DataFolder
             }
             return context;
         }
+        public static void  NullContext()
+        {
+            context = null;
+        }
     }
+
 }

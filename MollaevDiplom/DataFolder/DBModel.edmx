@@ -70,11 +70,21 @@
             <PropertyRef Name="IdStaff" />
           </Key>
           <Property Name="IdStaff" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FIOStaff" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="LastNameStaff" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstNameStaff" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MiddleNameStaff" Type="nvarchar" MaxLength="200" />
           <Property Name="PhoneNumberStaff" Type="nvarchar" MaxLength="13" Nullable="false" />
           <Property Name="IdPosition" Type="int" Nullable="false" />
           <Property Name="IdDepartments" Type="int" Nullable="false" />
           <Property Name="PhotoStaff" Type="varbinary(max)" />
+          <Property Name="IdStatusStaff" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StatusStaff">
+          <Key>
+            <PropertyRef Name="IdStatusStaff" />
+          </Key>
+          <Property Name="IdStatusStaff" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameStatusStaff" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -202,6 +212,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Staff_StatusStaff">
+          <End Role="StatusStaff" Type="Self.StatusStaff" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusStaff">
+              <PropertyRef Name="IdStatusStaff" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="IdStatusStaff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Tasks_Staff">
           <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
           <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
@@ -278,6 +300,7 @@
           <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatusStaff" EntityType="Self.StatusStaff" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
@@ -311,6 +334,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Staff_Position" Association="Self.FK_Staff_Position">
             <End Role="Position" EntitySet="Position" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_StatusStaff" Association="Self.FK_Staff_StatusStaff">
+            <End Role="StatusStaff" EntitySet="StatusStaff" />
             <End Role="Staff" EntitySet="Staff" />
           </AssociationSet>
           <AssociationSet Name="FK_Tasks_Staff" Association="Self.FK_Tasks_Staff">
@@ -408,18 +435,30 @@
             <PropertyRef Name="IdStaff" />
           </Key>
           <Property Name="IdStaff" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FIOStaff" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastNameStaff" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstNameStaff" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MiddleNameStaff" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="PhoneNumberStaff" Type="String" MaxLength="13" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IdPosition" Type="Int32" Nullable="false" />
           <Property Name="IdDepartments" Type="Int32" Nullable="false" />
           <Property Name="PhotoStaff" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IdStatusStaff" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Attendees" Relationship="Self.FK_Attendees_Staff" FromRole="Staff" ToRole="Attendees" />
           <NavigationProperty Name="Departments" Relationship="Self.FK_Staff_Departments" FromRole="Staff" ToRole="Departments" />
           <NavigationProperty Name="Documents" Relationship="Self.FK_Documents_Staff" FromRole="Staff" ToRole="Documents" />
           <NavigationProperty Name="Meetings" Relationship="Self.FK_Meetings_Staff" FromRole="Staff" ToRole="Meetings" />
           <NavigationProperty Name="Position" Relationship="Self.FK_Staff_Position" FromRole="Staff" ToRole="Position" />
+          <NavigationProperty Name="StatusStaff" Relationship="Self.FK_Staff_StatusStaff" FromRole="Staff" ToRole="StatusStaff" />
           <NavigationProperty Name="Tasks" Relationship="Self.FK_Tasks_Staff" FromRole="Staff" ToRole="Tasks" />
           <NavigationProperty Name="User" Relationship="Self.FK_User_Staff" FromRole="Staff" ToRole="User" />
+        </EntityType>
+        <EntityType Name="StatusStaff">
+          <Key>
+            <PropertyRef Name="IdStatusStaff" />
+          </Key>
+          <Property Name="IdStatusStaff" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameStatusStaff" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_Staff_StatusStaff" FromRole="StatusStaff" ToRole="Staff" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -562,6 +601,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Staff_StatusStaff">
+          <End Role="StatusStaff" Type="Self.StatusStaff" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusStaff">
+              <PropertyRef Name="IdStatusStaff" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="IdStatusStaff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Tasks_Staff">
           <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
           <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
@@ -595,6 +646,7 @@
           <EntitySet Name="Position" EntityType="Self.Position" />
           <EntitySet Name="Role" EntityType="Self.Role" />
           <EntitySet Name="Staff" EntityType="Self.Staff" />
+          <EntitySet Name="StatusStaff" EntityType="Self.StatusStaff" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Tasks" EntityType="Self.Tasks" />
           <EntitySet Name="User" EntityType="Self.User" />
@@ -633,6 +685,10 @@
           <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
             <End Role="Role" EntitySet="Role" />
             <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_StatusStaff" Association="Self.FK_Staff_StatusStaff">
+            <End Role="StatusStaff" EntitySet="StatusStaff" />
+            <End Role="Staff" EntitySet="Staff" />
           </AssociationSet>
           <AssociationSet Name="FK_Tasks_Staff" Association="Self.FK_Tasks_Staff">
             <End Role="Staff" EntitySet="Staff" />
@@ -761,11 +817,22 @@
             <EntityTypeMapping TypeName="DBModel.Staff">
               <MappingFragment StoreEntitySet="Staff">
                 <ScalarProperty Name="IdStaff" ColumnName="IdStaff" />
-                <ScalarProperty Name="FIOStaff" ColumnName="FIOStaff" />
+                <ScalarProperty Name="LastNameStaff" ColumnName="LastNameStaff" />
+                <ScalarProperty Name="FirstNameStaff" ColumnName="FirstNameStaff" />
+                <ScalarProperty Name="MiddleNameStaff" ColumnName="MiddleNameStaff" />
                 <ScalarProperty Name="PhoneNumberStaff" ColumnName="PhoneNumberStaff" />
                 <ScalarProperty Name="IdPosition" ColumnName="IdPosition" />
                 <ScalarProperty Name="IdDepartments" ColumnName="IdDepartments" />
                 <ScalarProperty Name="PhotoStaff" ColumnName="PhotoStaff" />
+                <ScalarProperty Name="IdStatusStaff" ColumnName="IdStatusStaff" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusStaff">
+            <EntityTypeMapping TypeName="DBModel.StatusStaff">
+              <MappingFragment StoreEntitySet="StatusStaff">
+                <ScalarProperty Name="IdStatusStaff" ColumnName="IdStatusStaff" />
+                <ScalarProperty Name="NameStatusStaff" ColumnName="NameStatusStaff" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

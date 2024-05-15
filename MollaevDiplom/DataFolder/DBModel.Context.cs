@@ -35,6 +35,7 @@ namespace MollaevDiplom.DataFolder
         public virtual DbSet<Position> Position { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Staff> Staff { get; set; }
+        public virtual DbSet<StatusStaff> StatusStaff { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Tasks> Tasks { get; set; }
         public virtual DbSet<User> User { get; set; }

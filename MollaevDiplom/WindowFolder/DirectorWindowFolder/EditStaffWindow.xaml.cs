@@ -24,17 +24,18 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
     public partial class EditStaffWindow : Window
     {
         private Staff originalStaff;
-        private Staff editedStaff;
-        Staff existingStaff;
+
         public EditStaffWindow(Staff existingStaff)
         {
             InitializeComponent();
 
-            originalStaff = existingStaff;
-            editedStaff = CloneStaff(existingStaff);
+            DBEntities.NullContext();
+            originalStaff = DBEntities.GetContext().Staff
+                .FirstOrDefault(u => u.IdStaff == existingStaff.IdStaff); 
+            //editedStaff = CloneStaff(existingStaff);
+            DataContext = originalStaff;
+            if (originalStaff != null) selectedFileName = "фото есть";
 
-            if (editedStaff != null) selectedFileName = "фото есть";
-            DataContext = editedStaff;
 
 
             PositionCb.ItemsSource = DBEntities.GetContext()
@@ -42,50 +43,50 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
             DepartmentsCb.ItemsSource = DBEntities.GetContext()
                    .Departments.ToList();
 
-
+            StatusStaffCb.ItemsSource = DBEntities.GetContext()
+                   .StatusStaff.ToList();
             //this.staff.IdStaff = staff.IdStaff;
 
 
         }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
+        {   
+
                 originalStaff = DBEntities.GetContext().Staff
-                   .FirstOrDefault(u => u.IdStaff == originalStaff.IdStaff);
-                originalStaff.FIOStaff = editedStaff.FIOStaff;
-                originalStaff.PhoneNumberStaff = editedStaff.PhoneNumberStaff;
-                originalStaff.IdPosition = editedStaff.IdPosition;
-                originalStaff.IdDepartments = editedStaff.IdDepartments;
-                originalStaff.PhotoStaff = editedStaff.PhotoStaff;
-                if (selectedFileName != "фото есть")
-                    originalStaff.PhotoStaff = ImageClass.ConvertImageToByteArray(selectedFileName);
-                DBEntities.GetContext().SaveChanges();
+                    .FirstOrDefault(u => u.IdStaff == originalStaff.IdStaff);
+            if (selectedFileName == "фото есть")
+            {
+                originalStaff.PhotoStaff = ImageClass.ConvertImageToByteArray(selectedFileName);
+            }
+            originalStaff.LastNameStaff = FIOTb.Text;
+            originalStaff.FirstNameStaff = FIOTb.Text;
+            originalStaff.MiddleNameStaff = FIOTb.Text;
+                originalStaff.PhoneNumberStaff = PhoneNumberStaffTb.Text;
+                originalStaff.IdPosition = Int32.Parse(PositionCb.SelectedValue.ToString());
+                originalStaff.IdDepartments = Int32.Parse(DepartmentsCb.SelectedValue.ToString());
+            originalStaff.IdStatusStaff = Int32.Parse(StatusStaffCb.SelectedValue.ToString());
+            DBEntities.GetContext().SaveChanges();
                 MBClass.InfoMB("Данные успешно отредактированы");
                 if (VariableClass.ListStaffPage1 != null) VariableClass.ListStaffPage1.UpdateList();
                 if (VariableClass.direcWindow != null) VariableClass.direcWindow.Update();
                 Close();
-            }
-            catch (Exception ex)
-            {
-                MBClass.ErrorMB(ex);
-            }
+         
         }
 
-        private Staff CloneStaff(Staff staff)
-        {
-            return new Staff
-            {
-                IdStaff = staff.IdStaff,
-                FIOStaff = staff.FIOStaff,
-                PhoneNumberStaff = staff.PhoneNumberStaff,
-                IdPosition = staff.IdPosition,
-                IdDepartments = staff.IdDepartments,
-                PhotoStaff = staff.PhotoStaff
+        //private Staff CloneStaff(Staff staff)
+        //{
+        //    return new Staff
+        //    {
+        //        IdStaff = staff.IdStaff,
+        //        FIOStaff = staff.FIOStaff,
+        //        PhoneNumberStaff = staff.PhoneNumberStaff,
+        //        IdPosition = staff.IdPosition,
+        //        IdDepartments = staff.IdDepartments,
+        //        PhotoStaff = staff.PhotoStaff
 
-            };
-        }
+        //    };
+        //}
 
         private void EditImBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -106,8 +107,8 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
                 if (op.ShowDialog() == true)
                 {
                     selectedFileName = op.FileName;
-                    editedStaff.PhotoStaff = ImageClass.ConvertImageToByteArray(selectedFileName);
-                    PhotoIm.Source = ImageClass.ConvertByteArrayToImage(editedStaff.PhotoStaff);
+                    originalStaff.PhotoStaff = ImageClass.ConvertImageToByteArray(selectedFileName);
+                    PhotoIm.Source = ImageClass.ConvertByteArrayToImage(originalStaff.PhotoStaff);
                 }
             }
             catch (Exception ex)
@@ -132,9 +133,10 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             PositionCb.SelectedIndex =
-               existingStaff.IdPosition;
+             originalStaff.IdPosition;
             DepartmentsCb.SelectedIndex =
-              existingStaff.IdDepartments;
+              originalStaff
+              .IdDepartments;
         }
     }
 }

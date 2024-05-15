@@ -116,6 +116,9 @@
     <Compile Include="DataFolder\Staff.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataFolder\StatusStaff.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataFolder\sysdiagrams.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -295,6 +298,9 @@
     <Resource Include="ResourceFolder\ImageFolder\Group 4.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="ResourceFolder\ImageFolder\Group 4%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="DataFolder\DBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DBModel.edmx</DependentUpon>
@@ -305,7 +311,6 @@
       <DependentUpon>DBModel.edmx</DependentUpon>
       <LastGenOutput>DBModel.cs</LastGenOutput>
     </Content>
-    <Resource Include="ResourceFolder\ImageFolder\Group 4%281%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

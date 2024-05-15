@@ -4,18 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8f4562c25afa427e95f05eaeb5a8bc65" Name="Diagram1">
-        <EntityTypeShape EntityType="DBModel.Attendees" Width="1.5" PointX="8.25" PointY="6.75" IsExpanded="true" />
+      <Diagram DiagramId="02bbe2d7e40b44a3a001280753eb507d" Name="Diagram1">
+        <EntityTypeShape EntityType="DBModel.Attendees" Width="1.5" PointX="11.25" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModel.Departments" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBModel.Documents" Width="1.5" PointX="11.25" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBModel.DocumentsCategory" Width="1.5" PointX="9" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Documents" Width="1.5" PointX="8.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.DocumentsCategory" Width="1.5" PointX="6" PointY="2.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModel.Meetings" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBModel.Position" Width="1.5" PointX="3.75" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBModel.Role" Width="1.5" PointX="6" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBModel.Staff" Width="1.5" PointX="6" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Position" Width="1.5" PointX="3.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Role" Width="1.5" PointX="9" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Staff" Width="1.5" PointX="6" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.StatusStaff" Width="1.5" PointX="3.75" PointY="10.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModel.Tasks" Width="1.5" PointX="8.25" PointY="10.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBModel.User" Width="1.5" PointX="8.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.User" Width="1.5" PointX="11.25" PointY="6.5" IsExpanded="true" />
         <AssociationConnector Association="DBModel.FK_Attendees_Meetings" ManuallyRouted="false" />
         <AssociationConnector Association="DBModel.FK_Attendees_Staff" ManuallyRouted="false" />
         <AssociationConnector Association="DBModel.FK_Meetings_Departments" ManuallyRouted="false" />
@@ -25,6 +26,7 @@
         <AssociationConnector Association="DBModel.FK_Meetings_Staff" ManuallyRouted="false" />
         <AssociationConnector Association="DBModel.FK_Staff_Position" ManuallyRouted="false" />
         <AssociationConnector Association="DBModel.FK_User_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_Staff_StatusStaff" ManuallyRouted="false" />
         <AssociationConnector Association="DBModel.FK_Tasks_Staff" ManuallyRouted="false" />
         <AssociationConnector Association="DBModel.FK_User_Staff" ManuallyRouted="false" />
       </Diagram>

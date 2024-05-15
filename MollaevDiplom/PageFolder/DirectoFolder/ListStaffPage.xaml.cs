@@ -34,9 +34,9 @@ namespace MollaevDiplom.PageFolder.DirectoFolder
         public void UpdateList()
         {
             ListStaffLb.ItemsSource = DBEntities.GetContext()
-          .Staff.Where(u => u.FIOStaff
+          .Staff.Where(u => u.LastNameStaff
           .StartsWith(SearchBox.Text))
-          .ToList().OrderBy(u => u.FIOStaff);
+          .ToList().OrderBy(u => u.FirstNameStaff);
 
         }
         private void EditTE_Click(object sender, RoutedEventArgs e)

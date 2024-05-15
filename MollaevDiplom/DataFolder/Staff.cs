@@ -25,11 +25,14 @@ namespace MollaevDiplom.DataFolder
         }
     
         public int IdStaff { get; set; }
-        public string FIOStaff { get; set; }
+        public string LastNameStaff { get; set; }
+        public string FirstNameStaff { get; set; }
+        public string MiddleNameStaff { get; set; }
         public string PhoneNumberStaff { get; set; }
         public int IdPosition { get; set; }
         public int IdDepartments { get; set; }
         public byte[] PhotoStaff { get; set; }
+        public int IdStatusStaff { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Attendees> Attendees { get; set; }
@@ -39,6 +42,7 @@ namespace MollaevDiplom.DataFolder
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Meetings> Meetings { get; set; }
         public virtual Position Position { get; set; }
+        public virtual StatusStaff StatusStaff { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tasks> Tasks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
