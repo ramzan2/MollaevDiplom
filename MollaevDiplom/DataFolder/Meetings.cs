@@ -27,10 +27,12 @@ namespace MollaevDiplom.DataFolder
         public string AgendaMeetigns { get; set; }
         public int IdStaff { get; set; }
         public int IdDepartments { get; set; }
+        public Nullable<int> IdStatusMeetings { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Attendees> Attendees { get; set; }
         public virtual Departments Departments { get; set; }
         public virtual Staff Staff { get; set; }
+        public virtual StatusMeetings StatusMeetings { get; set; }
     }
 }

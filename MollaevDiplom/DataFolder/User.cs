@@ -19,8 +19,10 @@ namespace MollaevDiplom.DataFolder
         public string PasswordUser { get; set; }
         public int IdRole { get; set; }
         public int IdStaff { get; set; }
+        public Nullable<int> IdStatusUser { get; set; }
     
         public virtual Role Role { get; set; }
         public virtual Staff Staff { get; set; }
+        public virtual StatusUser StatusUser { get; set; }
     }
 }

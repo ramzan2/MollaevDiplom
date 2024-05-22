@@ -30,6 +30,8 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
                    .Position.ToList();
             DepartmentsCb.ItemsSource = DBEntities.GetContext()
                    .Departments.ToList();
+                    StatusCb.ItemsSource = DBEntities.GetContext()
+                   .StatusStaff.ToList();
         }
 
         private void BackBtn_Click(object sender, RoutedEventArgs e)
@@ -72,11 +74,14 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
         {
             DBEntities.GetContext().Staff.Add(new Staff()
             {
-                FirstNameStaff = FIOTb.Text,
+                LastNameStaff = LastNameTb.Text,
+                FirstNameStaff = FirstNameTb.Text,
+                MiddleNameStaff = MiddleNameTb.Text,
                 PhoneNumberStaff = PhoneNumberStaffTb.Text,
                 IdPosition = Int32.Parse(PositionCb.SelectedValue.ToString()),
                 IdDepartments = Int32.Parse(DepartmentsCb.SelectedValue.ToString()),
-                PhotoStaff = ImageClass.ConvertImageToByteArray(selectedFileName)
+                PhotoStaff = ImageClass.ConvertImageToByteArray(selectedFileName),
+                IdStatusStaff = Int32.Parse(StatusCb.SelectedValue.ToString())
             });
             DBEntities.GetContext().SaveChanges();
             MBClass.InfoMB("Сотрудник успешно добавлен");

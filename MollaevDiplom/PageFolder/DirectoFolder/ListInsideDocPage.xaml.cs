@@ -19,45 +19,44 @@ using MollaevDiplom.WindowFolder.DirectorWindowFolder;
 namespace MollaevDiplom.PageFolder.DirectoFolder
 {
     /// <summary>
-    /// Логика взаимодействия для ListAttendancePage.xaml
+    /// Логика взаимодействия для ListInsideDocPage.xaml
     /// </summary>
-    public partial class ListAttendancePage : Page
+    public partial class ListInsideDocPage : Page
     {
-        public ListAttendancePage()
+        public ListInsideDocPage()
         {
-            Attendees attendees = new Attendees();
+            Documents documents = new Documents();
             InitializeComponent();
-            VariableClass.ListAttendancePage1 = this;
+            VariableClass.ListInsideDocPage1 = this;
             UpdateList();
         }
 
         public void UpdateList()
         {
-            ListAttendeesDT.ItemsSource = DBEntities.GetContext()
-        .Attendees.Where(u => u.Meetings.AgendaMeetigns
+            ListDocInDT.ItemsSource = DBEntities.GetContext()
+        .Documents.Where(u => u.NameDocuments
         .StartsWith(SearchBox.Text))
-        .ToList().OrderBy(u => u.Meetings.AgendaMeetigns);
+        .ToList().OrderBy(u => u.NameDocuments);
         }
-        private void AddAttBtn_Click(object sender, RoutedEventArgs e)
+        private void AddInDcBtn_Click(object sender, RoutedEventArgs e)
         {
-            new AddAttendanceWindow().Show();
+            new AddDocInWindow().Show();
             if (VariableClass.direcWindow != null) VariableClass.direcWindow.UpdateList();
-        }
-
-        private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            UpdateList();
-        }
-
-        private void EditMI_Click(object sender, RoutedEventArgs e)
-        {
-            if (VariableClass.direcWindow != null) VariableClass.direcWindow.UpdateList();
-            new EditAttendanseWindow(ListAttendeesDT.SelectedItem as Attendees).ShowDialog();
         }
 
         private void DeleteIM_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void EditMI_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateList();
         }
     }
 }

@@ -14,5 +14,6 @@ namespace MollaevDiplom.ClassFolder
         public static MenuDirecWindow direcWindow;
         public static ListMeetingsPage ListMeetingsPage1;
         public static ListAttendancePage ListAttendancePage1;
+        public static ListInsideDocPage ListInsideDocPage1;
     }
 }

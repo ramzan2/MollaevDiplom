@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
     /// </summary>
     public partial class EditStaffWindow : Window
     {
-        private Staff originalStaff;
+        Staff originalStaff;
 
         public EditStaffWindow(Staff existingStaff)
         {
@@ -36,7 +37,7 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
             DataContext = originalStaff;
             if (originalStaff != null) selectedFileName = "фото есть";
 
-
+            this.originalStaff.IdStaff = originalStaff.IdStaff;
 
             PositionCb.ItemsSource = DBEntities.GetContext()
                        .Position.ToList();
@@ -45,48 +46,28 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
 
             StatusStaffCb.ItemsSource = DBEntities.GetContext()
                    .StatusStaff.ToList();
-            //this.staff.IdStaff = staff.IdStaff;
-
-
+           
         }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {   
-
                 originalStaff = DBEntities.GetContext().Staff
                     .FirstOrDefault(u => u.IdStaff == originalStaff.IdStaff);
-            if (selectedFileName == "фото есть")
-            {
-                originalStaff.PhotoStaff = ImageClass.ConvertImageToByteArray(selectedFileName);
-            }
-            originalStaff.LastNameStaff = FIOTb.Text;
-            originalStaff.FirstNameStaff = FIOTb.Text;
-            originalStaff.MiddleNameStaff = FIOTb.Text;
+            originalStaff.LastNameStaff = LastNameTb.Text;
+            originalStaff.FirstNameStaff = FirstNameTb.Text;
+            originalStaff.MiddleNameStaff = MidNameTb.Text;
                 originalStaff.PhoneNumberStaff = PhoneNumberStaffTb.Text;
                 originalStaff.IdPosition = Int32.Parse(PositionCb.SelectedValue.ToString());
                 originalStaff.IdDepartments = Int32.Parse(DepartmentsCb.SelectedValue.ToString());
+            if (selectedFileName != "фото есть")
+                originalStaff.PhotoStaff = ImageClass.ConvertImageToByteArray(selectedFileName);
             originalStaff.IdStatusStaff = Int32.Parse(StatusStaffCb.SelectedValue.ToString());
             DBEntities.GetContext().SaveChanges();
                 MBClass.InfoMB("Данные успешно отредактированы");
                 if (VariableClass.ListStaffPage1 != null) VariableClass.ListStaffPage1.UpdateList();
                 if (VariableClass.direcWindow != null) VariableClass.direcWindow.Update();
-                Close();
-         
+                Close();        
         }
-
-        //private Staff CloneStaff(Staff staff)
-        //{
-        //    return new Staff
-        //    {
-        //        IdStaff = staff.IdStaff,
-        //        FIOStaff = staff.FIOStaff,
-        //        PhoneNumberStaff = staff.PhoneNumberStaff,
-        //        IdPosition = staff.IdPosition,
-        //        IdDepartments = staff.IdDepartments,
-        //        PhotoStaff = staff.PhotoStaff
-
-        //    };
-        //}
 
         private void EditImBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -115,7 +96,6 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
             {
                 MBClass.ErrorMB(ex);
             }
-
         }
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -128,15 +108,6 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
         {
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            PositionCb.SelectedIndex =
-             originalStaff.IdPosition;
-            DepartmentsCb.SelectedIndex =
-              originalStaff
-              .IdDepartments;
         }
     }
 }

@@ -19,8 +19,9 @@ namespace MollaevDiplom.DataFolder
         {
             this.Attendees = new HashSet<Attendees>();
             this.Documents = new HashSet<Documents>();
+            this.IncomingDocuments = new HashSet<IncomingDocuments>();
             this.Meetings = new HashSet<Meetings>();
-            this.Tasks = new HashSet<Tasks>();
+            this.OutgoingDocuments = new HashSet<OutgoingDocuments>();
             this.User = new HashSet<User>();
         }
     
@@ -40,11 +41,13 @@ namespace MollaevDiplom.DataFolder
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Documents> Documents { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<IncomingDocuments> IncomingDocuments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Meetings> Meetings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OutgoingDocuments> OutgoingDocuments { get; set; }
         public virtual Position Position { get; set; }
         public virtual StatusStaff StatusStaff { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tasks> Tasks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User> User { get; set; }
     }

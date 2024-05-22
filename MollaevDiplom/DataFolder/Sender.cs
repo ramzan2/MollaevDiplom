@@ -12,21 +12,22 @@ namespace MollaevDiplom.DataFolder
     using System;
     using System.Collections.Generic;
     
-    public partial class DocumentsCategory
+    public partial class Sender
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DocumentsCategory()
+        public Sender()
         {
-            this.Documents = new HashSet<Documents>();
-            this.OutgoingDocuments = new HashSet<OutgoingDocuments>();
+            this.IncomingDocuments = new HashSet<IncomingDocuments>();
         }
     
-        public int IdCategory { get; set; }
-        public string NameCategory { get; set; }
+        public int IdSender { get; set; }
+        public string LastNameSender { get; set; }
+        public string FirstNameSender { get; set; }
+        public string MiddleNameSender { get; set; }
+        public string NumberPhone { get; set; }
+        public string EmailSender { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Documents> Documents { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OutgoingDocuments> OutgoingDocuments { get; set; }
+        public virtual ICollection<IncomingDocuments> IncomingDocuments { get; set; }
     }
 }

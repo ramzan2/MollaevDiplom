@@ -260,6 +260,11 @@ namespace MollaevDiplom.WindowFolder
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
         }
+
+        private void TextBlock_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            MBClass.InfoMB("Для восстановление пароля обратитесь к администратору!");
+        }
     }
 }
 

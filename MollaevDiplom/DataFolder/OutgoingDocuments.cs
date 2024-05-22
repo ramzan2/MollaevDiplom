@@ -12,21 +12,28 @@ namespace MollaevDiplom.DataFolder
     using System;
     using System.Collections.Generic;
     
-    public partial class Documents
+    public partial class OutgoingDocuments
     {
-        public int IdDocuments { get; set; }
-        public string TitleDocuments { get; set; }
-        public string DescriptionDocuments { get; set; }
+        public int IdOutgoingDocuments { get; set; }
+        public int NumberOutgoing { get; set; }
+        public System.DateTime DateOutgoing { get; set; }
         public int IdCategory { get; set; }
+        public int PerformerOutgoing { get; set; }
+        public string NameOutgoingDocuments { get; set; }
+        public string SummaryOutgoing { get; set; }
         public int IdStaff { get; set; }
-        public System.DateTime UploadDate { get; set; }
-        public byte[] FileDocuments { get; set; }
-        public int QuantityPage { get; set; }
+        public System.DateTime DateOfReceipt { get; set; }
+        public int OutgoingNumber { get; set; }
+        public System.DateTime DateOutgoingNumber { get; set; }
+        public System.DateTime ControlDate { get; set; }
+        public System.DateTime ExecutionDate { get; set; }
+        public int IdMarkExecution { get; set; }
         public int QuantityОfСopies { get; set; }
-        public System.DateTime DateOfExecution { get; set; }
-        public string NameDocuments { get; set; }
+        public int QuantityPage { get; set; }
+        public byte[] FileDocuments { get; set; }
     
         public virtual DocumentsCategory DocumentsCategory { get; set; }
+        public virtual MarkExecution MarkExecution { get; set; }
         public virtual Staff Staff { get; set; }
     }
 }

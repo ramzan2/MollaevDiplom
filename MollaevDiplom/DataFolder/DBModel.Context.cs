@@ -31,13 +31,18 @@ namespace MollaevDiplom.DataFolder
         public virtual DbSet<Departments> Departments { get; set; }
         public virtual DbSet<Documents> Documents { get; set; }
         public virtual DbSet<DocumentsCategory> DocumentsCategory { get; set; }
+        public virtual DbSet<IncomingDocuments> IncomingDocuments { get; set; }
+        public virtual DbSet<MarkExecution> MarkExecution { get; set; }
         public virtual DbSet<Meetings> Meetings { get; set; }
+        public virtual DbSet<OutgoingDocuments> OutgoingDocuments { get; set; }
         public virtual DbSet<Position> Position { get; set; }
         public virtual DbSet<Role> Role { get; set; }
+        public virtual DbSet<Sender> Sender { get; set; }
         public virtual DbSet<Staff> Staff { get; set; }
+        public virtual DbSet<StatusMeetings> StatusMeetings { get; set; }
         public virtual DbSet<StatusStaff> StatusStaff { get; set; }
+        public virtual DbSet<StatusUser> StatusUser { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<Tasks> Tasks { get; set; }
         public virtual DbSet<User> User { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)

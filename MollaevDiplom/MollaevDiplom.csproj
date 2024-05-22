@@ -69,6 +69,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ClassFolder\DocumentClass.cs" />
     <Compile Include="ClassFolder\ImageClass.cs" />
     <Compile Include="DataFolder\Attendees.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
@@ -98,13 +99,25 @@
     <Compile Include="DataFolder\DocumentsCategory.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataFolder\IncomingDocuments.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataFolder\MarkExecution.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataFolder\Meetings.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataFolder\OutgoingDocuments.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\Position.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\Role.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataFolder\Sender.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\sp_helpdiagramdefinition_Result.cs">
@@ -116,13 +129,16 @@
     <Compile Include="DataFolder\Staff.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataFolder\StatusMeetings.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataFolder\StatusStaff.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataFolder\sysdiagrams.cs">
+    <Compile Include="DataFolder\StatusUser.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataFolder\Tasks.cs">
+    <Compile Include="DataFolder\sysdiagrams.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\User.cs">
@@ -134,6 +150,9 @@
     <Compile Include="PageFolder\DirectoFolder\ListAttendancePage.xaml.cs">
       <DependentUpon>ListAttendancePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PageFolder\DirectoFolder\ListInsideDocPage.xaml.cs">
+      <DependentUpon>ListInsideDocPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageFolder\DirectoFolder\ListMeetingsPage.xaml.cs">
       <DependentUpon>ListMeetingsPage.xaml</DependentUpon>
     </Compile>
@@ -143,8 +162,26 @@
     <Compile Include="WindowFolder\AuthorizationWindow.xaml.cs">
       <DependentUpon>AuthorizationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowFolder\DirectorWindowFolder\AddAttendanceWindow.xaml.cs">
+      <DependentUpon>AddAttendanceWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowFolder\DirectorWindowFolder\AddDocInWindow.xaml.cs">
+      <DependentUpon>AddDocInWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowFolder\DirectorWindowFolder\AddMeetingsWindow.xaml.cs">
+      <DependentUpon>AddMeetingsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowFolder\DirectorWindowFolder\AddStaffWindow.xaml.cs">
       <DependentUpon>AddStaffWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowFolder\DirectorWindowFolder\EditAttendanseWindow.xaml.cs">
+      <DependentUpon>EditAttendanseWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowFolder\DirectorWindowFolder\EditDocInWindow.xaml.cs">
+      <DependentUpon>EditDocInWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowFolder\DirectorWindowFolder\EditMeetingsWindow.xaml.cs">
+      <DependentUpon>EditMeetingsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowFolder\DirectorWindowFolder\EditStaffWindow.xaml.cs">
       <DependentUpon>EditStaffWindow.xaml</DependentUpon>
@@ -201,6 +238,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PageFolder\DirectoFolder\ListInsideDocPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PageFolder\DirectoFolder\ListMeetingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -217,7 +258,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WindowFolder\DirectorWindowFolder\AddAttendanceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowFolder\DirectorWindowFolder\AddDocInWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowFolder\DirectorWindowFolder\AddMeetingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WindowFolder\DirectorWindowFolder\AddStaffWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowFolder\DirectorWindowFolder\EditAttendanseWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowFolder\DirectorWindowFolder\EditDocInWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowFolder\DirectorWindowFolder\EditMeetingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -299,6 +364,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="ResourceFolder\ImageFolder\Group 4%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ResourceFolder\ImageFolder\icons8-search-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ResourceFolder\ImageFolder\newlogo.png" />
+    <Resource Include="ResourceFolder\ImageFolder\logo.png" />
+    <Resource Include="ResourceFolder\ImageFolder\incomingdocuments.png" />
+    <Resource Include="ResourceFolder\ImageFolder\outgoingdocuments.png" />
+    <Resource Include="ResourceFolder\ImageFolder\calendar %282%29.png" />
+    <Resource Include="ResourceFolder\ImageFolder\calendarpass %282%29.png" />
+    <Resource Include="ResourceFolder\ImageFolder\back.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="DataFolder\DBModel.Context.tt">

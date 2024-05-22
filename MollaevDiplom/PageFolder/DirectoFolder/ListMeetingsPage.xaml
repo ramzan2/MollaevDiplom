@@ -26,28 +26,30 @@
                      Style="{StaticResource SearchBoxStyle}" 
                          TextChanged="SearchBox_TextChanged"/>
 
-                <TextBlock Text="Поиск"
+                <StackPanel Orientation="Horizontal"
+                            Margin="10">
+                    <Image Source="/ResourceFolder/ImageFolder/icons8-search-50.png"
+                       Height="20" Width="20"/>
+                    <TextBlock Text="Поиск"
                        Style="{StaticResource SearchTextStyle}" />
+                </StackPanel>
             </Grid>
-            <Button 
+            <Button Background="Transparent"
                         FontSize="16"
                         Grid.Column="1"
-                        Width="140"
+                        Width="40"
                         Height="35"
                         HorizontalAlignment="Right"
-                        Margin="12 10 40 0"
+                        Margin="-12 10 40 0"
                         Foreground="White"
                         x:Name="AddMtBtn"
-                        Click="AddMtBtn_Click" >
+                        Click="AddMtBtn_Click" 
+                    ToolTip="Назначение встречи">
                 <Grid HorizontalAlignment="Center">
                     <Image Source="/ResourceFolder/ImageFolder/plus.png"
                                        Stretch="Fill"
                                        Margin="0,0,0,0"
                                        Style="{StaticResource Image_Style}"/>
-
-                    <TextBlock Text="Назначить"
-                               Style="{StaticResource Text_Style}" 
-                               Margin="40 0 0 0"/>
                 </Grid>
                 <Button.Style>
                     <Style TargetType="Button">
@@ -81,32 +83,48 @@
                 </Button.Style>
             </Button>
         </StackPanel>
-        <DataGrid Grid.Row="1"
+        <ScrollViewer Grid.Row="1"
+                      HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Hidden"
+                      x:Name="scrollViewer" Style="{StaticResource FavsScrollViewer}">
+            <DataGrid Grid.Row="1"
                   x:Name="ListMeetingsDT"
-                  Style="{StaticResource  DataGridStyle1}"
+                   Style="{StaticResource  DataGridStyle1}"
                   RowStyle="{StaticResource DataGridRowStyle1}"
                   ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle1}"
                   CellStyle="{StaticResource DataGridCellStyle1}">
-            <DataGrid.ContextMenu>
-                <ContextMenu>
-                    <MenuItem Header="Редактирование данных"
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Редактирование данных"
                               x:Name="EditMI"
                               Click="EditMI_Click"/>
-                    <Separator/>
-                    <MenuItem Header="Удаление встречи"
+                        <Separator/>
+                        <MenuItem Header="Удаление встречи"
                               x:Name="DeleteIM"
                               Click="DeleteIM_Click"/>
-                </ContextMenu>
-            </DataGrid.ContextMenu>
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding IdMeetings}"/>
-                <DataGridTextColumn Header="Дата встречи" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding MeetinsDate}"/>
-                <DataGridTextColumn Header="Время встречи" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding MeetingsTime}"/>
-                <DataGridTextColumn Header="Длительность встречи" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding MeetingsDuration}"/>
-                <DataGridTextColumn Header="Тема встречи" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding AgendaMeetigns}"/>
-                <DataGridTextColumn Header="Сотрудник" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Staff.FIOStaff}"/>
-                <DataGridTextColumn Header="Место проведения" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Departments.NameDepartments}"/>
-            </DataGrid.Columns>
-        </DataGrid>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding IdMeetings}"/>
+                    <DataGridTextColumn Header="Дата встречи" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding MeetinsDate}"/>
+                    <DataGridTextColumn Header="Время встречи" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding MeetingsTime}"/>
+                    <DataGridTextColumn Header="Длительность встречи" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding MeetingsDuration}"/>
+                    <DataGridTextColumn Header="Тема встречи" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding AgendaMeetigns}"/>
+                    <DataGridTemplateColumn Header="ФИО организатора" IsReadOnly="True" CanUserResize="False" Width="auto" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                <Run Text="{Binding Staff.LastNameStaff}" />
+                                <Run Text="{Binding Staff.FirstNameStaff}"/>
+                                <Run Text="{Binding Staff.MiddleNameStaff}" />
+                                </TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Место проведения" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Departments.NameDepartments}"/>
+                    <DataGridTextColumn Header="Статус" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding StatusMeetings.NameStatusMeetings}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
     </Grid>
 </Page>

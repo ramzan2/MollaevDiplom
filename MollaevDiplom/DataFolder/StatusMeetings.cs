@@ -12,14 +12,18 @@ namespace MollaevDiplom.DataFolder
     using System;
     using System.Collections.Generic;
     
-    public partial class Tasks
+    public partial class StatusMeetings
     {
-        public int IdTasks { get; set; }
-        public int IdStaff { get; set; }
-        public string AssignedToTasks { get; set; }
-        public string CompletedTasks { get; set; }
-        public System.DateTime DueData { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public StatusMeetings()
+        {
+            this.Meetings = new HashSet<Meetings>();
+        }
     
-        public virtual Staff Staff { get; set; }
+        public int IdStatusMeetings { get; set; }
+        public string NameStatusMeetings { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Meetings> Meetings { get; set; }
     }
 }

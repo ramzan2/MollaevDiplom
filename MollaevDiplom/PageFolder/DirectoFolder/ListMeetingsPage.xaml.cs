@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MollaevDiplom.ClassFolder;
 using MollaevDiplom.DataFolder;
+using MollaevDiplom.WindowFolder.DirectorWindowFolder;
 
 namespace MollaevDiplom.PageFolder.DirectoFolder
 {
@@ -40,17 +41,19 @@ namespace MollaevDiplom.PageFolder.DirectoFolder
 
         private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            UpdateList();
         }
 
         private void AddMtBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            new AddMeetingsWindow().Show();
+            if(VariableClass.direcWindow != null)VariableClass.direcWindow.UpdateList();
         }
 
         private void EditMI_Click(object sender, RoutedEventArgs e)
         {
-
+            new EditMeetingsWindow(ListMeetingsDT.SelectedItem as Meetings).Show();
+            if (VariableClass.direcWindow != null) VariableClass.direcWindow.UpdateList();
         }
 
         private void DeleteIM_Click(object sender, RoutedEventArgs e)

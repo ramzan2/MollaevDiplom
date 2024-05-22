@@ -33,7 +33,7 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
 
         public void UpdateList()
         {
-            BigGrid.Opacity = 0.2;
+            BigGrid.Opacity = 0.3;
         }
 
         public void Update()
@@ -47,6 +47,7 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
 
         private void Tasks_Click(object sender, RoutedEventArgs e)
         {
+            MainFrame.Navigate(new PageFolder.DirectoFolder.ListInsideDocPage());
             SidePanel.Visibility = Visibility.Collapsed;
         }
 
@@ -110,6 +111,12 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
         private void AttendanceBtn_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new PageFolder.DirectoFolder.ListAttendancePage());
+        }
+
+        private void Tg_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            PlaceText.Visibility = Visibility.Visible;
+            
         }
     }
 }
