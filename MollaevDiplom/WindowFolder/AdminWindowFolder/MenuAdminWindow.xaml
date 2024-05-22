@@ -1,11 +1,11 @@
-﻿<Window x:Class="MollaevDiplom.WindowFolder.DirectorWindowFolder.MenuDirecWindow"
+﻿<Window x:Class="MollaevDiplom.WindowFolder.AdminWindowFolder.MenuAdminWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MollaevDiplom.WindowFolder.DirectorWindowFolder"
+        xmlns:local="clr-namespace:MollaevDiplom.WindowFolder.AdminWindowFolder"
         mc:Ignorable="d"
-        Title="Меню директора" Height="800" Width="1100"
+        Title="Меню администратора" Height="630" Width="1100"
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         Background="Transparent" AllowsTransparency="True"
         ResizeMode="NoResize" FontFamily="Poppins" 
@@ -45,76 +45,25 @@
                                MaxWidth="120"
                                x:Name="PlaceText"/>
                     <StackPanel Grid.Row="1" Margin="-1 40 0 20">
-                        <RadioButton x:Name="Employees" Style="{StaticResource BtnStyle}"     
-                                     ToolTip="Список сотрудников"
+                        <RadioButton x:Name="ListUsers" Style="{StaticResource BtnStyle}"     
+                                     Click="ListUsers_Click"
                                      IsChecked="True"
-                                     Click="Employees_Click" Cursor="Hand">
-                            <Grid>
-                                <Image Source="/ResourceFolder/ImageFolder/employees.png"
-                                       Stretch="Fill"
-                                       Margin="12,0,0,0"
-                                       Style="{StaticResource Image_Style}" />
-                                <TextBlock Text="Сотрудники"
-                                       Style="{StaticResource Text_Style}" />
-                            </Grid>
-                        </RadioButton>
-                        <RadioButton x:Name="Meetings" Style="{StaticResource BtnStyle}"     
-                                     Click="Meetings_Click">
+                                     ToolTip="Список пользователей">
                             <Grid>
                                 <Image Source="/ResourceFolder/ImageFolder/meeting.png"
                                        Stretch="Fill"
                                        Margin="12,0,0,0"
                                        Style="{StaticResource Image_Style}" />
 
-                                <TextBlock Text="Встречи"
+                                <TextBlock Text="Список пользователей"
                                        Style="{StaticResource Text_Style}" />
                             </Grid>
                         </RadioButton>
-                        <RadioButton x:Name="Tasks" Style="{StaticResource BtnStyle}"     
-                                 Click="Tasks_Click"
-                                 Checked="Tasks_Checked"
-                                 Unchecked="Tasks_Unchecked"
-                                     ToolTip="Внутренние документы">
-                            <Grid>
-                                <Image Source="/ResourceFolder/ImageFolder/tasks.png"
-                                       Stretch="Fill"
-                                       Margin="12,0,0,0"
-                                       Style="{StaticResource Image_Style}" />
 
-                                <TextBlock Text="Задачи"
-                                       Style="{StaticResource Text_Style}" />
-                            </Grid>
-                        </RadioButton>
-                        <RadioButton x:Name="DocumentIncoming" Style="{StaticResource BtnStyle}"     
-                                    Click="DocumentIncoming_Click"
-                                     ToolTip="Внутренние документы">
-                            <Grid>
-                                <Image Source="/ResourceFolder/ImageFolder/incomingdocuments.png"
-                                       Stretch="Fill"
-                                       Margin="12,0,0,0"
-                                       Style="{StaticResource Image_Style}" />
-
-                                <TextBlock Text="Входящие документы"
-                                       Style="{StaticResource Text_Style}" />
-                            </Grid>
-                        </RadioButton>
-                        <RadioButton x:Name="DocumentOutgoing" Style="{StaticResource BtnStyle}"     
-                                    Click="DocumentOutgoing_Click"
-                                     ToolTip="Исходящие документы">
-                            <Grid>
-                                <Image Source="/ResourceFolder/ImageFolder/outgoingdocuments.png"
-                                       Stretch="Fill"
-                                       Margin="12,0,0,0"
-                                       Style="{StaticResource Image_Style}" />
-
-                                <TextBlock Text="Исходящие документы"
-                                       Style="{StaticResource Text_Style}" />
-                            </Grid>
-                        </RadioButton>
                         <RadioButton x:Name="EditAccBtn" Style="{StaticResource BtnStyle}"     
                                     Click="EditAccBtn_Click"
                                  VerticalAlignment="Bottom"
-                                 Margin="0 290 0 0">
+                                 Margin="0 350 0 0">
                             <Grid>
                                 <Image Source="/ResourceFolder/ImageFolder/logout.png"
                                        Stretch="Fill"
@@ -212,7 +161,7 @@
                             </BeginStoryboard>
                         </EventTrigger>
                     </ToggleButton.Triggers>
-                  
+
                 </ToggleButton>
 
                 <StackPanel Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0" Height="30" Orientation="Horizontal" FlowDirection="RightToLeft" Grid.RowSpan="2">
@@ -240,37 +189,7 @@
                    Grid.Row="0"
                    Foreground="White"
                    FontFamily="/Fonts/OpenSans-Regular.ttf #Open Sans Regular" Margin="43,0,366,0" />
-                <StackPanel HorizontalAlignment="Right"
-                            Margin="0 0 150 0" Orientation="Horizontal"
-                            Visibility="Collapsed"
-                            x:Name="SidePanel">
-                    <RadioButton x:Name="MeetingsBtn"
-                        Style="{StaticResource VisiStyle}"
-                             Width="90"
-                                 IsChecked="True"
-                                 Click="MeetingsBtn_Click">
-                    <Grid>
-                        <TextBlock Style="{StaticResource Text_Style}"
-                                   Text="Встречи"
-                                   HorizontalAlignment="Left"
-                                   Margin="10"/>
-                    </Grid>
-                </RadioButton>
-                    <RadioButton x:Name="AttendanceBtn"
-                        Style="{StaticResource VisiStyle}"
-                                  Width="100"
-                                 IsChecked="False"
-                                 Margin="5 5 0 0"
-                                 Click="AttendanceBtn_Click">
-                        <Grid>
-                            <TextBlock Style="{StaticResource Text_Style}"
-                                   Text="Участники"
-                                   HorizontalAlignment="Left"
-                                   Margin="10 10 10 10"/>
-                        </Grid>
-                    </RadioButton>
-                </StackPanel>
-                    <Frame Grid.Row="1"
+                <Frame Grid.Row="1"
                        Name="MainFrame" 
                        Margin="5,10,10,10"
                        NavigationUIVisibility="Hidden"/>

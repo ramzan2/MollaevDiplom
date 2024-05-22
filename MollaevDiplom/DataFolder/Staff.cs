@@ -22,6 +22,7 @@ namespace MollaevDiplom.DataFolder
             this.IncomingDocuments = new HashSet<IncomingDocuments>();
             this.Meetings = new HashSet<Meetings>();
             this.OutgoingDocuments = new HashSet<OutgoingDocuments>();
+            this.Performer = new HashSet<Performer>();
             this.User = new HashSet<User>();
         }
     
@@ -46,6 +47,8 @@ namespace MollaevDiplom.DataFolder
         public virtual ICollection<Meetings> Meetings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OutgoingDocuments> OutgoingDocuments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Performer> Performer { get; set; }
         public virtual Position Position { get; set; }
         public virtual StatusStaff StatusStaff { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

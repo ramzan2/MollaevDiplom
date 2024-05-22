@@ -118,5 +118,15 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
             PlaceText.Visibility = Visibility.Visible;
             
         }
+
+        private void DocumentOutgoing_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new PageFolder.DirectoFolder.ListOutDocumentsPage());
+        }
+
+        private void DocumentIncoming_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new PageFolder.DirectoFolder.ListIncomingDocPage());
+        }
     }
 }

@@ -52,6 +52,7 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
             MBClass.InfoMB("Сотрудник успешно добавлен");
             if (VariableClass.ListAttendancePage1 != null) VariableClass.ListAttendancePage1.UpdateList();
             if (VariableClass.direcWindow != null) VariableClass.direcWindow.Update();
+            if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.Update();
             Close();
         }
 
@@ -59,6 +60,7 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
         {
             Close();
             if (VariableClass.direcWindow != null) VariableClass.direcWindow.Update();
+            if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.Update();
         }
     }
 }

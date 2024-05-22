@@ -42,6 +42,7 @@ namespace MollaevDiplom.PageFolder.DirectoFolder
         {
             new AddAttendanceWindow().Show();
             if (VariableClass.direcWindow != null) VariableClass.direcWindow.UpdateList();
+            if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.UpdateList();
         }
 
         private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -51,8 +52,17 @@ namespace MollaevDiplom.PageFolder.DirectoFolder
 
         private void EditMI_Click(object sender, RoutedEventArgs e)
         {
-            if (VariableClass.direcWindow != null) VariableClass.direcWindow.UpdateList();
-            new EditAttendanseWindow(ListAttendeesDT.SelectedItem as Attendees).ShowDialog();
+            if (ListAttendeesDT.SelectedItem == null)
+            {
+                MBClass.ErrorMB("Выберите " +
+                    "участника для редактирования");
+            }
+            else
+            {
+                if (VariableClass.direcWindow != null) VariableClass.direcWindow.UpdateList();
+                if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.UpdateList();
+                new EditAttendanseWindow(ListAttendeesDT.SelectedItem as Attendees).ShowDialog();
+            }
         }
 
         private void DeleteIM_Click(object sender, RoutedEventArgs e)

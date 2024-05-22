@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -41,8 +42,16 @@ namespace MollaevDiplom.PageFolder.DirectoFolder
         }
         private void EditTE_Click(object sender, RoutedEventArgs e)
         {
-            if (VariableClass.direcWindow != null) VariableClass.direcWindow.UpdateList();
-            new EditStaffWindow(ListStaffLb.SelectedItem as Staff).ShowDialog();
+            if (ListStaffLb.SelectedItem == null)
+            {
+                MBClass.ErrorMB("Выберите " +
+                    "пользователя для редактирования");
+            }
+            else
+            {
+                if (VariableClass.direcWindow != null) VariableClass.direcWindow.UpdateList();
+                new EditStaffWindow(ListStaffLb.SelectedItem as Staff).ShowDialog();
+            }
         }
 
         private void AddStaffBtn_Click(object sender, RoutedEventArgs e)

@@ -15,7 +15,9 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using MollaevDiplom.ClassFolder;
 using MollaevDiplom.DataFolder;
+using MollaevDiplom.WindowFolder.AdminWindowFolder;
 using MollaevDiplom.WindowFolder.DirectorWindowFolder;
+using MollaevDiplom.WindowFolder.SecretaryWindowFolder;
 
 namespace MollaevDiplom.WindowFolder
 {
@@ -90,6 +92,14 @@ namespace MollaevDiplom.WindowFolder
                         {
                             case 1:
                                 new MenuDirecWindow().Show();
+                                Close();
+                                break;
+                                     case 2:
+                                new MenuSecretaryWindow().Show();
+                                Close();
+                                break;
+                                        case 3:
+                                new MenuAdminWindow().Show();
                                 Close();
                                 break;
                         }

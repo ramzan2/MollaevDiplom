@@ -17,6 +17,7 @@ namespace MollaevDiplom.DataFolder
         public int IdIncomingDocuments { get; set; }
         public int NumberIncoming { get; set; }
         public System.DateTime DateIncoming { get; set; }
+        public int IdCategory { get; set; }
         public byte[] FileDocuments { get; set; }
         public int IdSender { get; set; }
         public string NameIncoming { get; set; }
@@ -31,6 +32,7 @@ namespace MollaevDiplom.DataFolder
         public int QuantityОfСopies { get; set; }
         public int QuantityPage { get; set; }
     
+        public virtual DocumentsCategory DocumentsCategory { get; set; }
         public virtual MarkExecution MarkExecution { get; set; }
         public virtual Sender Sender { get; set; }
         public virtual Staff Staff { get; set; }

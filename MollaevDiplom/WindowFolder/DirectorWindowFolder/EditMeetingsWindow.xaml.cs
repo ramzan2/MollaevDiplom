@@ -47,6 +47,7 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
         {
             Close();
             if (VariableClass.direcWindow != null) VariableClass.direcWindow.Update();
+            if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.Update();
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -70,6 +71,7 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
             MBClass.InfoMB("Данные успешно отредактированы");
             if (VariableClass.ListMeetingsPage1 != null) VariableClass.ListMeetingsPage1.UpdateList();
             if (VariableClass.direcWindow != null) VariableClass.direcWindow.Update();
+            if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.Update();
             Close();
         }
     }

@@ -111,6 +111,9 @@
     <Compile Include="DataFolder\OutgoingDocuments.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataFolder\Performer.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataFolder\Position.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -144,11 +147,17 @@
     <Compile Include="DataFolder\User.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="PageFolder\AdminFolder\ListUsersPage.xaml.cs">
+      <DependentUpon>ListUsersPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageFolder\DirectoFolder\InfoStaffPage.xaml.cs">
       <DependentUpon>InfoStaffPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageFolder\DirectoFolder\ListAttendancePage.xaml.cs">
       <DependentUpon>ListAttendancePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\DirectoFolder\ListIncomingDocPage.xaml.cs">
+      <DependentUpon>ListIncomingDocPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageFolder\DirectoFolder\ListInsideDocPage.xaml.cs">
       <DependentUpon>ListInsideDocPage.xaml</DependentUpon>
@@ -156,8 +165,20 @@
     <Compile Include="PageFolder\DirectoFolder\ListMeetingsPage.xaml.cs">
       <DependentUpon>ListMeetingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PageFolder\DirectoFolder\ListOutDocumentsPage.xaml.cs">
+      <DependentUpon>ListOutDocumentsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageFolder\DirectoFolder\ListStaffPage.xaml.cs">
       <DependentUpon>ListStaffPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowFolder\AdminWindowFolder\AddUserWindow.xaml.cs">
+      <DependentUpon>AddUserWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowFolder\AdminWindowFolder\EditUserWindow.xaml.cs">
+      <DependentUpon>EditUserWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowFolder\AdminWindowFolder\MenuAdminWindow.xaml.cs">
+      <DependentUpon>MenuAdminWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowFolder\AuthorizationWindow.xaml.cs">
       <DependentUpon>AuthorizationWindow.xaml</DependentUpon>
@@ -168,8 +189,14 @@
     <Compile Include="WindowFolder\DirectorWindowFolder\AddDocInWindow.xaml.cs">
       <DependentUpon>AddDocInWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowFolder\DirectorWindowFolder\AddIncomingDocWindow.xaml.cs">
+      <DependentUpon>AddIncomingDocWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowFolder\DirectorWindowFolder\AddMeetingsWindow.xaml.cs">
       <DependentUpon>AddMeetingsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowFolder\DirectorWindowFolder\AddOutgoingDocWindow.xaml.cs">
+      <DependentUpon>AddOutgoingDocWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowFolder\DirectorWindowFolder\AddStaffWindow.xaml.cs">
       <DependentUpon>AddStaffWindow.xaml</DependentUpon>
@@ -180,8 +207,14 @@
     <Compile Include="WindowFolder\DirectorWindowFolder\EditDocInWindow.xaml.cs">
       <DependentUpon>EditDocInWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowFolder\DirectorWindowFolder\EditIncomingDocWindow.xaml.cs">
+      <DependentUpon>EditIncomingDocWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowFolder\DirectorWindowFolder\EditMeetingsWindow.xaml.cs">
       <DependentUpon>EditMeetingsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowFolder\DirectorWindowFolder\EditOutgoingDocWindow.xaml.cs">
+      <DependentUpon>EditOutgoingDocWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowFolder\DirectorWindowFolder\EditStaffWindow.xaml.cs">
       <DependentUpon>EditStaffWindow.xaml</DependentUpon>
@@ -191,6 +224,9 @@
     </Compile>
     <Compile Include="WindowFolder\MenuDirectorWindow.xaml.cs">
       <DependentUpon>MenuDirectorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowFolder\SecretaryWindowFolder\MenuSecretaryWindow.xaml.cs">
+      <DependentUpon>MenuSecretaryWindow.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -230,11 +266,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="PageFolder\AdminFolder\ListUsersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PageFolder\DirectoFolder\InfoStaffPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PageFolder\DirectoFolder\ListAttendancePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\DirectoFolder\ListIncomingDocPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -246,11 +290,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PageFolder\DirectoFolder\ListOutDocumentsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PageFolder\DirectoFolder\ListStaffPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ResourceFolder\Dictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowFolder\AdminWindowFolder\AddUserWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowFolder\AdminWindowFolder\EditUserWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowFolder\AdminWindowFolder\MenuAdminWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -266,7 +326,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WindowFolder\DirectorWindowFolder\AddIncomingDocWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WindowFolder\DirectorWindowFolder\AddMeetingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowFolder\DirectorWindowFolder\AddOutgoingDocWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -282,7 +350,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WindowFolder\DirectorWindowFolder\EditIncomingDocWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WindowFolder\DirectorWindowFolder\EditMeetingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowFolder\DirectorWindowFolder\EditOutgoingDocWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -298,12 +374,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WindowFolder\SecretaryWindowFolder\MenuSecretaryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="PageFolder\AdminFolder\" />
     <Folder Include="PageFolder\SecretaryFolder\" />
-    <Folder Include="WindowFolder\AdminWindowFolder\" />
-    <Folder Include="WindowFolder\SecretaryWindowFolder\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="ResourceFolder\ImageFolder\IconColizeum-transformed.png" />

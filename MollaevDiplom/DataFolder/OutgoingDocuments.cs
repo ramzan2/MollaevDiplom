@@ -18,13 +18,10 @@ namespace MollaevDiplom.DataFolder
         public int NumberOutgoing { get; set; }
         public System.DateTime DateOutgoing { get; set; }
         public int IdCategory { get; set; }
-        public int PerformerOutgoing { get; set; }
+        public int IdPerformer { get; set; }
         public string NameOutgoingDocuments { get; set; }
         public string SummaryOutgoing { get; set; }
         public int IdStaff { get; set; }
-        public System.DateTime DateOfReceipt { get; set; }
-        public int OutgoingNumber { get; set; }
-        public System.DateTime DateOutgoingNumber { get; set; }
         public System.DateTime ControlDate { get; set; }
         public System.DateTime ExecutionDate { get; set; }
         public int IdMarkExecution { get; set; }
@@ -34,6 +31,7 @@ namespace MollaevDiplom.DataFolder
     
         public virtual DocumentsCategory DocumentsCategory { get; set; }
         public virtual MarkExecution MarkExecution { get; set; }
+        public virtual Performer Performer { get; set; }
         public virtual Staff Staff { get; set; }
     }
 }

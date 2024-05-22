@@ -172,7 +172,7 @@
                                MouseLeftButtonUp="Image_MouseLeftButtonUp"
                                Cursor="Hand"/>
                         <Ellipse Grid.Row="2" 
-                                 Margin="30 20 40 20"
+                                 Margin="30 20 45 20"
                                  Grid.RowSpan="3"
                                  Height="25" Width="25"
                                  HorizontalAlignment="Right" VerticalAlignment="Bottom">

@@ -1,4 +1,4 @@
-﻿<Page x:Class="MollaevDiplom.PageFolder.DirectoFolder.ListInsideDocPage"
+﻿<Page x:Class="MollaevDiplom.PageFolder.DirectoFolder.ListOutDocumentsPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:MollaevDiplom.PageFolder.DirectoFolder"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Список внутренних документов" 
+      Title="Список исходящих документов"
       Style="{StaticResource Page_Style}">
     <Grid Background="#FF23262B">
         <Grid.RowDefinitions>
@@ -42,8 +42,8 @@
                         HorizontalAlignment="Right"
                         Margin="-12 10 40 0"
                         Foreground="White"
-                        x:Name="AddInDcBtn"
-                        Click="AddInDcBtn_Click" 
+                        x:Name="AddOutDcBtn"
+                        Click="AddOutDcBtn_Click" 
                     ToolTip="Добавление участника">
                 <Grid HorizontalAlignment="Center">
                     <Image Source="/ResourceFolder/ImageFolder/plus.png"
@@ -105,10 +105,9 @@
                     </ContextMenu>
                 </DataGrid.ContextMenu>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding IdDocuments}"/>
-                    <DataGridTextColumn Header="Наименование документа" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding NameDocuments}"/>
-                    <DataGridTextColumn Header="Краткое содержание" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding TitleDocuments}"/>
-                    <DataGridTextColumn Header="Описание" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding DescriptionDocuments}"/>
+                    <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding IdOutgoingDocuments}"/>
+                    <DataGridTextColumn Header="Номер исходящего документа" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding NumberOutgoing}"/>
+                    <DataGridTextColumn Header="Дата исходящего документа" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding DateOutgoing}"/>
                     <DataGridTextColumn Header="Тип документа" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding DocumentsCategory.NameCategory}"/>
                     <DataGridTemplateColumn Header="Исполнитель" IsReadOnly="True" CanUserResize="False" Width="auto" >
                         <DataGridTemplateColumn.CellTemplate>
@@ -121,11 +120,28 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Дата загрузки" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding UploadDate}"/>
-                    <DataGridTextColumn Header="Количество стр-ц" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding QuantityPage}"/>
-                    <DataGridTextColumn Header="Количество копий" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding QuantityОfСopies}"/>
-                    <DataGridTextColumn Header="Дата исполнения" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding DateOfExecution}"/>
-                    <DataGridTextColumn Header="Файл" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding FileDocuments}"/>
+                    <DataGridTextColumn Header="Наименование документа" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding NameOutgoingDocuments}"/>
+                    <DataGridTextColumn Header="Краткое содержание" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding SummaryOutgoing}"/>
+                    <DataGridTemplateColumn Header="Получатель" IsReadOnly="True" CanUserResize="False" Width="auto" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <TextBlock>
+                                <Run Text="{Binding Staff.LastNameStaff}"/>
+                                <Run Text="{Binding Staff.FirstNameStaff}"/>
+                                <Run Text="{Binding Staff.MiddleNameStaff}"/>
+                                </TextBlock>
+                                </TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Дата исходящего" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding DateOutgoing}"/>
+                    <DataGridTextColumn Header="Дата контроля" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding ControlDate}"/>
+                    <DataGridTextColumn Header="Дата исполнения" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding ExecutionDate}"/>
+                    <DataGridTextColumn Header="Отметка об исполнении" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding MarkExecution.NameMarkExecution}"/>
+                    <DataGridTextColumn Header="Кол-во копий" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding QuantityОfСopies}"/>
+                    <DataGridTextColumn Header="Кол-во страниц" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding QuantityPage}"/>
+                    <DataGridTextColumn Header="Файл документа" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding FileDocuments}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>

@@ -48,12 +48,22 @@ namespace MollaevDiplom.PageFolder.DirectoFolder
         {
             new AddMeetingsWindow().Show();
             if(VariableClass.direcWindow != null)VariableClass.direcWindow.UpdateList();
+            if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.UpdateList();
         }
 
         private void EditMI_Click(object sender, RoutedEventArgs e)
         {
-            new EditMeetingsWindow(ListMeetingsDT.SelectedItem as Meetings).Show();
-            if (VariableClass.direcWindow != null) VariableClass.direcWindow.UpdateList();
+            if (ListMeetingsDT.SelectedItem == null)
+            {
+                MBClass.ErrorMB("Выберите " +
+                    "встречу для редактирования");
+            }
+            else
+            {
+                new EditMeetingsWindow(ListMeetingsDT.SelectedItem as Meetings).Show();
+                if (VariableClass.direcWindow != null) VariableClass.direcWindow.UpdateList();
+                if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.UpdateList();
+            }
         }
 
         private void DeleteIM_Click(object sender, RoutedEventArgs e)

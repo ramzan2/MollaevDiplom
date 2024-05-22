@@ -19,37 +19,25 @@ using MollaevDiplom.WindowFolder.DirectorWindowFolder;
 namespace MollaevDiplom.PageFolder.DirectoFolder
 {
     /// <summary>
-    /// Логика взаимодействия для ListInsideDocPage.xaml
+    /// Логика взаимодействия для ListOutDocumentsPage.xaml
     /// </summary>
-    public partial class ListInsideDocPage : Page
+    public partial class ListOutDocumentsPage : Page
     {
-        public ListInsideDocPage()
+        public ListOutDocumentsPage()
         {
-            Documents documents = new Documents();
+            OutgoingDocuments outgoingDocuments = new OutgoingDocuments();
             InitializeComponent();
-            VariableClass.ListInsideDocPage1 = this;
+            VariableClass.ListOutDocumentsPage1 = this;
             UpdateList();
         }
 
         public void UpdateList()
         {
             ListDocInDT.ItemsSource = DBEntities.GetContext()
-        .Documents.Where(u => u.NameDocuments
+        .OutgoingDocuments.Where(u => u.NameOutgoingDocuments
         .StartsWith(SearchBox.Text))
-        .ToList().OrderBy(u => u.NameDocuments);
+        .ToList().OrderBy(u => u.NameOutgoingDocuments);
         }
-        private void AddInDcBtn_Click(object sender, RoutedEventArgs e)
-        {
-            new AddDocInWindow().Show();
-            if (VariableClass.direcWindow != null) VariableClass.direcWindow.UpdateList();
-            if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.UpdateList();
-        }
-
-        private void DeleteIM_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void EditMI_Click(object sender, RoutedEventArgs e)
         {
             if (ListDocInDT.SelectedItem == null)
@@ -59,15 +47,27 @@ namespace MollaevDiplom.PageFolder.DirectoFolder
             }
             else
             {
-                new EditDocInWindow(ListDocInDT.SelectedItem as Documents).Show();
+                new EditOutgoingDocWindow(ListDocInDT.SelectedItem as OutgoingDocuments).Show();
                 if (VariableClass.direcWindow != null) VariableClass.direcWindow.UpdateList();
                 if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.UpdateList();
             }
+
+        }
+        private void DeleteIM_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             UpdateList();
+        }
+
+        private void AddOutDcBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new AddOutgoingDocWindow().Show();
+            if(VariableClass.direcWindow != null)VariableClass.direcWindow.UpdateList();
+            if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.UpdateList();
         }
     }
 }

@@ -1,0 +1,137 @@
+﻿<Window x:Class="MollaevDiplom.WindowFolder.AdminWindowFolder.EditUserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MollaevDiplom.WindowFolder.AdminWindowFolder"
+        mc:Ignorable="d"
+        Title="Редактирование пользователя" Height="550" Width="450"
+        MaxHeight="550" MaxWidth="450"
+        MinHeight="550" MinWidth="450"
+        WindowStartupLocation="CenterScreen" WindowStyle="None"
+        AllowsTransparency="True" Background="Transparent" 
+        Icon="/ResourceFolder/ImageFolder/logo.png">
+    <Border Background="#FF212529" 
+                CornerRadius="7" 
+            MouseDown="Border_MouseDown">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="15"/>
+                <RowDefinition />
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="10"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Редактиривание пользователя" 
+                       Style="{DynamicResource Text_Style}"
+                       Grid.Row="1"
+                       Margin="10"
+                       HorizontalAlignment="Center"
+                       FontSize="22"
+                       FontWeight="SemiBold"/>
+            <Button Style="{StaticResource BackBtn}"
+                    Grid.Row="1"
+                    x:Name="BackBtn"
+                    Click="BackBtn_Click"
+                    Background="Transparent">
+                <Image Source="/ResourceFolder/ImageFolder/back.png"/>
+            </Button>
+            <TextBox x:Name="LoginTb" 
+                     Grid.Row="3"
+                     Style="{StaticResource tboH}"
+                     Tag="Введите логин"/>
+            <TextBox x:Name="PasswordTb" 
+                     Grid.Row="5"
+                     Style="{StaticResource tboH}"
+                     Tag="Введите пароль"/>
+            <ComboBox x:Name="RoleCb" 
+                      Grid.Row="7"
+                      Tag="Выберите роль"
+                      Style="{StaticResource ComboBoxStyle1}"
+                      SelectedItem="{Binding Role}"
+                  DisplayMemberPath="RoleName" 
+                  SelectedValuePath="IdRole" />
+            <ComboBox x:Name="StaffCb" 
+                      Grid.Row="9" 
+                      Style="{StaticResource ComboBoxStyle1}"
+                      Tag="Выбрите сотрудника"
+                      SelectedItem="{Binding Staff}"
+                  DisplayMemberPath="LastNameStaff" 
+                  SelectedValuePath="IdStaff"/>
+            <ComboBox x:Name="StatusCb" 
+                      Grid.Row="11"
+                      Style="{StaticResource ComboBoxStyle1}"
+                      Tag="Выберите статус"
+                      SelectedItem="{Binding Staff}"
+                  DisplayMemberPath="CompleteNameStaff" 
+                  SelectedValuePath="IdStaff"/>
+            <Button Content="Сохранить" 
+                    Grid.Row="13"
+                    Width="200"
+                    HorizontalAlignment="Center"
+                    Height="35"
+                    FontSize="16"
+                    Foreground="White"
+                    x:Name="AddDcBtn"
+                    Click="AddDcBtn_Click" 
+                    Margin="0,12,0,12" >
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="OverridesDefaultStyle" Value="True"/>
+                        <Setter Property="Background" Value="Black"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Name="border"
+                                                BorderThickness="0"
+                                                BorderBrush="Black"
+                                                Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                              VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FF464545"/>
+                                        </Trigger>
+                                        <EventTrigger RoutedEvent="PreviewMouseDown">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                                                            Duration="0:0:0.100" To="2,2,0,0"/>
+                                                    <ColorAnimation Storyboard.TargetProperty="Background.Color"
+                                                                        To="#FF464545" Duration="0:0:0.0002"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                        <EventTrigger RoutedEvent="PreviewMouseUp">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                                                            Duration="0:0:0.100" To="0"/>
+                                                    <ColorAnimation Storyboard.TargetProperty="Background.Color"
+                                                                        To="Black" Duration="0:0:0.0002"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Grid>
+    </Border>
+</Window>

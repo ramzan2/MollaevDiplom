@@ -19,29 +19,34 @@ using MollaevDiplom.WindowFolder.DirectorWindowFolder;
 namespace MollaevDiplom.PageFolder.DirectoFolder
 {
     /// <summary>
-    /// Логика взаимодействия для ListInsideDocPage.xaml
+    /// Логика взаимодействия для ListIncomingDocPage.xaml
     /// </summary>
-    public partial class ListInsideDocPage : Page
+    public partial class ListIncomingDocPage : Page
     {
-        public ListInsideDocPage()
+        public ListIncomingDocPage()
         {
-            Documents documents = new Documents();
+            IncomingDocuments incomingDocuments = new IncomingDocuments();
             InitializeComponent();
-            VariableClass.ListInsideDocPage1 = this;
+            VariableClass.ListIncomingDocPage1 = this;
             UpdateList();
         }
 
         public void UpdateList()
         {
             ListDocInDT.ItemsSource = DBEntities.GetContext()
-        .Documents.Where(u => u.NameDocuments
+        .IncomingDocuments.Where(u => u.NameIncoming
         .StartsWith(SearchBox.Text))
-        .ToList().OrderBy(u => u.NameDocuments);
+        .ToList().OrderBy(u => u.NameIncoming);
         }
+        private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateList();
+        }
+
         private void AddInDcBtn_Click(object sender, RoutedEventArgs e)
         {
-            new AddDocInWindow().Show();
-            if (VariableClass.direcWindow != null) VariableClass.direcWindow.UpdateList();
+            new AddIncomingDocWindow().Show();
+            if(VariableClass.direcWindow != null)VariableClass.direcWindow.UpdateList();
             if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.UpdateList();
         }
 
@@ -59,15 +64,10 @@ namespace MollaevDiplom.PageFolder.DirectoFolder
             }
             else
             {
-                new EditDocInWindow(ListDocInDT.SelectedItem as Documents).Show();
-                if (VariableClass.direcWindow != null) VariableClass.direcWindow.UpdateList();
+                new EditIncomingDocWindow(ListDocInDT.SelectedItem as IncomingDocuments).Show();
                 if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.UpdateList();
+                if (VariableClass.direcWindow != null) VariableClass.direcWindow.UpdateList();
             }
-        }
-
-        private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            UpdateList();
         }
     }
 }

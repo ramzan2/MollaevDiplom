@@ -35,6 +35,7 @@ namespace MollaevDiplom.DataFolder
         public virtual DbSet<MarkExecution> MarkExecution { get; set; }
         public virtual DbSet<Meetings> Meetings { get; set; }
         public virtual DbSet<OutgoingDocuments> OutgoingDocuments { get; set; }
+        public virtual DbSet<Performer> Performer { get; set; }
         public virtual DbSet<Position> Position { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Sender> Sender { get; set; }

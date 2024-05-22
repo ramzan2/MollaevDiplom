@@ -29,7 +29,7 @@
           <Property Name="DescriptionDocuments" Type="text" Nullable="false" />
           <Property Name="IdCategory" Type="int" Nullable="false" />
           <Property Name="IdStaff" Type="int" Nullable="false" />
-          <Property Name="UploadDate" Type="date" Nullable="false" />
+          <Property Name="UploadDate" Type="datetime" Nullable="false" />
           <Property Name="FileDocuments" Type="varbinary(max)" />
           <Property Name="QuantityPage" Type="int" Nullable="false" />
           <Property Name="QuantityОfСopies" Type="int" Nullable="false" />
@@ -40,7 +40,7 @@
           <Key>
             <PropertyRef Name="IdCategory" />
           </Key>
-          <Property Name="IdCategory" Type="int" Nullable="false" />
+          <Property Name="IdCategory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NameCategory" Type="nvarchar" MaxLength="150" Nullable="false" />
         </EntityType>
         <EntityType Name="IncomingDocuments">
@@ -50,6 +50,7 @@
           <Property Name="IdIncomingDocuments" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NumberIncoming" Type="int" Nullable="false" />
           <Property Name="DateIncoming" Type="date" Nullable="false" />
+          <Property Name="IdCategory" Type="int" Nullable="false" />
           <Property Name="FileDocuments" Type="varbinary(max)" />
           <Property Name="IdSender" Type="int" Nullable="false" />
           <Property Name="NameIncoming" Type="nvarchar" MaxLength="150" Nullable="false" />
@@ -92,19 +93,23 @@
           <Property Name="NumberOutgoing" Type="int" Nullable="false" />
           <Property Name="DateOutgoing" Type="date" Nullable="false" />
           <Property Name="IdCategory" Type="int" Nullable="false" />
-          <Property Name="PerformerOutgoing" Type="int" Nullable="false" />
+          <Property Name="IdPerformer" Type="int" Nullable="false" />
           <Property Name="NameOutgoingDocuments" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="SummaryOutgoing" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="IdStaff" Type="int" Nullable="false" />
-          <Property Name="DateOfReceipt" Type="date" Nullable="false" />
-          <Property Name="OutgoingNumber" Type="int" Nullable="false" />
-          <Property Name="DateOutgoingNumber" Type="date" Nullable="false" />
           <Property Name="ControlDate" Type="date" Nullable="false" />
           <Property Name="ExecutionDate" Type="date" Nullable="false" />
           <Property Name="IdMarkExecution" Type="int" Nullable="false" />
           <Property Name="QuantityОfСopies" Type="int" Nullable="false" />
           <Property Name="QuantityPage" Type="int" Nullable="false" />
           <Property Name="FileDocuments" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Performer">
+          <Key>
+            <PropertyRef Name="IdPerformer" />
+          </Key>
+          <Property Name="IdPerformer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdStaff" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Position">
           <Key>
@@ -235,6 +240,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_IncomingDocuments_DocumentsCategory">
+          <End Role="DocumentsCategory" Type="Self.DocumentsCategory" Multiplicity="1" />
+          <End Role="IncomingDocuments" Type="Self.IncomingDocuments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentsCategory">
+              <PropertyRef Name="IdCategory" />
+            </Principal>
+            <Dependent Role="IncomingDocuments">
+              <PropertyRef Name="IdCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_IncomingDocuments_MarkExecution">
           <End Role="MarkExecution" Type="Self.MarkExecution" Multiplicity="1" />
           <End Role="IncomingDocuments" Type="Self.IncomingDocuments" Multiplicity="*" />
@@ -331,6 +348,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_OutgoingDocuments_Performer">
+          <End Role="Performer" Type="Self.Performer" Multiplicity="1" />
+          <End Role="OutgoingDocuments" Type="Self.OutgoingDocuments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Performer">
+              <PropertyRef Name="IdPerformer" />
+            </Principal>
+            <Dependent Role="OutgoingDocuments">
+              <PropertyRef Name="IdPerformer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_OutgoingDocuments_Staff">
           <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
           <End Role="OutgoingDocuments" Type="Self.OutgoingDocuments" Multiplicity="*" />
@@ -339,6 +368,18 @@
               <PropertyRef Name="IdStaff" />
             </Principal>
             <Dependent Role="OutgoingDocuments">
+              <PropertyRef Name="IdStaff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Performer_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="Performer" Type="Self.Performer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="IdStaff" />
+            </Principal>
+            <Dependent Role="Performer">
               <PropertyRef Name="IdStaff" />
             </Dependent>
           </ReferentialConstraint>
@@ -455,6 +496,7 @@
           <EntitySet Name="MarkExecution" EntityType="Self.MarkExecution" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Meetings" EntityType="Self.Meetings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OutgoingDocuments" EntityType="Self.OutgoingDocuments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Performer" EntityType="Self.Performer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sender" EntityType="Self.Sender" Schema="dbo" store:Type="Tables" />
@@ -479,6 +521,10 @@
           <AssociationSet Name="FK_Documents_Staff" Association="Self.FK_Documents_Staff">
             <End Role="Staff" EntitySet="Staff" />
             <End Role="Documents" EntitySet="Documents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IncomingDocuments_DocumentsCategory" Association="Self.FK_IncomingDocuments_DocumentsCategory">
+            <End Role="DocumentsCategory" EntitySet="DocumentsCategory" />
+            <End Role="IncomingDocuments" EntitySet="IncomingDocuments" />
           </AssociationSet>
           <AssociationSet Name="FK_IncomingDocuments_MarkExecution" Association="Self.FK_IncomingDocuments_MarkExecution">
             <End Role="MarkExecution" EntitySet="MarkExecution" />
@@ -512,9 +558,17 @@
             <End Role="MarkExecution" EntitySet="MarkExecution" />
             <End Role="OutgoingDocuments" EntitySet="OutgoingDocuments" />
           </AssociationSet>
+          <AssociationSet Name="FK_OutgoingDocuments_Performer" Association="Self.FK_OutgoingDocuments_Performer">
+            <End Role="Performer" EntitySet="Performer" />
+            <End Role="OutgoingDocuments" EntitySet="OutgoingDocuments" />
+          </AssociationSet>
           <AssociationSet Name="FK_OutgoingDocuments_Staff" Association="Self.FK_OutgoingDocuments_Staff">
             <End Role="Staff" EntitySet="Staff" />
             <End Role="OutgoingDocuments" EntitySet="OutgoingDocuments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Performer_Staff" Association="Self.FK_Performer_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Performer" EntitySet="Performer" />
           </AssociationSet>
           <AssociationSet Name="FK_Staff_Departments" Association="Self.FK_Staff_Departments">
             <End Role="Departments" EntitySet="Departments" />
@@ -573,22 +627,23 @@
           <Property Name="DescriptionDocuments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="IdCategory" Type="Int32" Nullable="false" />
           <Property Name="IdStaff" Type="Int32" Nullable="false" />
-          <Property Name="UploadDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UploadDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="FileDocuments" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="QuantityPage" Type="Int32" Nullable="false" />
           <Property Name="QuantityОfСopies" Type="Int32" Nullable="false" />
           <Property Name="DateOfExecution" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="NameDocuments" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="DocumentsCategory" Relationship="Self.FK_Documents_DocumentsCategory" FromRole="Documents" ToRole="DocumentsCategory" />
           <NavigationProperty Name="Staff" Relationship="Self.FK_Documents_Staff" FromRole="Documents" ToRole="Staff" />
-          <Property Name="NameDocuments" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="DocumentsCategory">
           <Key>
             <PropertyRef Name="IdCategory" />
           </Key>
-          <Property Name="IdCategory" Type="Int32" Nullable="false" />
+          <Property Name="IdCategory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NameCategory" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Documents" Relationship="Self.FK_Documents_DocumentsCategory" FromRole="DocumentsCategory" ToRole="Documents" />
+          <NavigationProperty Name="IncomingDocuments" Relationship="Self.FK_IncomingDocuments_DocumentsCategory" FromRole="DocumentsCategory" ToRole="IncomingDocuments" />
           <NavigationProperty Name="OutgoingDocuments" Relationship="Self.FK_OutgoingDocuments_DocumentsCategory" FromRole="DocumentsCategory" ToRole="OutgoingDocuments" />
         </EntityType>
         <EntityType Name="IncomingDocuments">
@@ -598,6 +653,7 @@
           <Property Name="IdIncomingDocuments" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NumberIncoming" Type="Int32" Nullable="false" />
           <Property Name="DateIncoming" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdCategory" Type="Int32" Nullable="false" />
           <Property Name="FileDocuments" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="IdSender" Type="Int32" Nullable="false" />
           <Property Name="NameIncoming" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
@@ -611,6 +667,7 @@
           <Property Name="IdMarkExecution" Type="Int32" Nullable="false" />
           <Property Name="QuantityОfСopies" Type="Int32" Nullable="false" />
           <Property Name="QuantityPage" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DocumentsCategory" Relationship="Self.FK_IncomingDocuments_DocumentsCategory" FromRole="IncomingDocuments" ToRole="DocumentsCategory" />
           <NavigationProperty Name="MarkExecution" Relationship="Self.FK_IncomingDocuments_MarkExecution" FromRole="IncomingDocuments" ToRole="MarkExecution" />
           <NavigationProperty Name="Sender" Relationship="Self.FK_IncomingDocuments_Sender" FromRole="IncomingDocuments" ToRole="Sender" />
           <NavigationProperty Name="Staff" Relationship="Self.FK_IncomingDocuments_Staff" FromRole="IncomingDocuments" ToRole="Staff" />
@@ -649,13 +706,10 @@
           <Property Name="NumberOutgoing" Type="Int32" Nullable="false" />
           <Property Name="DateOutgoing" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IdCategory" Type="Int32" Nullable="false" />
-          <Property Name="PerformerOutgoing" Type="Int32" Nullable="false" />
+          <Property Name="IdPerformer" Type="Int32" Nullable="false" />
           <Property Name="NameOutgoingDocuments" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="SummaryOutgoing" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IdStaff" Type="Int32" Nullable="false" />
-          <Property Name="DateOfReceipt" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="OutgoingNumber" Type="Int32" Nullable="false" />
-          <Property Name="DateOutgoingNumber" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="ControlDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="ExecutionDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IdMarkExecution" Type="Int32" Nullable="false" />
@@ -664,7 +718,17 @@
           <Property Name="FileDocuments" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="DocumentsCategory" Relationship="Self.FK_OutgoingDocuments_DocumentsCategory" FromRole="OutgoingDocuments" ToRole="DocumentsCategory" />
           <NavigationProperty Name="MarkExecution" Relationship="Self.FK_OutgoingDocuments_MarkExecution" FromRole="OutgoingDocuments" ToRole="MarkExecution" />
+          <NavigationProperty Name="Performer" Relationship="Self.FK_OutgoingDocuments_Performer" FromRole="OutgoingDocuments" ToRole="Performer" />
           <NavigationProperty Name="Staff" Relationship="Self.FK_OutgoingDocuments_Staff" FromRole="OutgoingDocuments" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="Performer">
+          <Key>
+            <PropertyRef Name="IdPerformer" />
+          </Key>
+          <Property Name="IdPerformer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdStaff" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OutgoingDocuments" Relationship="Self.FK_OutgoingDocuments_Performer" FromRole="Performer" ToRole="OutgoingDocuments" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_Performer_Staff" FromRole="Performer" ToRole="Staff" />
         </EntityType>
         <EntityType Name="Position">
           <Key>
@@ -713,6 +777,7 @@
           <NavigationProperty Name="IncomingDocuments" Relationship="Self.FK_IncomingDocuments_Staff" FromRole="Staff" ToRole="IncomingDocuments" />
           <NavigationProperty Name="Meetings" Relationship="Self.FK_Meetings_Staff" FromRole="Staff" ToRole="Meetings" />
           <NavigationProperty Name="OutgoingDocuments" Relationship="Self.FK_OutgoingDocuments_Staff" FromRole="Staff" ToRole="OutgoingDocuments" />
+          <NavigationProperty Name="Performer" Relationship="Self.FK_Performer_Staff" FromRole="Staff" ToRole="Performer" />
           <NavigationProperty Name="Position" Relationship="Self.FK_Staff_Position" FromRole="Staff" ToRole="Position" />
           <NavigationProperty Name="StatusStaff" Relationship="Self.FK_Staff_StatusStaff" FromRole="Staff" ToRole="StatusStaff" />
           <NavigationProperty Name="User" Relationship="Self.FK_User_Staff" FromRole="Staff" ToRole="User" />
@@ -837,6 +902,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_IncomingDocuments_DocumentsCategory">
+          <End Role="DocumentsCategory" Type="Self.DocumentsCategory" Multiplicity="1" />
+          <End Role="IncomingDocuments" Type="Self.IncomingDocuments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentsCategory">
+              <PropertyRef Name="IdCategory" />
+            </Principal>
+            <Dependent Role="IncomingDocuments">
+              <PropertyRef Name="IdCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_OutgoingDocuments_DocumentsCategory">
           <End Role="DocumentsCategory" Type="Self.DocumentsCategory" Multiplicity="1" />
           <End Role="OutgoingDocuments" Type="Self.OutgoingDocuments" Multiplicity="*" />
@@ -921,6 +998,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_OutgoingDocuments_Performer">
+          <End Role="Performer" Type="Self.Performer" Multiplicity="1" />
+          <End Role="OutgoingDocuments" Type="Self.OutgoingDocuments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Performer">
+              <PropertyRef Name="IdPerformer" />
+            </Principal>
+            <Dependent Role="OutgoingDocuments">
+              <PropertyRef Name="IdPerformer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_OutgoingDocuments_Staff">
           <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
           <End Role="OutgoingDocuments" Type="Self.OutgoingDocuments" Multiplicity="*" />
@@ -929,6 +1018,18 @@
               <PropertyRef Name="IdStaff" />
             </Principal>
             <Dependent Role="OutgoingDocuments">
+              <PropertyRef Name="IdStaff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Performer_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="Performer" Type="Self.Performer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="IdStaff" />
+            </Principal>
+            <Dependent Role="Performer">
               <PropertyRef Name="IdStaff" />
             </Dependent>
           </ReferentialConstraint>
@@ -1002,6 +1103,7 @@
           <EntitySet Name="MarkExecution" EntityType="Self.MarkExecution" />
           <EntitySet Name="Meetings" EntityType="Self.Meetings" />
           <EntitySet Name="OutgoingDocuments" EntityType="Self.OutgoingDocuments" />
+          <EntitySet Name="Performer" EntityType="Self.Performer" />
           <EntitySet Name="Position" EntityType="Self.Position" />
           <EntitySet Name="Role" EntityType="Self.Role" />
           <EntitySet Name="Sender" EntityType="Self.Sender" />
@@ -1035,6 +1137,10 @@
             <End Role="Staff" EntitySet="Staff" />
             <End Role="Documents" EntitySet="Documents" />
           </AssociationSet>
+          <AssociationSet Name="FK_IncomingDocuments_DocumentsCategory" Association="Self.FK_IncomingDocuments_DocumentsCategory">
+            <End Role="DocumentsCategory" EntitySet="DocumentsCategory" />
+            <End Role="IncomingDocuments" EntitySet="IncomingDocuments" />
+          </AssociationSet>
           <AssociationSet Name="FK_OutgoingDocuments_DocumentsCategory" Association="Self.FK_OutgoingDocuments_DocumentsCategory">
             <End Role="DocumentsCategory" EntitySet="DocumentsCategory" />
             <End Role="OutgoingDocuments" EntitySet="OutgoingDocuments" />
@@ -1063,9 +1169,17 @@
             <End Role="StatusMeetings" EntitySet="StatusMeetings" />
             <End Role="Meetings" EntitySet="Meetings" />
           </AssociationSet>
+          <AssociationSet Name="FK_OutgoingDocuments_Performer" Association="Self.FK_OutgoingDocuments_Performer">
+            <End Role="Performer" EntitySet="Performer" />
+            <End Role="OutgoingDocuments" EntitySet="OutgoingDocuments" />
+          </AssociationSet>
           <AssociationSet Name="FK_OutgoingDocuments_Staff" Association="Self.FK_OutgoingDocuments_Staff">
             <End Role="Staff" EntitySet="Staff" />
             <End Role="OutgoingDocuments" EntitySet="OutgoingDocuments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Performer_Staff" Association="Self.FK_Performer_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Performer" EntitySet="Performer" />
           </AssociationSet>
           <AssociationSet Name="FK_Staff_Position" Association="Self.FK_Staff_Position">
             <End Role="Position" EntitySet="Position" />
@@ -1155,7 +1269,6 @@
           <EntitySetMapping Name="Documents">
             <EntityTypeMapping TypeName="DBModel.Documents">
               <MappingFragment StoreEntitySet="Documents">
-                <ScalarProperty Name="NameDocuments" ColumnName="NameDocuments" />
                 <ScalarProperty Name="IdDocuments" ColumnName="IdDocuments" />
                 <ScalarProperty Name="TitleDocuments" ColumnName="TitleDocuments" />
                 <ScalarProperty Name="DescriptionDocuments" ColumnName="DescriptionDocuments" />
@@ -1166,6 +1279,7 @@
                 <ScalarProperty Name="QuantityPage" ColumnName="QuantityPage" />
                 <ScalarProperty Name="QuantityОfСopies" ColumnName="QuantityОfСopies" />
                 <ScalarProperty Name="DateOfExecution" ColumnName="DateOfExecution" />
+                <ScalarProperty Name="NameDocuments" ColumnName="NameDocuments" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1183,6 +1297,7 @@
                 <ScalarProperty Name="IdIncomingDocuments" ColumnName="IdIncomingDocuments" />
                 <ScalarProperty Name="NumberIncoming" ColumnName="NumberIncoming" />
                 <ScalarProperty Name="DateIncoming" ColumnName="DateIncoming" />
+                <ScalarProperty Name="IdCategory" ColumnName="IdCategory" />
                 <ScalarProperty Name="FileDocuments" ColumnName="FileDocuments" />
                 <ScalarProperty Name="IdSender" ColumnName="IdSender" />
                 <ScalarProperty Name="NameIncoming" ColumnName="NameIncoming" />
@@ -1228,19 +1343,24 @@
                 <ScalarProperty Name="NumberOutgoing" ColumnName="NumberOutgoing" />
                 <ScalarProperty Name="DateOutgoing" ColumnName="DateOutgoing" />
                 <ScalarProperty Name="IdCategory" ColumnName="IdCategory" />
-                <ScalarProperty Name="PerformerOutgoing" ColumnName="PerformerOutgoing" />
+                <ScalarProperty Name="IdPerformer" ColumnName="IdPerformer" />
                 <ScalarProperty Name="NameOutgoingDocuments" ColumnName="NameOutgoingDocuments" />
                 <ScalarProperty Name="SummaryOutgoing" ColumnName="SummaryOutgoing" />
                 <ScalarProperty Name="IdStaff" ColumnName="IdStaff" />
-                <ScalarProperty Name="DateOfReceipt" ColumnName="DateOfReceipt" />
-                <ScalarProperty Name="OutgoingNumber" ColumnName="OutgoingNumber" />
-                <ScalarProperty Name="DateOutgoingNumber" ColumnName="DateOutgoingNumber" />
                 <ScalarProperty Name="ControlDate" ColumnName="ControlDate" />
                 <ScalarProperty Name="ExecutionDate" ColumnName="ExecutionDate" />
                 <ScalarProperty Name="IdMarkExecution" ColumnName="IdMarkExecution" />
                 <ScalarProperty Name="QuantityОfСopies" ColumnName="QuantityОfСopies" />
                 <ScalarProperty Name="QuantityPage" ColumnName="QuantityPage" />
                 <ScalarProperty Name="FileDocuments" ColumnName="FileDocuments" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Performer">
+            <EntityTypeMapping TypeName="DBModel.Performer">
+              <MappingFragment StoreEntitySet="Performer">
+                <ScalarProperty Name="IdPerformer" ColumnName="IdPerformer" />
+                <ScalarProperty Name="IdStaff" ColumnName="IdStaff" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
