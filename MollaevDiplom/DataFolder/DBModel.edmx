@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище DBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище DBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Attendees">
           <Key>
             <PropertyRef Name="IdAttendees" />
@@ -26,7 +26,7 @@
           </Key>
           <Property Name="IdDocuments" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TitleDocuments" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="DescriptionDocuments" Type="text" Nullable="false" />
+          <Property Name="DescriptionDocuments" Type="text" />
           <Property Name="IdCategory" Type="int" Nullable="false" />
           <Property Name="IdStaff" Type="int" Nullable="false" />
           <Property Name="UploadDate" Type="datetime" Nullable="false" />
@@ -129,7 +129,7 @@
           <Key>
             <PropertyRef Name="IdSender" />
           </Key>
-          <Property Name="IdSender" Type="int" Nullable="false" />
+          <Property Name="IdSender" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="LastNameSender" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="FirstNameSender" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="MiddleNameSender" Type="nvarchar" MaxLength="50" />
@@ -595,7 +595,8 @@
             <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -624,7 +625,7 @@
           </Key>
           <Property Name="IdDocuments" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TitleDocuments" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DescriptionDocuments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DescriptionDocuments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IdCategory" Type="Int32" Nullable="false" />
           <Property Name="IdStaff" Type="Int32" Nullable="false" />
           <Property Name="UploadDate" Type="DateTime" Nullable="false" Precision="3" />
@@ -750,7 +751,7 @@
           <Key>
             <PropertyRef Name="IdSender" />
           </Key>
-          <Property Name="IdSender" Type="Int32" Nullable="false" />
+          <Property Name="IdSender" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="LastNameSender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FirstNameSender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MiddleNameSender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />

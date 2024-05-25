@@ -29,7 +29,6 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
             originalOutgoingDocuments = DBEntities.GetContext().OutgoingDocuments
                 .FirstOrDefault(u => u.IdOutgoingDocuments == outgoingDocuments.IdStaff);
             DataContext = originalOutgoingDocuments;
- 
             CategoryCb.ItemsSource = DBEntities.GetContext()
                  .DocumentsCategory.ToList();
             LastNamePerformerCb.ItemsSource = DBEntities.GetContext()
@@ -63,12 +62,21 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
 
         private void LoadDcBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            doc = DocumentClass.ConvertDocumentToByteArray();
         }
-
+        byte[] doc;
         private void SaveDcBtn_Click(object sender, RoutedEventArgs e)
         {
-            var doc = DocumentClass.ConvertDocumentToByteArray();
+            if (doc == null)
+            {
+                MBClass.InfoMB("Данные успешно отредактированы");
+                if (VariableClass.ListOutDocumentsPage1 != null) VariableClass.ListOutDocumentsPage1.UpdateList();
+                if (VariableClass.direcWindow != null) VariableClass.direcWindow.Update();
+                if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.Update();
+                DBEntities.GetContext().SaveChanges();
+                Close();
+                return;
+            }
             originalOutgoingDocuments = DBEntities.GetContext().OutgoingDocuments
           .FirstOrDefault(u => u.IdOutgoingDocuments == originalOutgoingDocuments.IdOutgoingDocuments);
             originalOutgoingDocuments.NumberOutgoing = Convert.ToInt32(NumberOutgoingTb.Text);

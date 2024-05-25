@@ -45,8 +45,7 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
                    .Departments.ToList();
 
             StatusStaffCb.ItemsSource = DBEntities.GetContext()
-                   .StatusStaff.ToList();
-           
+                   .StatusStaff.ToList();        
         }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)

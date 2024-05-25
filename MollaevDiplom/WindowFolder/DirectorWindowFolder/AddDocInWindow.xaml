@@ -45,7 +45,7 @@
                     <ImageBrush ImageSource="/ResourceFolder/ImageFolder/back.png"/>
                 </Button.Background>
             </Button>
-            <TextBlock Text="Добавлeние сотрудника"
+            <TextBlock Text="Добавлeние документа"
                        Style="{StaticResource Text_Style}"
                        Grid.ColumnSpan="5"
                        Grid.Row="0"
@@ -138,7 +138,7 @@
             <DatePicker Grid.Row="6"
                         Grid.Column="4"
                         x:Name="DtDateOfExecution"
-                        Tag="Выберите дату загрузка"
+                        Tag="Выберите дату исполнения"
                         Style="{StaticResource DataPickerStyle}"/>
             <Button Content="Загрузить документ" 
                     Grid.Row="8"

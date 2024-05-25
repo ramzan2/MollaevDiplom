@@ -136,10 +136,13 @@
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="310"/>
+                        </Grid.ColumnDefinitions>
                         <Border Margin="12" 
-                                    Width="400"
+                                    Width="200"
                                     Grid.Row="0"
-                                    Height="150" 
+                                    Height="180" 
                                     HorizontalAlignment="Center"
                                 CornerRadius="5">
                                 <Border.Background>

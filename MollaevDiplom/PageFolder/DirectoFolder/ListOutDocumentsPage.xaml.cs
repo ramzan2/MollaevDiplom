@@ -69,5 +69,12 @@ namespace MollaevDiplom.PageFolder.DirectoFolder
             if(VariableClass.direcWindow != null)VariableClass.direcWindow.UpdateList();
             if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.UpdateList();
         }
+
+        private void LoadDocIM_Click(object sender, RoutedEventArgs e)
+        {
+            OutgoingDocuments documents1 = ListDocInDT.SelectedItem as OutgoingDocuments;
+            MBClass.InfoMB(documents1.NameOutgoingDocuments);
+            DocumentClass.ConvertByteArrayToDocument(documents1.FileDocuments);
+        }
     }
 }

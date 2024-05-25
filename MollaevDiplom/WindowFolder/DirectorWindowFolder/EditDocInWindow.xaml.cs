@@ -40,10 +40,20 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
             MiddleNameStaffCb.ItemsSource = DBEntities.GetContext()
            .Staff.ToList();
         }
-
+        byte[] doc;
         private void SaveDcBtn_Click(object sender, RoutedEventArgs e)
         {
-            var doc = DocumentClass.ConvertDocumentToByteArray();
+            if (doc == null)
+            {
+                DBEntities.GetContext().SaveChanges();
+                MBClass.InfoMB("Данные успешно отредактированы");
+                if (VariableClass.ListInsideDocPage1 != null) VariableClass.ListInsideDocPage1.UpdateList();
+                if (VariableClass.direcWindow != null) VariableClass.direcWindow.Update();
+                if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.Update();
+                DBEntities.GetContext().SaveChanges();
+                Close();
+                return;
+            }
             originalDocuments = DBEntities.GetContext().Documents
                     .FirstOrDefault(u => u.IdDocuments == originalDocuments.IdDocuments);
             originalDocuments.TitleDocuments = TitleDocumentsTb.Text;
@@ -57,7 +67,6 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
             originalDocuments.DateOfExecution = Convert.ToDateTime(DtDateOfExecution.SelectedDate);
             originalDocuments.NameDocuments = NameDocTb.Text;
             DBEntities.GetContext().SaveChanges();
-            MBClass.InfoMB("Данные успешно отредактированы");
             if (VariableClass.ListInsideDocPage1 != null) VariableClass.ListInsideDocPage1.UpdateList();
             if (VariableClass.direcWindow != null) VariableClass.direcWindow.Update();
             if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.Update();
@@ -66,7 +75,7 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
 
         private void LoadDcBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            doc = DocumentClass.ConvertDocumentToByteArray();
         }
 
         private void BackBtn_Click(object sender, RoutedEventArgs e)

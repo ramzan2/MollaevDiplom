@@ -48,7 +48,7 @@
                     <ImageBrush ImageSource="/ResourceFolder/ImageFolder/back.png"/>
                 </Button.Background>
             </Button>
-            <TextBlock Text="Редактирование исходящего документа"
+            <TextBlock Text="Редактирование входящего документа"
                        Style="{StaticResource Text_Style}"
                        Grid.ColumnSpan="7"
                        Grid.Row="0"

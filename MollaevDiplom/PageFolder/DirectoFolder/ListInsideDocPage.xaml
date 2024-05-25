@@ -98,10 +98,12 @@
                         <MenuItem Header="Редактирование документов"
                               x:Name="EditMI"
                               Click="EditMI_Click"/>
-                        <Separator/>
                         <MenuItem Header="Удаление документов"
                               x:Name="DeleteIM"
                               Click="DeleteIM_Click"/>
+                        <MenuItem x:Name="DocBtn"
+                                  Header="Скачать документ"
+                                  Click="DocBtn_Click"/>
                     </ContextMenu>
                 </DataGrid.ContextMenu>
                 <DataGrid.Columns>
@@ -125,7 +127,19 @@
                     <DataGridTextColumn Header="Количество стр-ц" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding QuantityPage}"/>
                     <DataGridTextColumn Header="Количество копий" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding QuantityОfСopies}"/>
                     <DataGridTextColumn Header="Дата исполнения" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding DateOfExecution}"/>
-                    <DataGridTextColumn Header="Файл" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding FileDocuments}"/>
+                    <DataGridTemplateColumn Header="Файл" IsReadOnly="True" CanUserResize="False" Width="auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding FileDocuments}"
+                                           MouseDown="TextBlock_MouseDown">
+                                    <Hyperlink Foreground="Black"
+                                               Name="DocTb"
+                                               Click="DocTb_Click"
+                                               ToolTip="crf">Скачать файл</Hyperlink>
+                                </TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>

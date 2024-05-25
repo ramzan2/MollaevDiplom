@@ -66,10 +66,9 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
             DBEntities.GetContext().SaveChanges();
             sender1.IdSender = senderAdd.IdSender;
         }
-
+        
         private void OutgoingDocumentAdd()
         {
-            var doc = DocumentClass.ConvertDocumentToByteArray();
             var incomingDocumentAdd = new IncomingDocuments()
             {
                 NumberIncoming = Convert.ToInt32(NumberIncomingTb.Text),
@@ -93,8 +92,19 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
             DBEntities.GetContext().SaveChanges();
             incomingDocuments.IdIncomingDocuments = incomingDocumentAdd.IdIncomingDocuments;
         }
+        byte[] doc;
         private void AddDcBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (doc == null)
+            {
+                SenderAdd();
+                OutgoingDocumentAdd();
+                MBClass.InfoMB("Входящий документ добавлен");
+                if (VariableClass.ListIncomingDocPage1 != null) VariableClass.ListIncomingDocPage1.UpdateList();
+                if (VariableClass.direcWindow != null) VariableClass.direcWindow.Update();
+                if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.Update();
+                Close();
+            }
             try
             {
                 SenderAdd();
@@ -113,7 +123,7 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
 
         private void LoadDcBtn_Click(object sender, RoutedEventArgs e)
         {
-
+             doc = DocumentClass.ConvertDocumentToByteArray();
         }
     }
 }

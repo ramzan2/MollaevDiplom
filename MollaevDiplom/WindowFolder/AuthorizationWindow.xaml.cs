@@ -77,6 +77,13 @@ namespace MollaevDiplom.WindowFolder
                         Timer();
                         return;
                     }
+                    else if(user.LoginUser != LoginTb.Text) 
+                    {
+                        MBClass.ErrorMB("Введен неверный логин");
+                        LoginTb.Focus();
+                        Timer();
+                        return;
+                    }
                     if (user.PasswordUser != PasswordTb.Password)
                     {
                         MBClass.ErrorMB("Введен не правильный логин или пароль");

@@ -80,10 +80,9 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
 
         private void EditIncomingDoc()
         {
-            var doc = DocumentClass.ConvertDocumentToByteArray();
             try
             {
-                if(doc != null)
+                if(doc == null)
                 {
                     originalIncomingDoc = DBEntities.GetContext().IncomingDocuments.FirstOrDefault(r => r.IdIncomingDocuments == originalIncomingDoc.IdIncomingDocuments);
                     originalIncomingDoc.NumberIncoming = Convert.ToInt32(NumberIncomingTb.Text);
@@ -130,21 +129,32 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
                 MBClass.ErrorMB(ex.Message);
             }
         }
+        byte[] doc;
         private void AddDcBtn_Click(object sender, RoutedEventArgs e)
         {
-  
+            if (doc != null)
+            {
                 EditSender();
                 EditIncomingDoc();
-                MBClass.InfoMB("Входящий докумнет добоавлен");
+                MBClass.InfoMB("Входящий документ добавлен");
                 if (VariableClass.ListIncomingDocPage1 != null) VariableClass.ListIncomingDocPage1.UpdateList();
-                if (VariableClass.direcWindow != null)VariableClass.direcWindow.Update();
+                if (VariableClass.direcWindow != null) VariableClass.direcWindow.Update();
+                if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.Update();
+                Close();
+                return;
+            }
+                EditSender();
+                EditIncomingDoc();
+                if (VariableClass.ListIncomingDocPage1 != null) VariableClass.ListIncomingDocPage1.UpdateList();
+            if (VariableClass.direcWindow != null) VariableClass.direcWindow.Update();
+                     MBClass.InfoMB("Входящий документ добавлен");
             if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.Update();
             Close();  
         }
 
         private void LoadDcBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            doc = DocumentClass.ConvertDocumentToByteArray();
         }
     }
 }

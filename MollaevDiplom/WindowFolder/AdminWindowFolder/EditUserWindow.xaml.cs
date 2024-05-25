@@ -21,14 +21,16 @@ namespace MollaevDiplom.WindowFolder.AdminWindowFolder
     /// </summary>
     public partial class EditUserWindow : Window
     {
-        User originalUser = new User();
+        private User originalUser;
         public EditUserWindow(User user)
         {
             InitializeComponent();
-            DataContext = originalUser;
             DBEntities.NullContext();
             originalUser = DBEntities.GetContext().User
-                .FirstOrDefault(u => u.IdUser == originalUser.IdUser);
+                .FirstOrDefault(u => u.IdUser == user.IdUser);
+            DataContext = originalUser;
+            this.originalUser.IdUser = originalUser.IdUser;
+
             RoleCb.ItemsSource = DBEntities.GetContext()
                 .Role.ToList();
             StatusCb.ItemsSource = DBEntities.GetContext()
@@ -57,12 +59,9 @@ namespace MollaevDiplom.WindowFolder.AdminWindowFolder
                    .FirstOrDefault(u => u.IdUser == originalUser.IdUser);
                 originalUser.LoginUser = LoginTb.Text;
                 originalUser.PasswordUser = PasswordTb.Text;
-                originalUser.IdRole = Int32.Parse(
-                    RoleCb.SelectedValue.ToString());
-                originalUser.IdStaff = Int32.Parse(
-                    StaffCb.SelectedValue.ToString());
-                originalUser.IdStatusUser = Int32.Parse(
-                    StatusCb.SelectedValue.ToString());
+                originalUser.IdRole = Convert.ToInt32(RoleCb.SelectedValue);
+                originalUser.IdStaff = Convert.ToInt32(StaffCb.SelectedValue);
+                originalUser.IdStatusUser = Convert.ToInt32(StatusCb.SelectedValue);
                 DBEntities.GetContext().SaveChanges();
                 MBClass.InfoMB("Данные успешно отредактированы");
                 if (VariableClass.ListUserPage1 != null) VariableClass.ListUserPage1.UpdateList();

@@ -98,10 +98,12 @@
                         <MenuItem Header="Редактирование документов"
                               x:Name="EditMI"
                               Click="EditMI_Click"/>
-                        <Separator/>
                         <MenuItem Header="Удаление документов"
                               x:Name="DeleteIM"
                               Click="DeleteIM_Click"/>
+                        <MenuItem Header="Скачать документ"
+                              x:Name="DocIM"
+                              Click="DocIM_Click"/>
                     </ContextMenu>
                 </DataGrid.ContextMenu>
                 <DataGrid.Columns>

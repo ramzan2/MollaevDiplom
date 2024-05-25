@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 using MollaevDiplom.ClassFolder;
 using MollaevDiplom.DataFolder;
 using MollaevDiplom.WindowFolder.DirectorWindowFolder;
@@ -68,6 +69,23 @@ namespace MollaevDiplom.PageFolder.DirectoFolder
         private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             UpdateList();
+        }
+
+        private void DocTb_Click(object sender, RoutedEventArgs e)
+        {
+           
+        }
+
+        private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void DocBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Documents documents1 = ListDocInDT.SelectedItem as Documents;
+            MBClass.InfoMB(documents1.NameDocuments);
+            DocumentClass.ConvertByteArrayToDocument(documents1.FileDocuments);
         }
     }
 }

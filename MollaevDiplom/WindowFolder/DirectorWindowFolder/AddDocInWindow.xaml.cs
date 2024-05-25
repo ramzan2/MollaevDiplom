@@ -51,11 +51,20 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
 
         private void LoadDcBtn_Click(object sender, RoutedEventArgs e)
         {
-            var doc = DocumentClass.ConvertDocumentToByteArray();
+          doc = DocumentClass.ConvertDocumentToByteArray();
         }
+        byte[] doc;
         private void AddDcBtn_Click(object sender, RoutedEventArgs e)
         {
-            var doc = DocumentClass.ConvertDocumentToByteArray();
+            if (doc == null)
+            {
+                DBEntities.GetContext().SaveChanges();
+                MBClass.InfoMB("Сотрудник успешно добавлен");
+                if (VariableClass.ListInsideDocPage1 != null) VariableClass.ListInsideDocPage1.UpdateList();
+                if (VariableClass.direcWindow != null) VariableClass.direcWindow.Update();
+                if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.Update();
+                Close();
+            }
             DBEntities.GetContext().Documents.Add(new Documents()
             {
                 TitleDocuments = TitleDocumentsTb.Text,

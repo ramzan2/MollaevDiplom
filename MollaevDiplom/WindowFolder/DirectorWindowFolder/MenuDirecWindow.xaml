@@ -87,7 +87,7 @@
                         </RadioButton>
                         <RadioButton x:Name="DocumentIncoming" Style="{StaticResource BtnStyle}"     
                                     Click="DocumentIncoming_Click"
-                                     ToolTip="Внутренние документы">
+                                     ToolTip="Входящие документы">
                             <Grid>
                                 <Image Source="/ResourceFolder/ImageFolder/incomingdocuments.png"
                                        Stretch="Fill"
