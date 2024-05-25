@@ -72,21 +72,34 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
-            DBEntities.GetContext().Staff.Add(new Staff()
+            if (string.IsNullOrWhiteSpace(LastNameTb.Text) ||
+          string.IsNullOrWhiteSpace(FirstNameTb.Text) ||
+          string.IsNullOrWhiteSpace(MiddleNameTb.Text) ||
+          string.IsNullOrWhiteSpace(PhoneNumberStaffTb.Text) ||
+          string.IsNullOrWhiteSpace(PositionCb.Text) ||
+          string.IsNullOrWhiteSpace(DepartmentsCb.Text) ||
+          string.IsNullOrWhiteSpace(StatusCb.Text))
             {
-                LastNameStaff = LastNameTb.Text,
-                FirstNameStaff = FirstNameTb.Text,
-                MiddleNameStaff = MiddleNameTb.Text,
-                PhoneNumberStaff = PhoneNumberStaffTb.Text,
-                IdPosition = Int32.Parse(PositionCb.SelectedValue.ToString()),
-                IdDepartments = Int32.Parse(DepartmentsCb.SelectedValue.ToString()),
-                PhotoStaff = ImageClass.ConvertImageToByteArray(selectedFileName),
-                IdStatusStaff = Int32.Parse(StatusCb.SelectedValue.ToString())
-            });
-            DBEntities.GetContext().SaveChanges();
-            MBClass.InfoMB("Сотрудник успешно добавлен");
-            if (VariableClass.ListStaffPage1 != null) VariableClass.ListStaffPage1.UpdateList();
-            Close();
+                MBClass.ErrorMB("Заполните все поля");
+            }
+            else
+            {
+                DBEntities.GetContext().Staff.Add(new Staff()
+                {
+                    LastNameStaff = LastNameTb.Text,
+                    FirstNameStaff = FirstNameTb.Text,
+                    MiddleNameStaff = MiddleNameTb.Text,
+                    PhoneNumberStaff = PhoneNumberStaffTb.Text,
+                    IdPosition = Int32.Parse(PositionCb.SelectedValue.ToString()),
+                    IdDepartments = Int32.Parse(DepartmentsCb.SelectedValue.ToString()),
+                    PhotoStaff = ImageClass.ConvertImageToByteArray(selectedFileName),
+                    IdStatusStaff = Int32.Parse(StatusCb.SelectedValue.ToString())
+                });
+                DBEntities.GetContext().SaveChanges();
+                MBClass.InfoMB("Сотрудник успешно добавлен");
+                if (VariableClass.ListStaffPage1 != null) VariableClass.ListStaffPage1.UpdateList();
+                Close();
+            }
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)

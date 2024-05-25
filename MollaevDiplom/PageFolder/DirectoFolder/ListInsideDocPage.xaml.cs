@@ -48,7 +48,29 @@ namespace MollaevDiplom.PageFolder.DirectoFolder
 
         private void DeleteIM_Click(object sender, RoutedEventArgs e)
         {
+            Documents documents = ListDocInDT.SelectedItem as Documents;
 
+            if (ListDocInDT.SelectedItem == null)
+            {
+                MBClass.ErrorMB("Выберите документ" +
+                    " для удаления");
+            }
+            else
+            {
+                if (MBClass.QuestionMB("Удалить " +
+                    $"документ? {documents.NameDocuments} " +
+                    $"{documents.NameDocuments} {documents.NameDocuments}?"))
+                {
+                    DBEntities.GetContext().Documents
+                        .Remove(ListDocInDT.SelectedItem as Documents);
+                    DBEntities.GetContext().SaveChanges();
+
+                    MBClass.InfoMB("Документ удален");
+                    ListDocInDT.ItemsSource = DBEntities.GetContext()
+                        .Documents.ToList().OrderBy(r => r.NameDocuments);
+                }
+
+            }
         }
 
         private void EditMI_Click(object sender, RoutedEventArgs e)
@@ -56,7 +78,7 @@ namespace MollaevDiplom.PageFolder.DirectoFolder
             if (ListDocInDT.SelectedItem == null)
             {
                 MBClass.ErrorMB("Выберите " +
-                    "пользователя для редактирования");
+                    "документ для редактирования");
             }
             else
             {

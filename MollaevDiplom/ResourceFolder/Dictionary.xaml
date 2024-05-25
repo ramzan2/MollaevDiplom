@@ -600,7 +600,7 @@
                                 SnapsToDevicePixels="True">
                         <Grid Margin="{TemplateBinding Padding}">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="30"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <ScrollViewer x:Name="PART_ContentHost"
@@ -624,7 +624,7 @@
                                    Source="/ResourceFolder/ImageFolder/login.png"
                                    RenderOptions.BitmapScalingMode="HighQuality" 
                                    RenderOptions.EdgeMode="Aliased"
-                                   Margin="4 0 0 0"/>
+                                   Margin="8 0 0 0"/>
                             <Label x:Name="Watermark" 
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Left"
@@ -680,7 +680,7 @@
                                 SnapsToDevicePixels="True">
                         <Grid Margin="{TemplateBinding Padding}">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="30"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <ScrollViewer x:Name="PART_ContentHost"
@@ -705,7 +705,7 @@
                                    Source="/ResourceFolder/ImageFolder/password.png"
                                    RenderOptions.BitmapScalingMode="HighQuality" 
                                    RenderOptions.EdgeMode="Aliased"
-                                   Margin="4 0 0 0"/>
+                                   Margin="8 0 0 0"/>
                             <Label x:Name="Watermark" 
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Left"
@@ -838,7 +838,7 @@
                                 SnapsToDevicePixels="True">
                         <Grid Margin="{TemplateBinding Padding}">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="30"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <ScrollViewer x:Name="PART_ContentHost"
@@ -863,7 +863,7 @@
                                    Grid.Column="0"
                                    RenderOptions.BitmapScalingMode="HighQuality" 
                                    RenderOptions.EdgeMode="Aliased"
-                                   Margin="4 0 0 0" 
+                                   Margin="8 0 0 0" 
                                    Source="/ResourceFolder/ImageFolder/password.png"/>
                             <Label x:Name="Watermark" 
                                        VerticalAlignment="Center"

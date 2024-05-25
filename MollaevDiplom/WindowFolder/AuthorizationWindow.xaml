@@ -78,7 +78,7 @@
                        FontSize="16"
                        Grid.Row="6"
                        Visibility="Visible"
-                       Margin="133,28,0,0"
+                       Margin="143,29,0,0"
                        VerticalAlignment="Top"
                        HorizontalAlignment="Left"
                        Foreground="White"
@@ -183,7 +183,7 @@
                         </Style>
                     </Button.Style>
                 </Button>
-                    
+
             </Border>
             <TextBlock Grid.Row="9"
                        Text="Забыли пароль?"

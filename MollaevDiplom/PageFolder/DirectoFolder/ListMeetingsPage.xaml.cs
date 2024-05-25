@@ -68,7 +68,29 @@ namespace MollaevDiplom.PageFolder.DirectoFolder
 
         private void DeleteIM_Click(object sender, RoutedEventArgs e)
         {
+            Meetings meetings = ListMeetingsDT.SelectedItem as Meetings;
 
+            if (ListMeetingsDT.SelectedItem == null)
+            {
+                MBClass.ErrorMB("Выберите встречу" +
+                    " для удаления");
+            }
+            else
+            {
+                if (MBClass.QuestionMB("Удалить " +
+                    $"документ? {meetings.AgendaMeetigns} " +
+                    $"{meetings.AgendaMeetigns} {meetings.AgendaMeetigns}?"))
+                {
+                    DBEntities.GetContext().Meetings
+                        .Remove(ListMeetingsDT.SelectedItem as Meetings);
+                    DBEntities.GetContext().SaveChanges();
+
+                    MBClass.InfoMB("Встреча удалена");
+                    ListMeetingsDT.ItemsSource = DBEntities.GetContext()
+                        .Meetings.ToList().OrderBy(r => r.AgendaMeetigns);
+                }
+
+            }
         }
     }
 }

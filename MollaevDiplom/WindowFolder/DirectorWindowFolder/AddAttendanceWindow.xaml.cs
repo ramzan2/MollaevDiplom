@@ -43,17 +43,25 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
 
         private void AddAttBtn_Click(object sender, RoutedEventArgs e)
         {
-            DBEntities.GetContext().Attendees.Add(new Attendees()
+            if (string.IsNullOrWhiteSpace(AgendaCb.Text) ||
+            string.IsNullOrWhiteSpace(LastNmCb.Text))
             {
-                IdMeetings = Int32.Parse(AgendaCb.SelectedValue.ToString()),
-                IdStaff = Int32.Parse(LastNmCb.SelectedValue.ToString())
-            });
-            DBEntities.GetContext().SaveChanges();
-            MBClass.InfoMB("Сотрудник успешно добавлен");
-            if (VariableClass.ListAttendancePage1 != null) VariableClass.ListAttendancePage1.UpdateList();
-            if (VariableClass.direcWindow != null) VariableClass.direcWindow.Update();
-            if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.Update();
-            Close();
+                MBClass.ErrorMB("Заполните все поля");
+            }
+            else
+            {
+                DBEntities.GetContext().Attendees.Add(new Attendees()
+                {
+                    IdMeetings = Int32.Parse(AgendaCb.SelectedValue.ToString()),
+                    IdStaff = Int32.Parse(LastNmCb.SelectedValue.ToString())
+                });
+                DBEntities.GetContext().SaveChanges();
+                MBClass.InfoMB("Сотрудник успешно добавлен");
+                if (VariableClass.ListAttendancePage1 != null) VariableClass.ListAttendancePage1.UpdateList();
+                if (VariableClass.direcWindow != null) VariableClass.direcWindow.Update();
+                if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.Update();
+                Close();
+            }
         }
 
         private void BackBtn_Click(object sender, RoutedEventArgs e)

@@ -53,22 +53,35 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
 
         private void AddMtBtn_Click(object sender, RoutedEventArgs e)
         {
-            DBEntities.GetContext().Meetings.Add(new Meetings()
+            if (string.IsNullOrWhiteSpace(MetDateTb.Text) ||
+           string.IsNullOrWhiteSpace(MeetingsTimeTb.Text) ||
+           string.IsNullOrWhiteSpace(MeetingsDurationTb.Text) ||
+           string.IsNullOrWhiteSpace(AgendaMeetignsTb.Text) ||
+           string.IsNullOrWhiteSpace(LastNameCb.Text) ||
+           string.IsNullOrWhiteSpace(DepartmentsCb.Text) ||
+           string.IsNullOrWhiteSpace(StatusCb.Text))
             {
-                MeetinsDate = Convert.ToDateTime(MetDateTb.SelectedDate),
-                MeetingsTime = MeetingsTimeTb.Text,
-                MeetingsDuration = MeetingsDurationTb.Text,
-                AgendaMeetigns = AgendaMeetignsTb.Text,
-                IdStaff = Convert.ToInt32(LastNameCb.SelectedValue),
-                IdDepartments = Convert.ToInt32(DepartmentsCb.SelectedValue),
-                IdStatusMeetings = Convert.ToInt32(StatusCb.SelectedValue)
-            });
-            DBEntities.GetContext().SaveChanges();
-            MBClass.InfoMB("Сотрудник успешно добавлен");
-            if (VariableClass.ListMeetingsPage1 != null) VariableClass.ListMeetingsPage1.UpdateList();
-            if (VariableClass.direcWindow != null) VariableClass.direcWindow.Update();
-            if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.Update();
-            Close();
+                MBClass.ErrorMB("Заполните все поля");
+            }
+            else
+            {
+                DBEntities.GetContext().Meetings.Add(new Meetings()
+                {
+                    MeetinsDate = Convert.ToDateTime(MetDateTb.SelectedDate),
+                    MeetingsTime = MeetingsTimeTb.Text,
+                    MeetingsDuration = MeetingsDurationTb.Text,
+                    AgendaMeetigns = AgendaMeetignsTb.Text,
+                    IdStaff = Convert.ToInt32(LastNameCb.SelectedValue),
+                    IdDepartments = Convert.ToInt32(DepartmentsCb.SelectedValue),
+                    IdStatusMeetings = Convert.ToInt32(StatusCb.SelectedValue)
+                });
+                DBEntities.GetContext().SaveChanges();
+                MBClass.InfoMB("Сотрудник успешно добавлен");
+                if (VariableClass.ListMeetingsPage1 != null) VariableClass.ListMeetingsPage1.UpdateList();
+                if (VariableClass.direcWindow != null) VariableClass.direcWindow.Update();
+                if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.Update();
+                Close();
+            }
         }
     }
 }

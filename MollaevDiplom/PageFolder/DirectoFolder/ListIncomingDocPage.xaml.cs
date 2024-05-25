@@ -52,7 +52,29 @@ namespace MollaevDiplom.PageFolder.DirectoFolder
 
         private void DeleteIM_Click(object sender, RoutedEventArgs e)
         {
+            IncomingDocuments incomingDocuments = ListDocInDT.SelectedItem as IncomingDocuments;
 
+            if (ListDocInDT.SelectedItem == null)
+            {
+                MBClass.ErrorMB("Выберите документ" +
+                    " для удаления");
+            }
+            else
+            {
+                if (MBClass.QuestionMB("Удалить " +
+                    $"документ? {incomingDocuments.NameIncoming} " +
+                    $"{incomingDocuments.NameIncoming} {incomingDocuments.NameIncoming}?"))
+                {
+                    DBEntities.GetContext().IncomingDocuments
+                        .Remove(ListDocInDT.SelectedItem as IncomingDocuments);
+                    DBEntities.GetContext().SaveChanges();
+
+                    MBClass.InfoMB("Документ удален");
+                    ListDocInDT.ItemsSource = DBEntities.GetContext()
+                        .IncomingDocuments.ToList().OrderBy(r => r.NameIncoming);
+                }
+
+            }
         }
 
         private void EditMI_Click(object sender, RoutedEventArgs e)

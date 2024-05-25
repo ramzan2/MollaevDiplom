@@ -69,55 +69,105 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
         
         private void OutgoingDocumentAdd()
         {
-            var incomingDocumentAdd = new IncomingDocuments()
+            if (string.IsNullOrWhiteSpace(NumberIncomingTb.Text) ||
+          string.IsNullOrWhiteSpace(DateIncomingDT.Text) ||
+          string.IsNullOrWhiteSpace(CategoryCb.Text) ||
+          string.IsNullOrWhiteSpace(LastNameSenderTb.Text) ||
+          string.IsNullOrWhiteSpace(FirstNameSenderTb.Text) ||
+          string.IsNullOrWhiteSpace(MiddleNameSenderTb.Text) ||
+          string.IsNullOrWhiteSpace(NumberPhoneTb.Text) ||
+          string.IsNullOrWhiteSpace(EmailSenderTb.Text) ||
+          string.IsNullOrWhiteSpace(NameIncomingTb.Text) ||
+          string.IsNullOrWhiteSpace(SummaryIncomingTb.Text) ||
+          string.IsNullOrWhiteSpace(LastNamePerformerCb.Text) ||
+          string.IsNullOrWhiteSpace(DateOfReceiptDT.Text) ||
+          string.IsNullOrWhiteSpace(OutgoingNumberTb.Text) ||
+          string.IsNullOrWhiteSpace(DtDateOutgoingNumber.Text) ||
+          string.IsNullOrWhiteSpace(DtControlDate.Text) ||
+          string.IsNullOrWhiteSpace(ExecutionDateDT.Text) ||
+          string.IsNullOrWhiteSpace(IdMarkExecutionCb.Text) ||
+          string.IsNullOrWhiteSpace(QuantityОfСopiesTb.Text) ||
+          string.IsNullOrWhiteSpace(QuantityPageTb.Text))
             {
-                NumberIncoming = Convert.ToInt32(NumberIncomingTb.Text),
-                DateIncoming = Convert.ToDateTime(DateIncomingDT.SelectedDate),
-                IdCategory = Convert.ToInt32(CategoryCb.SelectedValue),
-                FileDocuments = doc,
-                IdSender = sender1.IdSender,
-                NameIncoming = NameIncomingTb.Text,
-                SummaryIncoming = SummaryIncomingTb.Text,
-                IdStaff = Convert.ToInt32(LastNamePerformerCb.SelectedValue),
-                DateOfReceipt = Convert.ToDateTime(DateOfReceiptDT.SelectedDate),
-                OutgoingNumber = Convert.ToInt32(OutgoingNumberTb.Text),
-                DateOutgoingNumber = Convert.ToDateTime(DtDateOutgoingNumber.SelectedDate),
-                ControlDate = Convert.ToDateTime(DtControlDate.SelectedDate),
-                ExecutionDate = Convert.ToDateTime(ExecutionDateDT.SelectedDate),
-                IdMarkExecution = Convert.ToInt32(IdMarkExecutionCb.SelectedValue),
-                QuantityОfСopies = Convert.ToInt32(QuantityОfСopiesTb.Text),
-                QuantityPage = Convert.ToInt32(QuantityPageTb.Text),
-            };
-            DBEntities.GetContext().IncomingDocuments.Add(incomingDocumentAdd);
-            DBEntities.GetContext().SaveChanges();
-            incomingDocuments.IdIncomingDocuments = incomingDocumentAdd.IdIncomingDocuments;
+                MBClass.ErrorMB("Заполните все поля");
+            }
+            else
+            {
+                var incomingDocumentAdd = new IncomingDocuments()
+                {
+                    NumberIncoming = Convert.ToInt32(NumberIncomingTb.Text),
+                    DateIncoming = Convert.ToDateTime(DateIncomingDT.SelectedDate),
+                    IdCategory = Convert.ToInt32(CategoryCb.SelectedValue),
+                    FileDocuments = doc,
+                    IdSender = sender1.IdSender,
+                    NameIncoming = NameIncomingTb.Text,
+                    SummaryIncoming = SummaryIncomingTb.Text,
+                    IdStaff = Convert.ToInt32(LastNamePerformerCb.SelectedValue),
+                    DateOfReceipt = Convert.ToDateTime(DateOfReceiptDT.SelectedDate),
+                    OutgoingNumber = Convert.ToInt32(OutgoingNumberTb.Text),
+                    DateOutgoingNumber = Convert.ToDateTime(DtDateOutgoingNumber.SelectedDate),
+                    ControlDate = Convert.ToDateTime(DtControlDate.SelectedDate),
+                    ExecutionDate = Convert.ToDateTime(ExecutionDateDT.SelectedDate),
+                    IdMarkExecution = Convert.ToInt32(IdMarkExecutionCb.SelectedValue),
+                    QuantityОfСopies = Convert.ToInt32(QuantityОfСopiesTb.Text),
+                    QuantityPage = Convert.ToInt32(QuantityPageTb.Text),
+                };
+                DBEntities.GetContext().IncomingDocuments.Add(incomingDocumentAdd);
+                DBEntities.GetContext().SaveChanges();
+                incomingDocuments.IdIncomingDocuments = incomingDocumentAdd.IdIncomingDocuments;
+            }
         }
         byte[] doc;
         private void AddDcBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (doc == null)
+            if (string.IsNullOrWhiteSpace(NumberIncomingTb.Text) ||
+          string.IsNullOrWhiteSpace(DateIncomingDT.Text) ||
+          string.IsNullOrWhiteSpace(CategoryCb.Text) ||
+          string.IsNullOrWhiteSpace(LastNameSenderTb.Text) ||
+          string.IsNullOrWhiteSpace(FirstNameSenderTb.Text) ||
+          string.IsNullOrWhiteSpace(MiddleNameSenderTb.Text) ||
+          string.IsNullOrWhiteSpace(NumberPhoneTb.Text) ||
+          string.IsNullOrWhiteSpace(EmailSenderTb.Text) ||
+          string.IsNullOrWhiteSpace(NameIncomingTb.Text) ||
+          string.IsNullOrWhiteSpace(SummaryIncomingTb.Text) ||
+          string.IsNullOrWhiteSpace(LastNamePerformerCb.Text) ||
+          string.IsNullOrWhiteSpace(DateOfReceiptDT.Text) ||
+          string.IsNullOrWhiteSpace(OutgoingNumberTb.Text) ||
+          string.IsNullOrWhiteSpace(DtDateOutgoingNumber.Text) ||
+          string.IsNullOrWhiteSpace(DtControlDate.Text) ||
+          string.IsNullOrWhiteSpace(ExecutionDateDT.Text) ||
+          string.IsNullOrWhiteSpace(IdMarkExecutionCb.Text) ||
+          string.IsNullOrWhiteSpace(QuantityОfСopiesTb.Text) ||
+          string.IsNullOrWhiteSpace(QuantityPageTb.Text))
             {
-                SenderAdd();
-                OutgoingDocumentAdd();
-                MBClass.InfoMB("Входящий документ добавлен");
-                if (VariableClass.ListIncomingDocPage1 != null) VariableClass.ListIncomingDocPage1.UpdateList();
-                if (VariableClass.direcWindow != null) VariableClass.direcWindow.Update();
-                if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.Update();
-                Close();
+                MBClass.ErrorMB("Заполните все поля");
             }
-            try
+            else
             {
-                SenderAdd();
-                OutgoingDocumentAdd();
-                MBClass.InfoMB("Входящий документ добавлен");
-                if (VariableClass.ListIncomingDocPage1 != null) VariableClass.ListIncomingDocPage1.UpdateList();
-                if (VariableClass.direcWindow != null) VariableClass.direcWindow.Update();
-                if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.Update();
-                Close();
-            }
-            catch (DbEntityValidationException ex)
-            {
-                MBClass.ErrorMB(ex);
+                if (doc == null)
+                {
+                    SenderAdd();
+                    OutgoingDocumentAdd();
+                    MBClass.InfoMB("Входящий документ добавлен");
+                    if (VariableClass.ListIncomingDocPage1 != null) VariableClass.ListIncomingDocPage1.UpdateList();
+                    if (VariableClass.direcWindow != null) VariableClass.direcWindow.Update();
+                    if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.Update();
+                    Close();
+                }
+                try
+                {
+                    SenderAdd();
+                    OutgoingDocumentAdd();
+                    MBClass.InfoMB("Входящий документ добавлен");
+                    if (VariableClass.ListIncomingDocPage1 != null) VariableClass.ListIncomingDocPage1.UpdateList();
+                    if (VariableClass.direcWindow != null) VariableClass.direcWindow.Update();
+                    if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.Update();
+                    Close();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    MBClass.ErrorMB(ex);
+                }
             }
         }
 

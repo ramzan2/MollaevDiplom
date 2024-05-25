@@ -55,7 +55,6 @@ namespace MollaevDiplom.WindowFolder.AdminWindowFolder
                 PasswordTb.Focus();
                 return;
             }
-
             if (string.IsNullOrWhiteSpace(LoginTb.Text))
             {
                 MBClass.ErrorMB("Введите логин");

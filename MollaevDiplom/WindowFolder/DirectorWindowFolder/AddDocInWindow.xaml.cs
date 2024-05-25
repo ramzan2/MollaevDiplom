@@ -56,8 +56,42 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
         byte[] doc;
         private void AddDcBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (doc == null)
+            if (string.IsNullOrWhiteSpace(TitleDocumentsTb.Text) ||
+           string.IsNullOrWhiteSpace(DescriptionDocumentsTb.Text) ||
+           string.IsNullOrWhiteSpace(CategoryCb.Text) ||
+           string.IsNullOrWhiteSpace(LastNameStaffCb.Text) ||
+           string.IsNullOrWhiteSpace(DtUpload.Text) ||
+           string.IsNullOrWhiteSpace(QuantityPageTb.Text) ||
+           string.IsNullOrWhiteSpace(QuantityOfCopiesTb.Text) ||
+           string.IsNullOrWhiteSpace(DtDateOfExecution.Text) ||
+           string.IsNullOrWhiteSpace(NameDocTb.Text))
             {
+                MBClass.ErrorMB("Заполните все поля");
+            }
+           else
+            {
+                if (doc == null)
+                {
+                    DBEntities.GetContext().SaveChanges();
+                    MBClass.InfoMB("Сотрудник успешно добавлен");
+                    if (VariableClass.ListInsideDocPage1 != null) VariableClass.ListInsideDocPage1.UpdateList();
+                    if (VariableClass.direcWindow != null) VariableClass.direcWindow.Update();
+                    if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.Update();
+                    Close();
+                }
+                DBEntities.GetContext().Documents.Add(new Documents()
+                {
+                    TitleDocuments = TitleDocumentsTb.Text,
+                    DescriptionDocuments = DescriptionDocumentsTb.Text,
+                    IdCategory = Convert.ToInt32(CategoryCb.SelectedValue),
+                    IdStaff = Convert.ToInt32(LastNameStaffCb.SelectedValue),
+                    UploadDate = Convert.ToDateTime(DtUpload.SelectedDate),
+                    FileDocuments = doc,
+                    QuantityPage = Convert.ToInt32(QuantityPageTb.Text),
+                    QuantityОfСopies = Convert.ToInt32(QuantityOfCopiesTb.Text),
+                    DateOfExecution = Convert.ToDateTime(DtDateOfExecution.SelectedDate),
+                    NameDocuments = NameDocTb.Text
+                });
                 DBEntities.GetContext().SaveChanges();
                 MBClass.InfoMB("Сотрудник успешно добавлен");
                 if (VariableClass.ListInsideDocPage1 != null) VariableClass.ListInsideDocPage1.UpdateList();
@@ -65,25 +99,6 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
                 if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.Update();
                 Close();
             }
-            DBEntities.GetContext().Documents.Add(new Documents()
-            {
-                TitleDocuments = TitleDocumentsTb.Text,
-                DescriptionDocuments = DescriptionDocumentsTb.Text,
-                IdCategory = Convert.ToInt32(CategoryCb.SelectedValue),
-                IdStaff = Convert.ToInt32(LastNameStaffCb.SelectedValue),
-                UploadDate = Convert.ToDateTime(DtUpload.SelectedDate),
-                FileDocuments = doc,
-                QuantityPage = Convert.ToInt32(QuantityPageTb.Text),
-                QuantityОfСopies = Convert.ToInt32(QuantityOfCopiesTb.Text),
-                DateOfExecution = Convert.ToDateTime(DtDateOfExecution.SelectedDate),
-                NameDocuments = NameDocTb.Text
-            });
-            DBEntities.GetContext().SaveChanges();
-            MBClass.InfoMB("Сотрудник успешно добавлен");
-            if (VariableClass.ListInsideDocPage1 != null) VariableClass.ListInsideDocPage1.UpdateList();
-            if (VariableClass.direcWindow != null) VariableClass.direcWindow.Update();
-            if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.Update();
-            Close();
         }
     }
 }

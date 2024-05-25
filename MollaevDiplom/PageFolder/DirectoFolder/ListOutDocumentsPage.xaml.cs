@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -43,7 +44,7 @@ namespace MollaevDiplom.PageFolder.DirectoFolder
             if (ListDocInDT.SelectedItem == null)
             {
                 MBClass.ErrorMB("Выберите " +
-                    "пользователя для редактирования");
+                    "документ для редактирования");
             }
             else
             {
@@ -55,7 +56,29 @@ namespace MollaevDiplom.PageFolder.DirectoFolder
         }
         private void DeleteIM_Click(object sender, RoutedEventArgs e)
         {
+            OutgoingDocuments outgoingDocuments = ListDocInDT.SelectedItem as OutgoingDocuments;
 
+            if (ListDocInDT.SelectedItem == null)
+            {
+                MBClass.ErrorMB("Выберите документ" +
+                    " для удаления");
+            }
+            else
+            {
+                if (MBClass.QuestionMB("Удалить " +
+                    $"документ? {outgoingDocuments.NameOutgoingDocuments} " +
+                    $"{outgoingDocuments.NameOutgoingDocuments} {outgoingDocuments.NameOutgoingDocuments}?"))
+                {
+                    DBEntities.GetContext().OutgoingDocuments
+                        .Remove(ListDocInDT.SelectedItem as OutgoingDocuments);
+                    DBEntities.GetContext().SaveChanges();
+
+                    MBClass.InfoMB("Документ удален");
+                    ListDocInDT.ItemsSource = DBEntities.GetContext()
+                        .OutgoingDocuments.ToList().OrderBy(r => r.NameOutgoingDocuments);
+                }
+
+            }
         }
 
         private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
