@@ -25,6 +25,7 @@
                 <TextBox x:Name="SearchBox"
                      Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource SearchBoxStyle}" 
+                          Width="500"
                          TextChanged="SearchBox_TextChanged"/>
                 <StackPanel Orientation="Horizontal"
                             Margin="10">

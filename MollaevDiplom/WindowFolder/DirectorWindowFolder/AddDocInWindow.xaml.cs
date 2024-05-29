@@ -34,6 +34,8 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
            .Staff.ToList();
             MiddleNameStaffCb.ItemsSource = DBEntities.GetContext()
            .Staff.ToList();
+            MarkExecutionCb.ItemsSource = DBEntities.GetContext()
+          .MarkExecution.ToList();
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -73,7 +75,7 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
                 if (doc == null)
                 {
                     DBEntities.GetContext().SaveChanges();
-                    MBClass.InfoMB("Сотрудник успешно добавлен");
+                    MBClass.InfoMB("Документ успешно добавлен");
                     if (VariableClass.ListInsideDocPage1 != null) VariableClass.ListInsideDocPage1.UpdateList();
                     if (VariableClass.direcWindow != null) VariableClass.direcWindow.Update();
                     if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.Update();
@@ -90,10 +92,11 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
                     QuantityPage = Convert.ToInt32(QuantityPageTb.Text),
                     QuantityОfСopies = Convert.ToInt32(QuantityOfCopiesTb.Text),
                     DateOfExecution = Convert.ToDateTime(DtDateOfExecution.SelectedDate),
-                    NameDocuments = NameDocTb.Text
+                    NameDocuments = NameDocTb.Text,
+                    IdMarkExecution = Convert.ToInt32(MarkExecutionCb.SelectedValue)
                 });
                 DBEntities.GetContext().SaveChanges();
-                MBClass.InfoMB("Сотрудник успешно добавлен");
+                MBClass.InfoMB("Документ успешно добавлен");
                 if (VariableClass.ListInsideDocPage1 != null) VariableClass.ListInsideDocPage1.UpdateList();
                 if (VariableClass.direcWindow != null) VariableClass.direcWindow.Update();
                 if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.Update();

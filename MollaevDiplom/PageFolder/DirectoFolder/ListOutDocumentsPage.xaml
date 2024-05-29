@@ -25,7 +25,8 @@
                 <TextBox x:Name="SearchBox"
                      Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource SearchBoxStyle}" 
-                         TextChanged="SearchBox_TextChanged"/>
+                         TextChanged="SearchBox_TextChanged"
+                         Width="500"/>
                 <StackPanel Orientation="Horizontal"
                             Margin="10">
                     <Image Source="/ResourceFolder/ImageFolder/icons8-search-50.png"
@@ -34,13 +35,26 @@
                        Style="{StaticResource SearchTextStyle}" />
                 </StackPanel>
             </Grid>
+            <ComboBox Height="35"
+                      Name="SortCB" Grid.Column="2" 
+                      SelectionChanged="SortCB_SelectionChanged"
+                      Style="{StaticResource  ComboBoxStyle2}"
+                      Width="220" Cursor="Hand"
+                      FontSize="14"
+                      Foreground="#E8EAEC">
+                <ComboBoxItem Content="Формат"/>
+                <Separator/>
+                <ComboBoxItem Content="PDF"/>
+                <ComboBoxItem Content="docx"/>
+                <ComboBoxItem Content="doc"/>
+            </ComboBox>
             <Button Background="Transparent"
                         FontSize="16"
                         Grid.Column="1"
                         Width="40"
                         Height="35"
                         HorizontalAlignment="Right"
-                        Margin="-12 10 40 0"
+                        Margin="0 10 40 0"
                         Foreground="White"
                         x:Name="AddOutDcBtn"
                         Click="AddOutDcBtn_Click" 
@@ -109,7 +123,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding IdOutgoingDocuments}"/>
                     <DataGridTextColumn Header="Номер исходящего документа" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding NumberOutgoing}"/>
-                    <DataGridTextColumn Header="Дата исходящего документа" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding DateOutgoing}"/>
+                    <DataGridTextColumn Header="Дата исходящего документа" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding DateOutgoing,StringFormat='{}{0:dd/MM/yyyy}'}"/>
                     <DataGridTextColumn Header="Тип документа" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding DocumentsCategory.NameCategory}"/>
                     <DataGridTemplateColumn Header="Исполнитель" IsReadOnly="True" CanUserResize="False" Width="auto" >
                         <DataGridTemplateColumn.CellTemplate>
@@ -137,9 +151,9 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Дата исходящего" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding DateOutgoing}"/>
-                    <DataGridTextColumn Header="Дата контроля" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding ControlDate}"/>
-                    <DataGridTextColumn Header="Дата исполнения" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding ExecutionDate}"/>
+                    <DataGridTextColumn Header="Дата исходящего" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding DateOutgoing,StringFormat='{}{0:dd/MM/yyyy}'}"/>
+                    <DataGridTextColumn Header="Дата контроля" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding ControlDate,StringFormat='{}{0:dd/MM/yyyy}'}"/>
+                    <DataGridTextColumn Header="Дата исполнения" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding ExecutionDate,StringFormat='{}{0:dd/MM/yyyy}'}"/>
                     <DataGridTextColumn Header="Отметка об исполнении" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding MarkExecution.NameMarkExecution}"/>
                     <DataGridTextColumn Header="Кол-во копий" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding QuantityОfСopies}"/>
                     <DataGridTextColumn Header="Кол-во страниц" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding QuantityPage}"/>

@@ -17,6 +17,7 @@ namespace MollaevDiplom.DataFolder
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public MarkExecution()
         {
+            this.Documents = new HashSet<Documents>();
             this.IncomingDocuments = new HashSet<IncomingDocuments>();
             this.OutgoingDocuments = new HashSet<OutgoingDocuments>();
         }
@@ -24,6 +25,8 @@ namespace MollaevDiplom.DataFolder
         public int IdMarkExecution { get; set; }
         public string NameMarkExecution { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Documents> Documents { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<IncomingDocuments> IncomingDocuments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

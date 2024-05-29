@@ -28,6 +28,7 @@ namespace MollaevDiplom.PageFolder.DirectoFolder
         {
             OutgoingDocuments outgoingDocuments = new OutgoingDocuments();
             InitializeComponent();
+            SortCB.Text = "Формат";
             VariableClass.ListOutDocumentsPage1 = this;
             UpdateList();
         }
@@ -38,6 +39,35 @@ namespace MollaevDiplom.PageFolder.DirectoFolder
         .OutgoingDocuments.Where(u => u.NameOutgoingDocuments
         .StartsWith(SearchBox.Text))
         .ToList().OrderBy(u => u.NameOutgoingDocuments);
+
+            IQueryable<OutgoingDocuments> sortList = DBEntities.GetContext().OutgoingDocuments;
+
+            SortselectedCombobox(ref sortList);
+
+            sortList = sortList.Where(u => u.DocumentsCategory.NameCategory.Contains(SearchBox.Text)
+                                        || u.NameOutgoingDocuments.Contains(SearchBox.Text)
+                                        || u.SummaryOutgoing.Contains(SearchBox.Text)
+                                        || u.Staff.LastNameStaff.Contains(SearchBox.Text)
+                                        || u.MarkExecution.NameMarkExecution.Contains(SearchBox.Text));
+
+            sortList = sortList.OrderByDescending(u => u.IdOutgoingDocuments);
+            ListDocInDT.ItemsSource = sortList.ToList();
+        }
+        private void SortselectedCombobox(ref IQueryable<OutgoingDocuments> sortList)
+        {
+
+            switch (SortCB.Text)
+            {
+                case "docx":
+                    sortList = sortList.Where(u => u.IdCategory == 1);
+                    break;
+                case "PDF":
+                    sortList = sortList.Where(u => u.IdCategory == 2);
+                    break;
+                case "doc":
+                    sortList = sortList.Where(u => u.IdCategory == 3);
+                    break;
+            }
         }
         private void EditMI_Click(object sender, RoutedEventArgs e)
         {
@@ -98,6 +128,12 @@ namespace MollaevDiplom.PageFolder.DirectoFolder
             OutgoingDocuments documents1 = ListDocInDT.SelectedItem as OutgoingDocuments;
             MBClass.InfoMB(documents1.NameOutgoingDocuments);
             DocumentClass.ConvertByteArrayToDocument(documents1.FileDocuments);
+        }
+
+        private async void SortCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            await Task.Delay(1);
+            UpdateList();
         }
     }
 }

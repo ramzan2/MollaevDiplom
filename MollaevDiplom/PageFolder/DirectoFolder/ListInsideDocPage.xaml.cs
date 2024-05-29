@@ -28,6 +28,7 @@ namespace MollaevDiplom.PageFolder.DirectoFolder
         {
             Documents documents = new Documents();
             InitializeComponent();
+            SortCB.Text = "Формат";
             VariableClass.ListInsideDocPage1 = this;
             UpdateList();
         }
@@ -38,6 +39,35 @@ namespace MollaevDiplom.PageFolder.DirectoFolder
         .Documents.Where(u => u.NameDocuments
         .StartsWith(SearchBox.Text))
         .ToList().OrderBy(u => u.NameDocuments);
+
+            IQueryable<Documents> sortList = DBEntities.GetContext().Documents;
+
+            SortselectedCombobox(ref sortList);
+
+            sortList = sortList.Where(u => u.TitleDocuments.Contains(SearchBox.Text)
+                                        || u.DescriptionDocuments.Contains(SearchBox.Text)
+                                        || u.DocumentsCategory.NameCategory.Contains(SearchBox.Text)
+                                        || u.Staff.LastNameStaff.Contains(SearchBox.Text)
+                                        || u.NameDocuments.Contains(SearchBox.Text));
+
+            sortList = sortList.OrderByDescending(u => u.IdDocuments);
+            ListDocInDT.ItemsSource = sortList.ToList();
+        }
+        private void SortselectedCombobox(ref IQueryable<Documents> sortList)
+        {
+
+            switch (SortCB.Text)
+            {
+                case "docx":
+                    sortList = sortList.Where(u => u.IdCategory == 1);
+                    break;
+                case "PDF":
+                    sortList = sortList.Where(u => u.IdCategory == 2);
+                    break;
+                case "doc":
+                    sortList = sortList.Where(u => u.IdCategory == 3);
+                    break;
+            }
         }
         private void AddInDcBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -108,6 +138,12 @@ namespace MollaevDiplom.PageFolder.DirectoFolder
             Documents documents1 = ListDocInDT.SelectedItem as Documents;
             MBClass.InfoMB(documents1.NameDocuments);
             DocumentClass.ConvertByteArrayToDocument(documents1.FileDocuments);
+        }
+
+        private async void SortCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            await Task.Delay(1);
+            UpdateList();
         }
     }
 }

@@ -24,7 +24,8 @@
                 <TextBox x:Name="SearchBox"
                      Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource SearchBoxStyle}" 
-                         TextChanged="SearchBox_TextChanged"/>
+                         TextChanged="SearchBox_TextChanged" 
+                        Width="500"/>
 
                 <StackPanel Orientation="Horizontal"
                             Margin="10">
@@ -34,53 +35,31 @@
                        Style="{StaticResource SearchTextStyle}" />
                 </StackPanel>
             </Grid>
-            <Button Background="Transparent"
-                        FontSize="16"
-                        Grid.Column="1"
-                        Width="40"
-                        Height="35"
-                        HorizontalAlignment="Right"
-                        Margin="-12 10 40 0"
-                        Foreground="White"
-                        x:Name="AddMtBtn"
-                        Click="AddMtBtn_Click" 
-                    ToolTip="Назначение встречи">
+            <ComboBox Height="35"
+            Name="SortCB" Grid.Column="2" 
+            SelectionChanged="SortCB_SelectionChanged"
+                      Style="{StaticResource ComboBoxStyle2}"
+                      Width="220" Cursor="Hand"
+                      FontSize="14"
+                      Foreground="#E8EAEC">
+                <ComboBoxItem Content="Статус"/>
+                <Separator/>
+                <ComboBoxItem Content="Идет"/>
+                <ComboBoxItem Content="Ожидается"/>
+                <ComboBoxItem Content="Оконченно"/>
+            </ComboBox>
+            <Button Grid.Column="1"
+                    x:Name="AddMtBtn"
+                    Click="AddMtBtn_Click" 
+                    ToolTip="Назначение встречи"
+                    Style="{StaticResource AddPlusBtn}"
+                    Margin="4 10 0 0">
                 <Grid HorizontalAlignment="Center">
                     <Image Source="/ResourceFolder/ImageFolder/plus.png"
                                        Stretch="Fill"
                                        Margin="0,0,0,0"
                                        Style="{StaticResource Image_Style}"/>
                 </Grid>
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="OverridesDefaultStyle" Value="True"/>
-                        <Setter Property="Background" Value="Black"/>
-                        <Setter Property="BorderBrush" Value="Black"/>
-                        <Setter Property="Cursor" Value="Hand"/>
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="Button">
-                                    <Border Name="border"
-                                        CornerRadius="5 5 5 5"
-                                                BorderThickness="0"
-                                                BorderBrush="Black"
-                                                Background="{TemplateBinding Background}">
-                                        <ContentPresenter HorizontalAlignment="Center"
-                                                              VerticalAlignment="Center"/>
-                                    </Border>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Opacity" Value="0.3"/>
-                                        </Trigger>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Foreground" Value="White"/>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </Button.Style>
             </Button>
         </StackPanel>
         <ScrollViewer Grid.Row="1"
@@ -92,37 +71,79 @@
                    Style="{StaticResource  DataGridStyle1}"
                   RowStyle="{StaticResource DataGridRowStyle1}"
                   ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle1}"
-                  CellStyle="{StaticResource DataGridCellStyle1}">
+                  CellStyle="{StaticResource DataGridCellStyle1}" 
+                      HeadersVisibility="None">
                 <DataGrid.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="Редактирование данных"
                               x:Name="EditMI"
                               Click="EditMI_Click"/>
-                        <Separator/>
                         <MenuItem Header="Удаление встречи"
                               x:Name="DeleteIM"
                               Click="DeleteIM_Click"/>
                     </ContextMenu>
                 </DataGrid.ContextMenu>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding IdMeetings}"/>
-                    <DataGridTextColumn Header="Дата встречи" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding MeetinsDate}"/>
-                    <DataGridTextColumn Header="Время встречи" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding MeetingsTime}"/>
-                    <DataGridTextColumn Header="Длительность встречи" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding MeetingsDuration}"/>
-                    <DataGridTextColumn Header="Тема встречи" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding AgendaMeetigns}"/>
-                    <DataGridTemplateColumn Header="ФИО организатора" IsReadOnly="True" CanUserResize="False" Width="auto" >
+                    <DataGridTemplateColumn Header="Дата встречи" IsReadOnly="True" CanUserResize="False" Width="SizeToCells" >
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock>
-                                <Run Text="{Binding Staff.LastNameStaff}" />
-                                <Run Text="{Binding Staff.FirstNameStaff}"/>
-                                <Run Text="{Binding Staff.MiddleNameStaff}" />
-                                </TextBlock>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Margin="3">
+                                    <Run Text="Дата встречи: "  FontSize="16" FontWeight="SemiBold"/>
+                                    <Run Text="{Binding MeetinsDate,StringFormat='{}{0:dd/MM/yyyy}'}" FontSize="16"/>
+                                    </TextBlock>
+                                    <TextBlock Margin="3">
+                                    <Run Text="Время начала: "  FontSize="16" FontWeight="SemiBold"/>
+                                    <Run Text="{Binding MeetingsTime}" FontSize="16"/>
+                                    </TextBlock>
+                                    <TextBlock Margin="3">
+                                    <Run Text="Время проведения: "  FontSize="16" FontWeight="SemiBold"/>
+                                    <Run Text="{Binding MeetingsDuration}" FontSize="16"/>
+                                    </TextBlock>
+                                </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Место проведения" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Departments.NameDepartments}"/>
-                    <DataGridTextColumn Header="Статус" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding StatusMeetings.NameStatusMeetings}"/>
+                    <DataGridTemplateColumn Header="Время встречи" IsReadOnly="True" CanUserResize="False" Width="SizeToCells" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock  Margin="3">
+                                    <Run Text="Фамилия организатора: " FontSize="16" FontWeight="SemiBold"/>
+                                    <Run Text="{Binding Staff.LastNameStaff}" FontSize="16"/>
+                                    </TextBlock>
+                                    <TextBlock Margin="3">
+                                    <Run Text="Имя организатора: "  FontSize="16" FontWeight="SemiBold"/>
+                                    <Run Text="{Binding Staff.FirstNameStaff}" FontSize="16"/>
+                                    </TextBlock >
+                                    <TextBlock Margin="3">
+                                    <Run Text="Отчество организатора: "  FontSize="16" FontWeight="SemiBold"/>
+                                    <Run Text="{Binding Staff.MiddleNameStaff}" FontSize="16"/>
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Время встречи" IsReadOnly="True" CanUserResize="False" Width="SizeToCells" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock  Margin="3">
+                                    <Run Text="Тема встречи: " FontSize="16" FontWeight="SemiBold"/>
+                                    <Run Text="{Binding AgendaMeetigns}" FontSize="16"/>
+                                    </TextBlock>
+                                    <TextBlock Margin="3">
+                                    <Run Text="Место проведения: "  FontSize="16" FontWeight="SemiBold"/>
+                                    <Run Text="{Binding Departments.NameDepartments}" FontSize="16"/>
+                                    </TextBlock >
+                                    <TextBlock Margin="3">
+                                    <Run Text="Статус встречи: "  FontSize="16" FontWeight="SemiBold"/>
+                                    <Run Text="{Binding StatusMeetings.NameStatusMeetings}" FontSize="16"/>
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>

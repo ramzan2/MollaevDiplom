@@ -23,7 +23,7 @@ namespace MollaevDiplom.WindowFolder.SecretaryWindowFolder
         public MenuSecretaryWindow()
         {
             InitializeComponent();
-            MainFrame.Navigate(new PageFolder.DirectoFolder.ListMeetingsPage());
+            MainFrame.Navigate(new PageFolder.SecretaryFolder.ListMtSecPage());
             SidePanel.Visibility = Visibility.Visible;
             VariableClass.MenuSecretaryWindow1 = this;
             UpdateList();
@@ -41,25 +41,25 @@ namespace MollaevDiplom.WindowFolder.SecretaryWindowFolder
         }
         private void Meetings_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new PageFolder.DirectoFolder.ListMeetingsPage());
+            MainFrame.Navigate(new PageFolder.SecretaryFolder.ListMtSecPage());
             SidePanel.Visibility = Visibility.Visible;
         }
 
         private void InsideDoc_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new PageFolder.DirectoFolder.ListInsideDocPage());
+            MainFrame.Navigate(new PageFolder.SecretaryFolder.ListDocInSecPage());
             SidePanel.Visibility = Visibility.Collapsed;
         }
 
         private void DocumentIncoming_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new PageFolder.DirectoFolder.ListIncomingDocPage());
+            MainFrame.Navigate(new PageFolder.SecretaryFolder.ListInDocSecPage());
             SidePanel.Visibility = Visibility.Collapsed;
         }
 
         private void DocumentOutgoing_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new PageFolder.DirectoFolder.ListOutDocumentsPage());
+            MainFrame.Navigate(new PageFolder.SecretaryFolder.ListOutDocSecPage());
             SidePanel.Visibility = Visibility.Collapsed;
         }
 
@@ -71,8 +71,8 @@ namespace MollaevDiplom.WindowFolder.SecretaryWindowFolder
 
         private void EditAccBtn_Click(object sender, RoutedEventArgs e)
         {
-            Close();
             new AuthorizationWindow().Show();
+            Close();
         }
 
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
@@ -100,12 +100,12 @@ namespace MollaevDiplom.WindowFolder.SecretaryWindowFolder
 
         private void AttendanceBtn_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new PageFolder.DirectoFolder.ListAttendancePage());
+            MainFrame.Navigate(new PageFolder.SecretaryFolder.ListAttSecPage());
         }
 
         private void MeetingsBtn_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new PageFolder.DirectoFolder.ListMeetingsPage());
+            MainFrame.Navigate(new PageFolder.SecretaryFolder.ListMtSecPage());
         }
     }
 }

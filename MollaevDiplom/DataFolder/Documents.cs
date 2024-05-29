@@ -25,8 +25,10 @@ namespace MollaevDiplom.DataFolder
         public int QuantityОfСopies { get; set; }
         public System.DateTime DateOfExecution { get; set; }
         public string NameDocuments { get; set; }
+        public Nullable<int> IdMarkExecution { get; set; }
     
         public virtual DocumentsCategory DocumentsCategory { get; set; }
+        public virtual MarkExecution MarkExecution { get; set; }
         public virtual Staff Staff { get; set; }
     }
 }

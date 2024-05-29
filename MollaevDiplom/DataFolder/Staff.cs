@@ -23,7 +23,6 @@ namespace MollaevDiplom.DataFolder
             this.Meetings = new HashSet<Meetings>();
             this.OutgoingDocuments = new HashSet<OutgoingDocuments>();
             this.Performer = new HashSet<Performer>();
-            this.User = new HashSet<User>();
         }
     
         public int IdStaff { get; set; }
@@ -35,6 +34,7 @@ namespace MollaevDiplom.DataFolder
         public int IdDepartments { get; set; }
         public byte[] PhotoStaff { get; set; }
         public int IdStatusStaff { get; set; }
+        public Nullable<int> IdUser { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Attendees> Attendees { get; set; }
@@ -51,7 +51,6 @@ namespace MollaevDiplom.DataFolder
         public virtual ICollection<Performer> Performer { get; set; }
         public virtual Position Position { get; set; }
         public virtual StatusStaff StatusStaff { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> User { get; set; }
+        public virtual User User { get; set; }
     }
 }

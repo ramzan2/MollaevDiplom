@@ -76,7 +76,7 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
                     IdStatusMeetings = Convert.ToInt32(StatusCb.SelectedValue)
                 });
                 DBEntities.GetContext().SaveChanges();
-                MBClass.InfoMB("Сотрудник успешно добавлен");
+                MBClass.InfoMB("Встреча успешно добавлена");
                 if (VariableClass.ListMeetingsPage1 != null) VariableClass.ListMeetingsPage1.UpdateList();
                 if (VariableClass.direcWindow != null) VariableClass.direcWindow.Update();
                 if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.Update();

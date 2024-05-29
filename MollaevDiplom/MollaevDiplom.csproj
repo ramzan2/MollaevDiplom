@@ -147,8 +147,14 @@
     <Compile Include="DataFolder\User.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="PageFolder\AdminFolder\InfoUserPage.xaml.cs">
+      <DependentUpon>InfoUserPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageFolder\AdminFolder\ListUsersPage.xaml.cs">
       <DependentUpon>ListUsersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\AdminFolder\ListUserStaffPage.xaml.cs">
+      <DependentUpon>ListUserStaffPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageFolder\DirectoFolder\InfoStaffPage.xaml.cs">
       <DependentUpon>InfoStaffPage.xaml</DependentUpon>
@@ -170,6 +176,36 @@
     </Compile>
     <Compile Include="PageFolder\DirectoFolder\ListStaffPage.xaml.cs">
       <DependentUpon>ListStaffPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\SecretaryFolder\ListAttSecPage.xaml.cs">
+      <DependentUpon>ListAttSecPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\SecretaryFolder\ListDocInSecPage.xaml.cs">
+      <DependentUpon>ListDocInSecPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\SecretaryFolder\ListInDocSecPage.xaml.cs">
+      <DependentUpon>ListInDocSecPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\SecretaryFolder\ListMtSecPage.xaml.cs">
+      <DependentUpon>ListMtSecPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\SecretaryFolder\ListOutDocSecPage.xaml.cs">
+      <DependentUpon>ListOutDocSecPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowFolder\AdminWindowFolder\AddDepWindow.xaml.cs">
+      <DependentUpon>AddDepWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowFolder\AdminWindowFolder\AddPositionWindow.xaml.cs">
+      <DependentUpon>AddPositionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowFolder\AdminWindowFolder\AddRoleWindow.xaml.cs">
+      <DependentUpon>AddRoleWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowFolder\AdminWindowFolder\AddStatusStaffWindow.xaml.cs">
+      <DependentUpon>AddStatusStaffWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowFolder\AdminWindowFolder\AddStUserWindow.xaml.cs">
+      <DependentUpon>AddStUserWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowFolder\AdminWindowFolder\AddUserWindow.xaml.cs">
       <DependentUpon>AddUserWindow.xaml</DependentUpon>
@@ -266,7 +302,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="PageFolder\AdminFolder\InfoUserPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PageFolder\AdminFolder\ListUsersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\AdminFolder\ListUserStaffPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -298,7 +342,47 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PageFolder\SecretaryFolder\ListAttSecPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\SecretaryFolder\ListDocInSecPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\SecretaryFolder\ListInDocSecPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\SecretaryFolder\ListMtSecPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\SecretaryFolder\ListOutDocSecPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ResourceFolder\Dictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowFolder\AdminWindowFolder\AddDepWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowFolder\AdminWindowFolder\AddPositionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowFolder\AdminWindowFolder\AddRoleWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowFolder\AdminWindowFolder\AddStatusStaffWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowFolder\AdminWindowFolder\AddStUserWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -380,7 +464,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="PageFolder\SecretaryFolder\" />
+    <Resource Include="ResourceFolder\ImageFolder\Group 37.png" />
+    <Resource Include="ResourceFolder\ImageFolder\Vector.png" />
+    <Resource Include="ResourceFolder\ImageFolder\Group 20.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="ResourceFolder\ImageFolder\IconColizeum-transformed.png" />
@@ -455,6 +541,9 @@
     <Resource Include="ResourceFolder\ImageFolder\back.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="ResourceFolder\ImageFolder\пустое фото профиля.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="DataFolder\DBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DBModel.edmx</DependentUpon>
@@ -465,7 +554,6 @@
       <DependentUpon>DBModel.edmx</DependentUpon>
       <LastGenOutput>DBModel.cs</LastGenOutput>
     </Content>
-    <Resource Include="ResourceFolder\ImageFolder\пустое фото профиля.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

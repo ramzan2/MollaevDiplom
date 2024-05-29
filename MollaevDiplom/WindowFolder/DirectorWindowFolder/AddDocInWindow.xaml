@@ -140,17 +140,25 @@
                         x:Name="DtDateOfExecution"
                         Tag="Выберите дату исполнения"
                         Style="{StaticResource DataPickerStyle}"/>
+            <ComboBox Grid.Row="8"
+                      Grid.Column="6"
+                      Style="{StaticResource ComboBoxStyle1}"
+                      Width="200"
+                      x:Name="MarkExecutionCb"
+                      Tag="Выберите отметку об исполнении"
+                      SelectedItem="{Binding MarkExecution}"
+                      DisplayMemberPath="NameMarkExecution" 
+                      SelectedValuePath="IdMarkExecution"/>
             <Button Content="Загрузить документ" 
-                    Grid.Row="8"
+                    Grid.Row="10"
                     Width="150"
                     Grid.Column="4"
                     Style="{StaticResource EditImBtn}"
                     x:Name="LoadDcBtn"
                     Click="LoadDcBtn_Click" 
-                    Height="25" Margin="0,30,0,0" VerticalAlignment="Top">
-            </Button>
+                    Height="24" Margin="0,30,0,0" VerticalAlignment="Top"/>
             <Button Content="Добавить" 
-                    Grid.Row="10"
+                    Grid.Row="12"
                     Width="200"
                     HorizontalAlignment="Center"
                     Grid.Column="4"
@@ -158,7 +166,7 @@
                     FontSize="16"
                     Foreground="White"
                     x:Name="AddDcBtn"
-                    Click="AddDcBtn_Click" Margin="0,25,0,15" >
+                    Click="AddDcBtn_Click" Margin="0,0,0,40" Cursor="Hand" Grid.RowSpan="3" >
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="OverridesDefaultStyle" Value="True"/>
@@ -171,6 +179,7 @@
                                     <Border Name="border"
                                                 BorderThickness="0"
                                                 BorderBrush="Black"
+                                            CornerRadius="10"
                                                 Background="{TemplateBinding Background}">
                                         <ContentPresenter HorizontalAlignment="Center"
                                                               VerticalAlignment="Center"/>

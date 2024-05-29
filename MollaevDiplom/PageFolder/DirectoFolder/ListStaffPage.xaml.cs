@@ -28,6 +28,7 @@ namespace MollaevDiplom.PageFolder.DirectoFolder
         {
             Staff staff = new Staff();
             InitializeComponent();
+            SortCB.Text = "Должность";
             VariableClass.ListStaffPage1 = this;
             UpdateList();
         }
@@ -39,6 +40,37 @@ namespace MollaevDiplom.PageFolder.DirectoFolder
           .StartsWith(SearchBox.Text))
           .ToList().OrderBy(u => u.FirstNameStaff);
 
+            IQueryable<Staff> sortList = DBEntities.GetContext().Staff;
+
+            SortselectedCombobox(ref sortList);
+
+            sortList = sortList.Where(u => u.LastNameStaff.Contains(SearchBox.Text)
+                                        || u.FirstNameStaff.Contains(SearchBox.Text)
+                                        || u.MiddleNameStaff.Contains(SearchBox.Text)
+                                        || u.PhoneNumberStaff.Contains(SearchBox.Text)
+                                        || u.Position.NamePosition.Contains(SearchBox.Text)
+                                        || u.Departments.NameDepartments.Contains(SearchBox.Text)
+                                        || u.StatusStaff.NameStatusStaff.Contains(SearchBox.Text));
+
+            sortList = sortList.OrderByDescending(u => u.IdStaff);
+            ListStaffLb.ItemsSource = sortList.ToList();
+
+        }
+        private void SortselectedCombobox(ref IQueryable<Staff> sortList)
+        {
+
+            switch (SortCB.Text)
+            {
+                case "Секретарь":
+                    sortList = sortList.Where(u => u.IdPosition == 1);
+                    break;
+                case "Администратор":
+                    sortList = sortList.Where(u => u.IdPosition == 2);
+                    break;
+                case "Менеджер":
+                    sortList = sortList.Where(u => u.IdPosition == 3);
+                    break;
+            }
         }
         private void EditTE_Click(object sender, RoutedEventArgs e)
         {
@@ -73,6 +105,12 @@ namespace MollaevDiplom.PageFolder.DirectoFolder
         private void InfoTE_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new PageFolder.DirectoFolder.InfoStaffPage(ListStaffLb.SelectedItem as Staff));
+        }
+
+        private async void SortCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            await Task.Delay(1);
+            UpdateList();
         }
     }
 }

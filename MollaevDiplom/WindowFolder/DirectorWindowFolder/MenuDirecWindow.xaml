@@ -10,6 +10,23 @@
         Background="Transparent" AllowsTransparency="True"
         ResizeMode="NoResize" FontFamily="Poppins" 
         Icon="/ResourceFolder/ImageFolder/logo.png">
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="(Window.RenderTransform).(ScaleTransform.ScaleX)"
+                                     From="0.5" To="1.0" Duration="0:0:0.5" />
+                    <DoubleAnimation Storyboard.TargetProperty="(Window.RenderTransform).(ScaleTransform.ScaleY)"
+                                     From="0.5" To="1.0" Duration="0:0:0.5" />
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                     From="0.0" To="1.0" Duration="0:0:0.5" />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+    <Window.RenderTransform>
+        <ScaleTransform ScaleX="1" ScaleY="1" />
+    </Window.RenderTransform>
     <Border Background="Black"
             CornerRadius="8"
             MouseDown="Border_MouseDown">
@@ -39,8 +56,8 @@
                                FontSize="36"
                                VerticalAlignment="Bottom"
                                HorizontalAlignment="Center"
-                               Margin="0 0 0 650"
-                               Grid.RowSpan="2"
+                               Margin="0 0 0 -35"
+                               Grid.Row="0"
                                Width="0"
                                MaxWidth="120"
                                x:Name="PlaceText"/>
@@ -81,7 +98,7 @@
                                        Margin="12,0,0,0"
                                        Style="{StaticResource Image_Style}" />
 
-                                <TextBlock Text="Задачи"
+                                <TextBlock Text="Внутренние документы"
                                        Style="{StaticResource Text_Style}" />
                             </Grid>
                         </RadioButton>
@@ -111,24 +128,22 @@
                                        Style="{StaticResource Text_Style}" />
                             </Grid>
                         </RadioButton>
-                        <RadioButton x:Name="EditAccBtn" Style="{StaticResource BtnStyle}"     
+                    </StackPanel>
+                    <RadioButton x:Name="EditAccBtn" Style="{StaticResource BtnStyle}"     
                                     Click="EditAccBtn_Click"
                                  VerticalAlignment="Bottom"
-                                 Margin="0 290 0 0">
-                            <Grid>
-                                <Image Source="/ResourceFolder/ImageFolder/logout.png"
+                                 Grid.Row="1"
+                                 ToolTip="Сменить аккаунт">
+                        <Grid>
+                            <Image Source="/ResourceFolder/ImageFolder/logout.png"
                                        Stretch="Fill"
                                        Margin="12,0,0,0"
                                        Style="{StaticResource Image_Style}" />
 
-                                <TextBlock Text="Сменить аккаунт"
+                            <TextBlock Text="Сменить аккаунт"
                                        Style="{StaticResource Text_Style}" />
-                            </Grid>
-                        </RadioButton>
-                    </StackPanel>
-
-
-
+                        </Grid>
+                    </RadioButton>
                 </Grid>
             </Border>
 

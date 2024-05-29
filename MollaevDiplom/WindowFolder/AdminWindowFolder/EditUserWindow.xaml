@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MollaevDiplom.WindowFolder.AdminWindowFolder"
         mc:Ignorable="d"
-        Title="Редактирование пользователя" Height="550" Width="450"
-        MaxHeight="550" MaxWidth="450"
-        MinHeight="550" MinWidth="450"
+        Title="Редактирование пользователя" Height="550" Width="1014"
+        MaxHeight="550" MaxWidth="1014"
+        MinHeight="550" MinWidth="1014"
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         AllowsTransparency="True" Background="Transparent" 
         Icon="/ResourceFolder/ImageFolder/logo.png">
@@ -17,7 +17,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="15"/>
-                <RowDefinition />
+                <RowDefinition Height="60"/>
                 <RowDefinition Height="10"/>
                 <RowDefinition Height="60"/>
                 <RowDefinition Height="10"/>
@@ -32,13 +32,19 @@
                 <RowDefinition Height="60"/>
                 <RowDefinition Height="10"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Редактиривание пользователя" 
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="300"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Редактирование пользователя" 
                        Style="{DynamicResource Text_Style}"
                        Grid.Row="1"
-                       Margin="10"
-                       HorizontalAlignment="Center"
+                       Margin="43,14,0,0"
                        FontSize="22"
-                       FontWeight="SemiBold"/>
+                       FontWeight="SemiBold" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="323"/>
             <Button Style="{StaticResource BackBtn}"
                     Grid.Row="1"
                     x:Name="BackBtn"
@@ -46,47 +52,184 @@
                     Background="Transparent">
                 <Image Source="/ResourceFolder/ImageFolder/back.png"/>
             </Button>
-            <TextBox x:Name="LoginTb" 
+            <Button Grid.ColumnSpan="2"
+                    x:Name="EditPositionBtn"
+                    Click="EditPositionBtn_Click"
+                    Style="{StaticResource BackBtn}"
+                    Background="Transparent"
+                    Grid.Row="11"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Margin="10 10 26 0"
+                    Height="20"
+                    Width="20">
+                <Image Source="/ResourceFolder/ImageFolder/Vector.png"/>
+            </Button>
+            <Button Grid.ColumnSpan="2"
+                    x:Name="EditDepBtn"
+                    Click="EditDepBtn_Click"
+                    Style="{StaticResource BackBtn}"
+                    Background="Transparent"
+                    Grid.Row="13"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Margin="10 10 26 0"
+                    Height="20"
+                    Width="20">
+                <Image Source="/ResourceFolder/ImageFolder/Vector.png"/>
+            </Button>
+            <Button Grid.ColumnSpan="2"
+                    x:Name="EditStStaffBtn"
+                    Click="EditStStaffBtn_Click"
+                    Style="{StaticResource BackBtn}"
+                    Background="Transparent"
+                    Grid.Row="3"
+                    Grid.Column="2"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Margin="10 10 26 0"
+                    Height="20"
+                    Width="20">
+                <Image Source="/ResourceFolder/ImageFolder/Vector.png"/>
+            </Button>
+            <Button Grid.ColumnSpan="2"
+                    x:Name="EditRoleBtn"
+                    Click="EditRoleBtn_Click"
+                    Style="{StaticResource BackBtn}"
+                    Background="Transparent"
+                    Grid.Row="9"
+                    Grid.Column="2"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Margin="10 10 26 0"
+                    Height="20"
+                    Width="20">
+                <Image Source="/ResourceFolder/ImageFolder/Vector.png"/>
+            </Button>
+            <Button Grid.ColumnSpan="2"
+                    x:Name="EditStUserBtn"
+                    Click="EditStUserBtn_Click"
+                    Style="{StaticResource BackBtn}"
+                    Background="Transparent"
+                    Grid.Row="11"
+                    Grid.Column="2"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Margin="10 10 26 0"
+                    Height="20"
+                    Width="20">
+                <Image Source="/ResourceFolder/ImageFolder/Vector.png"/>
+            </Button>
+            <TextBox x:Name="LastNameTb" 
                      Grid.Row="3"
+                     Grid.Column="0"
                      Style="{StaticResource tboH}"
-                     Tag="Введите логин"
-                     Text="{Binding LoginUser}"/>
-            <TextBox x:Name="PasswordTb" 
+                     Tag="Введите фамлию"
+                     Text="{Binding LastNameStaff}"/>
+            <TextBox x:Name="FirstNameTb" 
+                      Grid.Column="0"
                      Grid.Row="5"
                      Style="{StaticResource tboH}"
-                     Tag="Введите пароль"
-                     Text="{Binding PasswordUser}"/>
-            <ComboBox x:Name="RoleCb" 
-                      Grid.Row="7"
-                      Tag="Выберите роль"
+                     Tag="Введите имя"
+                     Text="{Binding FirstNameStaff}"/>
+            <TextBox x:Name="MiddleNameTb" 
+                      Grid.Column="0"
+                     Grid.Row="7"
+                     Style="{StaticResource tboH}"
+                     Tag="Введите отчество"
+                     Text="{Binding MiddleNameStaff}"/>
+            <TextBox x:Name="NumberPhoneTb" 
+                      Grid.Column="0"
+                     Grid.Row="9"
+                     Style="{StaticResource tboH}"
+                     Tag="Введите номер телефона"
+                     Text="{Binding PhoneNumberStaff}"/>
+            <ComboBox x:Name="StatusStaffCb" 
+                      Grid.Column="2"
+                      Grid.Row="3"
+                      Tag="Выберите статус"
                       Style="{StaticResource ComboBoxStyle1}"
-                      SelectedItem="{Binding Role}"
-                  DisplayMemberPath="NameRole" 
-                  SelectedValuePath="IdRole" />
-            <ComboBox x:Name="StaffCb" 
-                      Grid.Row="9" 
-                      Style="{StaticResource ComboBoxStyle1}"
-                      Tag="Выбрите сотрудника"
-                      SelectedItem="{Binding Staff}"
-                  DisplayMemberPath="LastNameStaff" 
-                  SelectedValuePath="IdStaff"/>
-            <ComboBox x:Name="StatusCb" 
+                      SelectedItem="{Binding StatusStaff}"
+                  DisplayMemberPath="NameStatusStaff" 
+                  SelectedValuePath="IdStatusStaff" />
+            <ComboBox x:Name="PositionCb" 
                       Grid.Row="11"
                       Style="{StaticResource ComboBoxStyle1}"
-                      Tag="Выберите статус"
-                      SelectedItem="{Binding StatusUser}"
+                      Tag="Выберите должность"
+                      SelectedItem="{Binding Position}"
+                  DisplayMemberPath="NamePosition" 
+                  SelectedValuePath="IdPosition"/>
+            <ComboBox x:Name="DepartmentsCb" 
+                      Grid.Row="13"
+                      Style="{StaticResource ComboBoxStyle1}"
+                      Tag="Выберите отдел"
+                      SelectedItem="{Binding Departments}"
+                  DisplayMemberPath="NameDepartments" 
+                  SelectedValuePath="IdDepartments"/>
+            <TextBox x:Name="LoginUserTb" 
+                      Grid.Column="2"
+                     Grid.Row="5"
+                     Style="{StaticResource tboH}"
+                     Tag="Введите логин"
+                     Text="{Binding User.LoginUser}"/>
+            <TextBox x:Name="PasswordUserTb" 
+                      Grid.Column="2"
+                     Grid.Row="7"
+                     Style="{StaticResource tboH}"
+                     Tag="Введите пароль"
+                     Text="{Binding User.PasswordUser}"/>
+            <ComboBox x:Name="RoleCb" 
+                      Grid.Row="9"
+                      Grid.Column="2"
+                      Style="{StaticResource ComboBoxStyle1}"
+                      Tag="Выберите роль"
+                      SelectedItem="{Binding User.Role}"
+                  DisplayMemberPath="NameRole" 
+                  SelectedValuePath="IdRole"/>
+            <ComboBox x:Name="StatusUserCb" 
+                      Grid.Row="11"
+                      Grid.Column="2"
+                      Style="{StaticResource ComboBoxStyle1}"
+                      Tag="Выберите статус пользователя"
+                      SelectedItem="{Binding User.StatusUser}"
                   DisplayMemberPath="NameStatusUser" 
                   SelectedValuePath="IdStatusUser"/>
+            <Image Margin="50,10,0,10" 
+                   Width="240"
+                   Grid.Row="3"
+                   Grid.Column="4"
+                   Height="250" 
+                   HorizontalAlignment="Left"
+                   Grid.RowSpan="7"
+                   Source="{Binding PhotoStaff}"
+                   Stretch="Fill"
+                   x:Name="PhotoIm"/>
+            <Button Grid.Column="4"
+                   Grid.Row="11"
+                    Style="{StaticResource BackBtn}"
+                   Background="Transparent"
+                    BorderThickness="0 0 0 0.5"
+                    BorderBrush="White"
+                    Height="20"
+                    Width="110"
+                    HorizontalContentAlignment="Center"
+                    Content="Изменить фото"
+                    Foreground="White"
+                    x:Name="LoadImBtn"
+                    Click="LoadImBtn_Click"
+                    Margin="124,0,0,0"
+                    Cursor="Hand"/>
             <Button Content="Сохранить" 
                     Grid.Row="13"
+                    Grid.Column="4"
                     Width="200"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Left"
                     Height="35"
                     FontSize="16"
                     Foreground="White"
                     x:Name="AddDcBtn"
                     Click="AddDcBtn_Click" 
-                    Margin="0,12,0,12" >
+                    Margin="79,14,0,11" >
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="OverridesDefaultStyle" Value="True"/>
@@ -98,6 +241,7 @@
                                 <ControlTemplate TargetType="Button">
                                     <Border Name="border"
                                                 BorderThickness="0"
+                                            CornerRadius="10"
                                                 BorderBrush="Black"
                                                 Background="{TemplateBinding Background}">
                                         <ContentPresenter HorizontalAlignment="Center"
@@ -107,26 +251,6 @@
                                         <Trigger Property="IsMouseOver" Value="True">
                                             <Setter Property="Background" Value="#FF464545"/>
                                         </Trigger>
-                                        <EventTrigger RoutedEvent="PreviewMouseDown">
-                                            <BeginStoryboard>
-                                                <Storyboard>
-                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin"
-                                                                            Duration="0:0:0.100" To="2,2,0,0"/>
-                                                    <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                        To="#FF464545" Duration="0:0:0.0002"/>
-                                                </Storyboard>
-                                            </BeginStoryboard>
-                                        </EventTrigger>
-                                        <EventTrigger RoutedEvent="PreviewMouseUp">
-                                            <BeginStoryboard>
-                                                <Storyboard>
-                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin"
-                                                                            Duration="0:0:0.100" To="0"/>
-                                                    <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                        To="Black" Duration="0:0:0.0002"/>
-                                                </Storyboard>
-                                            </BeginStoryboard>
-                                        </EventTrigger>
                                     </ControlTemplate.Triggers>
                                 </ControlTemplate>
                             </Setter.Value>

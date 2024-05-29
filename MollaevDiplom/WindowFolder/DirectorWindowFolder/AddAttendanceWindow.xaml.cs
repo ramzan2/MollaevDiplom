@@ -56,7 +56,7 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
                     IdStaff = Int32.Parse(LastNmCb.SelectedValue.ToString())
                 });
                 DBEntities.GetContext().SaveChanges();
-                MBClass.InfoMB("Сотрудник успешно добавлен");
+                MBClass.InfoMB("Участник успешно добавлен");
                 if (VariableClass.ListAttendancePage1 != null) VariableClass.ListAttendancePage1.UpdateList();
                 if (VariableClass.direcWindow != null) VariableClass.direcWindow.Update();
                 if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.Update();

@@ -25,7 +25,8 @@
                 <TextBox x:Name="SearchBox"
                      Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource SearchBoxStyle}" 
-                         TextChanged="SearchBox_TextChanged"/>
+                         TextChanged="SearchBox_TextChanged"
+                         Width="500"/>
 
                 <StackPanel Orientation="Horizontal"
                             Margin="10">
@@ -35,6 +36,19 @@
                        Style="{StaticResource SearchTextStyle}" />
                 </StackPanel>
             </Grid>
+            <ComboBox Height="35"
+                      Name="SortCB" Grid.Column="2" 
+                      SelectionChanged="SortCB_SelectionChanged"
+                      Style="{StaticResource  ComboBoxStyle2}"
+                      Width="220" Cursor="Hand"
+                      FontSize="14"
+                      Foreground="#E8EAEC">
+                <ComboBoxItem Content="Статус"/>
+                <Separator/>
+                <ComboBoxItem Content="Активен"/>
+                <ComboBoxItem Content="Не действителен"/>
+                <ComboBoxItem Content="Заблокирован"/>
+            </ComboBox>
             <Button Background="Transparent"
                         FontSize="16"
                         Grid.Column="1"
@@ -49,7 +63,7 @@
                 <Grid HorizontalAlignment="Center">
                     <Image Source="/ResourceFolder/ImageFolder/plus.png"
                                        Stretch="Fill"
-                                       Margin="0,0,0,0"
+                                       Margin="15,0,0,0"
                                        Style="{StaticResource Image_Style}"/>
                 </Grid>
                 <Button.Style>
@@ -92,19 +106,18 @@
                   CellStyle="{StaticResource DataGridCellStyle1}">
                 <DataGrid.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Header="Редактирование данных"
+                    <MenuItem Header="Редактирование данных"
                               x:Name="EditMI"
                               Click="EditMI_Click"/>
-                        <Separator/>
-                        <MenuItem Header="Удаление встречи"
+                    <!--<MenuItem Header="Удаление пользователя"
                               x:Name="DeleteIM"
-                              Click="DeleteIM_Click"/>
+                              Click="DeleteIM_Click"/>-->
                     </ContextMenu>
                 </DataGrid.ContextMenu>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding IdUser}"/>
-                    <DataGridTextColumn Header="Логин" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding LoginUser}"/>
-                    <DataGridTemplateColumn Header="Пароль" IsReadOnly="True" CanUserResize="False" Width="*" >
+                    <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding IdStaff}"/>
+                <DataGridTextColumn Header="Логин" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding User.LoginUser}"/>
+                <DataGridTemplateColumn Header="Пароль" IsReadOnly="True" CanUserResize="False" Width="*" >
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <PasswordBox Background="Transparent"
@@ -114,19 +127,19 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Роль" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding Role.NameRole}"/>
-                    <DataGridTemplateColumn Header="ФИО Сотрудника" IsReadOnly="True" CanUserResize="False" Width="*">
+                <DataGridTextColumn Header="Роль" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding User.Role.NameRole}"/>
+                <DataGridTemplateColumn Header="ФИО Сотрудника" IsReadOnly="True" CanUserResize="False" Width="*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock>
-                                    <Run Text="{Binding Staff.LastNameStaff}"/>
-                                    <Run Text="{Binding Staff.FirstNameStaff}"/>
-                                    <Run Text="{Binding Staff.MiddleNameStaff}"/>
+                                    <Run Text="{Binding LastNameStaff}"/>
+                                    <Run Text="{Binding FirstNameStaff}"/>
+                                    <Run Text="{Binding MiddleNameStaff}"/>
                                 </TextBlock>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Статус" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding StatusUser.NameStatusUser}"/>
+                <DataGridTextColumn Header="Статус" IsReadOnly="True" CanUserResize="False" Width="*" Binding="{Binding StatusStaff.NameStatusStaff}"/>
                 </DataGrid.Columns>
             </DataGrid>
     </Grid>

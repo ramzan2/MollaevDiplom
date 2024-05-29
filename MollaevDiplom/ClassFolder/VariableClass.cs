@@ -23,5 +23,6 @@ namespace MollaevDiplom.ClassFolder
         public static ListOutDocumentsPage ListOutDocumentsPage1;
         public static ListIncomingDocPage ListIncomingDocPage1;
         public static MenuSecretaryWindow MenuSecretaryWindow1;
+        public static ListUserStaffPage ListUserStaffPage1;
     }
 }

@@ -41,8 +41,8 @@ namespace MollaevDiplom.WindowFolder.AdminWindowFolder
         }
         private void EditAccBtn_Click(object sender, RoutedEventArgs e)
         {
-            Close();
             new AuthorizationWindow().Show();
+            Close();
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -77,6 +77,11 @@ namespace MollaevDiplom.WindowFolder.AdminWindowFolder
         private void ListUsers_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new ListUsersPage());
+        }
+
+        private void ListStaff_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new ListUserStaffPage());
         }
     }
 }

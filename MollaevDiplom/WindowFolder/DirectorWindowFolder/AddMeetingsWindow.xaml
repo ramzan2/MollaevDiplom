@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MollaevDiplom.WindowFolder.DirectorWindowFolder"
         mc:Ignorable="d"
         Title="Назначение всчтречи"
-        Height="550" Width="500"
+        Height="500" Width="650"
         ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
         WindowStyle="None" Background="Transparent" Icon="/ResourceFolder/ImageFolder/logo.png">
     <Border CornerRadius="7"
@@ -15,11 +15,12 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
-                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="50"/>
                 <ColumnDefinition />
+                <ColumnDefinition Width="50"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="100"/>
+                <RowDefinition Height="60"/>
                 <RowDefinition Height="10"/>
                 <RowDefinition Height="75"/>
                 <RowDefinition Height="10"/>
@@ -35,10 +36,9 @@
             <TextBlock Text="Назначение встречи"
                        Style="{StaticResource Text_Style}"
                        FontSize="24"
-                       Grid.ColumnSpan="3"
-                       HorizontalAlignment="Center"
-                       Margin="10"
-                       FontWeight="SemiBold"/>
+                       Grid.ColumnSpan="2"
+                       Margin="54,13,0,0"
+                       FontWeight="SemiBold" VerticalAlignment="Top"/>
             <Button x:Name="BackBtn"
                     Style="{StaticResource BackBtn}"
                     Click="BackBtn_Click">
@@ -140,7 +140,8 @@
                                     <Border Name="border"
                                                 BorderThickness="0"
                                                 BorderBrush="Black"
-                                                Background="{TemplateBinding Background}">
+                                                Background="{TemplateBinding Background}"
+                                            CornerRadius="10">
                                         <ContentPresenter HorizontalAlignment="Center"
                                                               VerticalAlignment="Center"/>
                                     </Border>

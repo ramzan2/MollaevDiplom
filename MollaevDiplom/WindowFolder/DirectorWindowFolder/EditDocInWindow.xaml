@@ -148,25 +148,35 @@
                         Tag="Выберите дату исполнения"
                         Style="{StaticResource DataPickerStyle}"
                         SelectedDate="{Binding DateOfExecution}"/>
+            <ComboBox Grid.Row="8"
+                      Grid.Column="6"
+                      Style="{StaticResource ComboBoxStyle1}"
+                      Width="200"
+                      x:Name="MarkExecutionCb"
+                      Tag="Выберите отметку об исполнении"
+                      SelectedItem="{Binding MarkExecution}"
+                      DisplayMemberPath="NameMarkExecution" 
+                      SelectedValuePath="IdMarkExecution"/>
             <Button Content="Изменить документ " 
-                    Grid.Row="8"
+                    Grid.Row="10"
+                    VerticalAlignment="Top"
                     Width="150"
                     Grid.Column="4"
                     Style="{StaticResource EditImBtn}"
                     x:Name="LoadDcBtn"
                     Click="LoadDcBtn_Click" 
-                    Height="25" Margin="0,30,0,0" VerticalAlignment="Top">
-            </Button>
+                    Height="26" Margin="0,30,0,0"  />
             <Button Content="Сохранить" 
-                    Grid.Row="10"
+                    Grid.Row="12"
                     Width="200"
                     HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
                     Grid.Column="4"
                     Height="35"
                     FontSize="16"
                     Foreground="White"
                     x:Name="SaveDcBtn"
-                    Click="SaveDcBtn_Click" Margin="0,25,0,15" >
+                    Click="SaveDcBtn_Click" Margin="0,0,0,40" Cursor="Hand" >
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="OverridesDefaultStyle" Value="True"/>
@@ -177,6 +187,7 @@
                             <Setter.Value>
                                 <ControlTemplate TargetType="Button">
                                     <Border Name="border"
+                                            CornerRadius="10"
                                                 BorderThickness="0"
                                                 BorderBrush="Black"
                                                 Background="{TemplateBinding Background}">

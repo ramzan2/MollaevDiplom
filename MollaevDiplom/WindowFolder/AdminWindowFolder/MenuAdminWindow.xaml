@@ -10,6 +10,23 @@
         Background="Transparent" AllowsTransparency="True"
         ResizeMode="NoResize" FontFamily="Poppins" 
         Icon="/ResourceFolder/ImageFolder/logo.png">
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="(Window.RenderTransform).(ScaleTransform.ScaleX)"
+                                     From="0.5" To="1.0" Duration="0:0:0.5" />
+                    <DoubleAnimation Storyboard.TargetProperty="(Window.RenderTransform).(ScaleTransform.ScaleY)"
+                                     From="0.5" To="1.0" Duration="0:0:0.5" />
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                     From="0.0" To="1.0" Duration="0:0:0.5" />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+    <Window.RenderTransform>
+        <ScaleTransform ScaleX="1" ScaleY="1" />
+    </Window.RenderTransform>
     <Border Background="Black"
             CornerRadius="8"
             MouseDown="Border_MouseDown">
@@ -39,9 +56,9 @@
                                FontSize="36"
                                VerticalAlignment="Bottom"
                                HorizontalAlignment="Center"
-                               Margin="0 0 0 650"
-                               Grid.RowSpan="2"
+                               Margin="0 0 0 -35"
                                Width="0"
+                               Grid.Row="0"
                                MaxWidth="120"
                                x:Name="PlaceText"/>
                     <StackPanel Grid.Row="1" Margin="-1 40 0 20">
@@ -50,7 +67,7 @@
                                      IsChecked="True"
                                      ToolTip="Список пользователей">
                             <Grid>
-                                <Image Source="/ResourceFolder/ImageFolder/meeting.png"
+                                <Image Source="/ResourceFolder/ImageFolder/employees.png"
                                        Stretch="Fill"
                                        Margin="12,0,0,0"
                                        Style="{StaticResource Image_Style}" />
@@ -59,23 +76,37 @@
                                        Style="{StaticResource Text_Style}" />
                             </Grid>
                         </RadioButton>
-
-                        <RadioButton x:Name="EditAccBtn" Style="{StaticResource BtnStyle}"     
-                                    Click="EditAccBtn_Click"
-                                 VerticalAlignment="Bottom"
-                                 Margin="0 350 0 0">
+                        <RadioButton x:Name="ListStaff" Style="{StaticResource BtnStyle}"     
+                                     Click="ListStaff_Click"
+                                     ToolTip="Список сотрудников">
                             <Grid>
-                                <Image Source="/ResourceFolder/ImageFolder/logout.png"
+                                <Image Source="/ResourceFolder/ImageFolder/meeting.png"
                                        Stretch="Fill"
                                        Margin="12,0,0,0"
                                        Style="{StaticResource Image_Style}" />
 
-                                <TextBlock Text="Сменить аккаунт"
+                                <TextBlock Text="Список сотрудников"
                                        Style="{StaticResource Text_Style}" />
                             </Grid>
                         </RadioButton>
+                        
                     </StackPanel>
+                    <RadioButton x:Name="EditAccBtn" Style="{StaticResource BtnStyle}"     
+                                    Click="EditAccBtn_Click"
+                                 Margin="0 0 0 0"
+                                     VerticalAlignment="Bottom"
+                                 Grid.Row="1"
+                                 ToolTip="Сменить аккаунт">
+                        <Grid>
+                            <Image Source="/ResourceFolder/ImageFolder/logout.png"
+                                       Stretch="Fill"
+                                       Margin="12,0,0,0"
+                                       Style="{StaticResource Image_Style}" />
 
+                            <TextBlock Text="Сменить аккаунт"
+                                       Style="{StaticResource Text_Style}" />
+                        </Grid>
+                    </RadioButton>
 
 
                 </Grid>

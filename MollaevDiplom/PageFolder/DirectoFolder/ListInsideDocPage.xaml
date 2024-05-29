@@ -25,7 +25,8 @@
                 <TextBox x:Name="SearchBox"
                      Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource SearchBoxStyle}" 
-                         TextChanged="SearchBox_TextChanged"/>
+                         TextChanged="SearchBox_TextChanged"
+                         Width="500"/>
                 <StackPanel Orientation="Horizontal"
                             Margin="10">
                     <Image Source="/ResourceFolder/ImageFolder/icons8-search-50.png"
@@ -34,13 +35,26 @@
                        Style="{StaticResource SearchTextStyle}" />
                 </StackPanel>
             </Grid>
+            <ComboBox Height="35"
+                      Name="SortCB" Grid.Column="2" 
+                      SelectionChanged="SortCB_SelectionChanged"
+                      Style="{StaticResource  ComboBoxStyle2}"
+                      Width="220" Cursor="Hand"
+                      FontSize="14"
+                      Foreground="#E8EAEC">
+                <ComboBoxItem Content="Формат"/>
+                <Separator/>
+                <ComboBoxItem Content="PDF"/>
+                <ComboBoxItem Content="docx"/>
+                <ComboBoxItem Content="doc"/>
+            </ComboBox>
             <Button Background="Transparent"
                         FontSize="16"
                         Grid.Column="1"
                         Width="40"
                         Height="35"
                         HorizontalAlignment="Right"
-                        Margin="-12 10 40 0"
+                        Margin="0 10 0 0"
                         Foreground="White"
                         x:Name="AddInDcBtn"
                         Click="AddInDcBtn_Click" 
@@ -92,7 +106,8 @@
                   Style="{StaticResource  DataGridStyle1}"
                   RowStyle="{StaticResource DataGridRowStyle1}"
                   ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle1}"
-                  CellStyle="{StaticResource DataGridCellStyle1}">
+                  CellStyle="{StaticResource DataGridCellStyle1}"
+                      HeadersVisibility="None">
                 <DataGrid.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="Редактирование документов"
@@ -107,36 +122,83 @@
                     </ContextMenu>
                 </DataGrid.ContextMenu>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding IdDocuments}"/>
-                    <DataGridTextColumn Header="Наименование документа" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding NameDocuments}"/>
-                    <DataGridTextColumn Header="Краткое содержание" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding TitleDocuments}"/>
-                    <DataGridTextColumn Header="Описание" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding DescriptionDocuments}"/>
-                    <DataGridTextColumn Header="Тип документа" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding DocumentsCategory.NameCategory}"/>
-                    <DataGridTemplateColumn Header="Исполнитель" IsReadOnly="True" CanUserResize="False" Width="auto" >
+                    <DataGridTemplateColumn Header="Наименование документа" IsReadOnly="True" CanUserResize="False" Width="auto" >
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock>
-                                <Run Text="{Binding Staff.LastNameStaff}"/>
-                                <Run Text="{Binding Staff.FirstNameStaff}"/>
-                                <Run Text="{Binding Staff.MiddleNameStaff}"/>
-                                </TextBlock>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Margin="3">
+                                        <Run Text="Наименование :" FontSize="16" FontWeight="SemiBold"/>
+                                        <Run Text="{Binding NameDocuments}" FontSize="16"/>
+                                    </TextBlock>
+                                    <TextBlock Margin="3">
+                                        <Run Text="Краткое содержание :" FontSize="16" FontWeight="SemiBold"/>
+                                        <Run Text="{Binding TitleDocuments}" FontSize="16"/>
+                                    </TextBlock>
+                                    <TextBlock Margin="3">
+                                        <Run Text="Описание :" FontSize="16" FontWeight="SemiBold"/>
+                                        <Run Text="{Binding DescriptionDocuments}" FontSize="16"/>
+                                    </TextBlock>
+                                </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Дата загрузки" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding UploadDate}"/>
-                    <DataGridTextColumn Header="Количество стр-ц" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding QuantityPage}"/>
-                    <DataGridTextColumn Header="Количество копий" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding QuantityОfСopies}"/>
-                    <DataGridTextColumn Header="Дата исполнения" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding DateOfExecution}"/>
-                    <DataGridTemplateColumn Header="Файл" IsReadOnly="True" CanUserResize="False" Width="auto">
+                    <DataGridTemplateColumn Header="Тип документа" IsReadOnly="True" CanUserResize="False" Width="auto" >
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding FileDocuments}"
-                                           MouseDown="TextBlock_MouseDown">
-                                    <Hyperlink Foreground="Black"
-                                               Name="DocTb"
-                                               Click="DocTb_Click"
-                                               ToolTip="crf">Скачать файл</Hyperlink>
-                                </TextBlock>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Margin="3">
+                                        <Run Text="Формат документ :" FontSize="16" FontWeight="SemiBold"/>
+                                        <Run Text="{Binding DocumentsCategory.NameCategory}" FontSize="16"/>
+                                    </TextBlock>
+                                    <TextBlock Margin="3">
+                                        <Run Text="Количество страниц :" FontSize="16" FontWeight="SemiBold"/>
+                                        <Run Text="{Binding QuantityPage}" FontSize="16"/>
+                                    </TextBlock>
+                                    <TextBlock Margin="3">
+                                        <Run Text="Количество копий :" FontSize="16" FontWeight="SemiBold"/>
+                                        <Run Text="{Binding QuantityОfСopies}" FontSize="16"/>
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Исполнитель" IsReadOnly="True" CanUserResize="False" Width="auto" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Margin="3">
+                                <Run Text="Фамилия исполнителя :" FontSize="16" FontWeight="SemiBold"/>
+                                <Run Text="{Binding Staff.LastNameStaff}" FontSize="16"/>
+                                    </TextBlock>
+                                    <TextBlock Margin="3">
+                                <Run Text="Имя исполнителя :" FontSize="16" FontWeight="SemiBold"/>
+                                <Run Text="{Binding Staff.FirstNameStaff}" FontSize="16"/>
+                                    </TextBlock>
+                                    <TextBlock Margin="3">
+                                <Run Text="Отчество исполнителя :" FontSize="16" FontWeight="SemiBold"/>
+                                <Run Text="{Binding Staff.MiddleNameStaff}" FontSize="16"/>
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Дата загрузки" IsReadOnly="True" CanUserResize="False" Width="auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Margin="3">
+                                <Run Text="Дата загрузки :" FontSize="16" FontWeight="SemiBold"/>
+                                <Run Text="{Binding UploadDate,StringFormat='{}{0:dd/MM/yyyy}'}" FontSize="16"/>
+                                    </TextBlock>
+                                    <TextBlock Margin="3">
+                                <Run Text="Дата исполнения :" FontSize="16" FontWeight="SemiBold"/>
+                                <Run Text="{Binding DateOfExecution,StringFormat='{}{0:dd/MM/yyyy}'}" FontSize="16"/>
+                                    </TextBlock>
+                                    <TextBlock Margin="3">
+                                      <Run Text="Отметка об исполнении :" FontSize="16" FontWeight="SemiBold"/>
+                                      <Run Text="{Binding MarkExecution.NameMarkExecution}" FontSize="16"/>
+                                    </TextBlock>
+                                </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

@@ -39,6 +39,8 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
            .Staff.ToList();
             MiddleNameStaffCb.ItemsSource = DBEntities.GetContext()
            .Staff.ToList();
+            MarkExecutionCb.ItemsSource = DBEntities.GetContext()
+         .MarkExecution.ToList();
         }
         byte[] doc;
         private void SaveDcBtn_Click(object sender, RoutedEventArgs e)
@@ -66,6 +68,7 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
             originalDocuments.QuantityОfСopies = Int32.Parse(QuantityOfCopiesTb.Text);
             originalDocuments.DateOfExecution = Convert.ToDateTime(DtDateOfExecution.SelectedDate);
             originalDocuments.NameDocuments = NameDocTb.Text;
+            originalDocuments.IdMarkExecution = Convert.ToInt32(MarkExecutionCb.SelectedValue); 
             DBEntities.GetContext().SaveChanges();
             if (VariableClass.ListInsideDocPage1 != null) VariableClass.ListInsideDocPage1.UpdateList();
             if (VariableClass.direcWindow != null) VariableClass.direcWindow.Update();
