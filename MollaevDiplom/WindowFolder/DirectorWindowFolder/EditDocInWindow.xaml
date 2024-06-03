@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MollaevDiplom.WindowFolder.DirectorWindowFolder"
         mc:Ignorable="d"
-        Title="Редактирование документа"  Height="600" Width="750"
+        Title="Редактирование документа"  Height="600" Width="850"
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
         WindowStyle="None" Background="Transparent" 
         Icon="/ResourceFolder/ImageFolder/logo.png">
@@ -36,7 +36,7 @@
                 <RowDefinition Height="10"/>
                 <RowDefinition Height="75"/>
             </Grid.RowDefinitions>
-            <Button 
+            <Button VerticalAlignment="Center"
                    Grid.Row="0"
                    Style="{StaticResource BackBtn}"
                 x:Name="BackBtn"
@@ -49,9 +49,9 @@
                        Style="{StaticResource Text_Style}"
                        Grid.ColumnSpan="5"
                        Grid.Row="0"
-                       HorizontalAlignment="Center"
+                       HorizontalAlignment="Left"
                        VerticalAlignment="Center"
-                       Margin="10"
+                       Margin="50 0 0 0"
                        FontSize="30"/>
             <TextBox Grid.Row="2"
                      Grid.Column="0"
@@ -92,6 +92,20 @@
                       SelectedItem="{Binding DocumentsCategory}"
                       DisplayMemberPath="NameCategory" 
                       SelectedValuePath="IdCategory" Cursor="Hand"/>
+            <Button Grid.ColumnSpan="2"
+                    Grid.Column="2"
+                    x:Name="AddTypeDocBtn"
+                    Click="AddTypeDocBtn_Click"
+                    Style="{StaticResource BackBtn}"
+                    Background="Transparent"
+                    Grid.Row="2"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Margin="10 10 25 0"
+                    Height="20"
+                    Width="20">
+                <Image Source="/ResourceFolder/ImageFolder/Vector.png"/>
+            </Button>
             <ComboBox Grid.Row="4"
                       Grid.Column="2"
                       Style="{StaticResource ComboBoxStyle1}"
@@ -157,6 +171,20 @@
                       SelectedItem="{Binding MarkExecution}"
                       DisplayMemberPath="NameMarkExecution" 
                       SelectedValuePath="IdMarkExecution"/>
+            <Button Grid.ColumnSpan="2"
+                    Grid.Column="6"
+                    x:Name="AddMarkDocBtn"
+                    Click="AddMarkDocBtn_Click"
+                    Style="{StaticResource BackBtn}"
+                    Background="Transparent"
+                    Grid.Row="8"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Margin="10 10 7 0"
+                    Height="20"
+                    Width="20">
+                <Image Source="/ResourceFolder/ImageFolder/Vector.png"/>
+            </Button>
             <Button Content="Изменить документ " 
                     Grid.Row="10"
                     VerticalAlignment="Top"

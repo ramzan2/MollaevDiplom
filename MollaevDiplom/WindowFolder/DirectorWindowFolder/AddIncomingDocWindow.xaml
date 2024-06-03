@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MollaevDiplom.WindowFolder.DirectorWindowFolder"
         mc:Ignorable="d"
-        Title="Добавление входящего документа" Height="650" Width="1000"
+        Title="Добавление входящего документа" Height="650" Width="1150"
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
         WindowStyle="None" Background="Transparent" 
         Icon="/ResourceFolder/ImageFolder/logo.png">
@@ -16,11 +16,11 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="15"/>
+                <ColumnDefinition Width="25"/>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="15"/>
+                <ColumnDefinition Width="25"/>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="15"/>
+                <ColumnDefinition Width="25"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -39,23 +39,19 @@
                 <RowDefinition Height="75"/>
                 <RowDefinition Height="10"/>
             </Grid.RowDefinitions>
-            <Button 
-                   Grid.Row="0"
+            <Button
                    Style="{StaticResource BackBtn}"
                 x:Name="BackBtn"
-                Click="BackBtn_Click" >
+                Click="BackBtn_Click" VerticalAlignment="Center" >
                 <Button.Background>
                     <ImageBrush ImageSource="/ResourceFolder/ImageFolder/back.png"/>
                 </Button.Background>
             </Button>
             <TextBlock Text="Добавлeние входящего документа"
                        Style="{StaticResource Text_Style}"
-                       Grid.ColumnSpan="7"
-                       Grid.Row="0"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       Margin="10"
-                       FontSize="30"/>
+                       Grid.ColumnSpan="3"
+                       Margin="50,0,0,0"
+                       FontSize="30" Height="35"/>
             <TextBox Grid.Row="2"
                      Grid.Column="0"
                      Width="200"
@@ -100,6 +96,20 @@
                       SelectedItem="{Binding DocumentsCategory}"
                       DisplayMemberPath="NameCategory" 
                       SelectedValuePath="IdCategory" Cursor="Hand"/>
+            <Button Grid.ColumnSpan="2"
+                    Grid.Column="2"
+                    x:Name="AddTypeDocBtn"
+                    Click="AddTypeDocBtn_Click"
+                    Style="{StaticResource BackBtn}"
+                    Background="Transparent"
+                    Grid.Row="2"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Margin="10 10 35 0"
+                    Height="20"
+                    Width="20">
+                <Image Source="/ResourceFolder/ImageFolder/Vector.png"/>
+            </Button>
             <ComboBox Grid.Row="4"
                       Grid.Column="2"
                       Style="{StaticResource ComboBoxStyle1}"
@@ -191,6 +201,20 @@
                       SelectedItem="{Binding MarkExecution}"
                       DisplayMemberPath="NameMarkExecution" 
                       SelectedValuePath="IdMarkExecution"/>
+            <Button Grid.ColumnSpan="2"
+                    Grid.Column="5"
+                    x:Name="AddMarkExBtn"
+                    Click="AddMarkExBtn_Click"
+                    Style="{StaticResource BackBtn}"
+                    Background="Transparent"
+                    Grid.Row="8"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Margin="10 10 9 0"
+                    Height="20"
+                    Width="20">
+                <Image Source="/ResourceFolder/ImageFolder/Vector.png"/>
+            </Button>
             <TextBox Grid.Row="4"
                      Grid.Column="6"
                      Width="200"
@@ -240,6 +264,7 @@
                             <Setter.Value>
                                 <ControlTemplate TargetType="Button">
                                     <Border Name="border"
+                                            CornerRadius="10"
                                                 BorderThickness="0"
                                                 BorderBrush="Black"
                                                 Background="{TemplateBinding Background}">

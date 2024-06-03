@@ -99,5 +99,15 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
             if (VariableClass.MenuSecretaryWindow1 != null) VariableClass.MenuSecretaryWindow1.Update();
             Close();
         }
+
+        private void AddMarkDocBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new AddMarkExWindow().Show();
+        }
+
+        private void AddTypeDocBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new AddTypeDocWindow().Show();
+        }
     }
 }

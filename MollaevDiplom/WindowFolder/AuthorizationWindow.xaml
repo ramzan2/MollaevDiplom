@@ -13,7 +13,7 @@
         AllowsTransparency="True" Background="Transparent" 
         KeyDown="Window_KeyDown"
         Icon="/ResourceFolder/ImageFolder/logo.png">
-    <Window.Triggers>
+    <!--<Window.Triggers>
         <EventTrigger RoutedEvent="Window.Loaded">
             <BeginStoryboard>
                 <Storyboard>
@@ -28,11 +28,31 @@
         </EventTrigger>
     </Window.Triggers>
     <Window.RenderTransform>
-        <ScaleTransform ScaleX="1" ScaleY="1" />
-    </Window.RenderTransform>
+        <ScaleTransform ScaleX="1" ScaleY="1" CenterX="0.5" CenterY="0.5"/>
+    </Window.RenderTransform>-->
     <Border Background="#2E333A"
-            CornerRadius="10 10 10 10">
-        <Grid>
+            CornerRadius="10 10 10 10"
+                    RenderTransformOrigin="0.5,0.5">
+        <Border.RenderTransform>
+            <ScaleTransform ScaleX="0" ScaleY="0"/>
+        </Border.RenderTransform>
+        <Border.Triggers>
+            <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <!-- Анимация для масштаба -->
+                        <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                         From="0" To="1.0" Duration="0:0:0.5" />
+                        <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                         From="0" To="1.0" Duration="0:0:0.5" />
+                        <!-- Анимация для прозрачности -->
+                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                         From="0.0" To="1.0" Duration="0:0:0.5" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Border.Triggers>
+        <Grid >
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
                 <RowDefinition Height="10"/>
@@ -75,7 +95,7 @@
                      Visibility="Collapsed"
                      Foreground="White"
                      x:Name="LoginTBV"
-                     Margin="100,18,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                     Margin="100,18,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Cursor="Hand"/>
             <PasswordBox Grid.Row="6" 
                          Height="45"
                          Style="{StaticResource tpass}"

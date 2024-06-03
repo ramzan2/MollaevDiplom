@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MollaevDiplom.WindowFolder.DirectorWindowFolder"
         mc:Ignorable="d"
-        Title="AddDocInWindow" Height="600" Width="750"
+        Title="AddDocInWindow" Height="600" Width="850"
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
         WindowStyle="None" Background="Transparent" 
         Icon="/ResourceFolder/ImageFolder/logo.png">
@@ -16,9 +16,9 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="15"/>
+                <ColumnDefinition Width="25"/>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="15"/>
+                <ColumnDefinition Width="25"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -40,18 +40,17 @@
                    Grid.Row="0"
                    Style="{StaticResource BackBtn}"
                 x:Name="BackBtn"
-                Click="BackBtn_Click" >
+                Click="BackBtn_Click" 
+                VerticalAlignment="Center">
                 <Button.Background>
                     <ImageBrush ImageSource="/ResourceFolder/ImageFolder/back.png"/>
                 </Button.Background>
             </Button>
             <TextBlock Text="Добавлeние документа"
                        Style="{StaticResource Text_Style}"
-                       Grid.ColumnSpan="5"
-                       Grid.Row="0"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       Margin="10"
+                       Grid.ColumnSpan="3"
+                       Margin="50,0,0,0"
+                       Height="36"
                        FontSize="30"/>
             <TextBox Grid.Row="2"
                      Grid.Column="0"
@@ -89,6 +88,20 @@
                       SelectedItem="{Binding DocumentsCategory}"
                       DisplayMemberPath="NameCategory" 
                       SelectedValuePath="IdCategory" Cursor="Hand"/>
+            <Button Grid.ColumnSpan="2"
+                    Grid.Column="2"
+                    x:Name="AddTypeDocBtn"
+                    Click="AddTypeDocBtn_Click"
+                    Style="{StaticResource BackBtn}"
+                    Background="Transparent"
+                    Grid.Row="2"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Margin="10 10 35 0"
+                    Height="20"
+                    Width="20">
+                <Image Source="/ResourceFolder/ImageFolder/Vector.png"/>
+            </Button>
             <ComboBox Grid.Row="4"
                       Grid.Column="2"
                       Style="{StaticResource ComboBoxStyle1}"
@@ -149,6 +162,20 @@
                       SelectedItem="{Binding MarkExecution}"
                       DisplayMemberPath="NameMarkExecution" 
                       SelectedValuePath="IdMarkExecution"/>
+            <Button Grid.ColumnSpan="2"
+                    Grid.Column="6"
+                    x:Name="AddMarkDocBtn"
+                    Click="AddMarkDocBtn_Click"
+                    Style="{StaticResource BackBtn}"
+                    Background="Transparent"
+                    Grid.Row="8"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Margin="10 10 7 0"
+                    Height="20"
+                    Width="20">
+                <Image Source="/ResourceFolder/ImageFolder/Vector.png"/>
+            </Button>
             <Button Content="Загрузить документ" 
                     Grid.Row="10"
                     Width="150"

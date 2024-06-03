@@ -5,31 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MollaevDiplom.WindowFolder.AdminWindowFolder"
         mc:Ignorable="d"
-        Title="Меню администратора" Height="630" Width="1100"
+        Title="Меню администратора" Height="860" Width="1100"
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         Background="Transparent" AllowsTransparency="True"
         ResizeMode="NoResize" FontFamily="Poppins" 
         Icon="/ResourceFolder/ImageFolder/logo.png">
-    <Window.Triggers>
-        <EventTrigger RoutedEvent="Window.Loaded">
-            <BeginStoryboard>
-                <Storyboard>
-                    <DoubleAnimation Storyboard.TargetProperty="(Window.RenderTransform).(ScaleTransform.ScaleX)"
-                                     From="0.5" To="1.0" Duration="0:0:0.5" />
-                    <DoubleAnimation Storyboard.TargetProperty="(Window.RenderTransform).(ScaleTransform.ScaleY)"
-                                     From="0.5" To="1.0" Duration="0:0:0.5" />
-                    <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                     From="0.0" To="1.0" Duration="0:0:0.5" />
-                </Storyboard>
-            </BeginStoryboard>
-        </EventTrigger>
-    </Window.Triggers>
-    <Window.RenderTransform>
-        <ScaleTransform ScaleX="1" ScaleY="1" />
-    </Window.RenderTransform>
     <Border Background="Black"
             CornerRadius="8"
-            MouseDown="Border_MouseDown">
+            MouseDown="Border_MouseDown"
+            RenderTransformOrigin="0.5,0.5">
+        <Border.RenderTransform>
+            <ScaleTransform ScaleX="0" ScaleY="0"/>
+        </Border.RenderTransform>
+        <Border.Triggers>
+            <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <!-- Анимация для масштаба -->
+                        <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                         From="0" To="1.0" Duration="0:0:0.5" />
+                        <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                         From="0" To="1.0" Duration="0:0:0.5" />
+                        <!-- Анимация для прозрачности -->
+                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                         From="0.0" To="1.0" Duration="0:0:0.5" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Border.Triggers>
         <Grid x:Name="BigGrid"
               Background="#FF212529">
             <Grid.ColumnDefinitions>
@@ -219,7 +222,7 @@
                    FontSize="24"
                    Grid.Row="0"
                    Foreground="White"
-                   FontFamily="/Fonts/OpenSans-Regular.ttf #Open Sans Regular" Margin="43,0,366,0" />
+                   FontFamily="/Fonts/OpenSans-Regular.ttf #Open Sans Regular" Margin="75,0,366,0" />
                 <Frame Grid.Row="1"
                        Name="MainFrame" 
                        Margin="5,10,10,10"

@@ -93,5 +93,15 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
         }
+
+        private void AddMarkDocBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new AddMarkExWindow().Show();
+        }
+
+        private void AddTypeDocBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new AddTypeDocWindow().Show();
+        }
     }
 }

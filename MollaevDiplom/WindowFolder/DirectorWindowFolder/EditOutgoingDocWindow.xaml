@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MollaevDiplom.WindowFolder.DirectorWindowFolder"
         mc:Ignorable="d"
-        Title="Редактирование исходящих документов"  Height="600" Width="1000"
+        Title="Редактирование исходящих документов"  Height="600" Width="1120"
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
         WindowStyle="None" Background="Transparent" 
         Icon="/ResourceFolder/ImageFolder/logo.png">
@@ -38,7 +38,7 @@
                 <RowDefinition Height="10"/>
                 <RowDefinition Height="75"/>
             </Grid.RowDefinitions>
-            <Button 
+            <Button VerticalAlignment="Center"
                    Grid.Row="0"
                    Style="{StaticResource BackBtn}"
                 x:Name="BackBtn"
@@ -51,9 +51,9 @@
                        Style="{StaticResource Text_Style}"
                        Grid.ColumnSpan="7"
                        Grid.Row="0"
-                       HorizontalAlignment="Center"
+                       HorizontalAlignment="Left"
                        VerticalAlignment="Center"
-                       Margin="10"
+                       Margin="50 0 0 0"
                        FontSize="30"/>
             <TextBox Grid.Row="2"
                      Grid.Column="0"
@@ -98,6 +98,20 @@
                       SelectedItem="{Binding DocumentsCategory}"
                       DisplayMemberPath="NameCategory" 
                       SelectedValuePath="IdCategory" Cursor="Hand"/>
+            <Button Grid.ColumnSpan="2"
+                    Grid.Column="2"
+                    x:Name="AddTypeDocBtn"
+                    Click="AddTypeDocBtn_Click"
+                    Style="{StaticResource BackBtn}"
+                    Background="Transparent"
+                    Grid.Row="2"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Margin="10 10 25 0"
+                    Height="20"
+                    Width="20">
+                <Image Source="/ResourceFolder/ImageFolder/Vector.png"/>
+            </Button>
             <ComboBox Grid.Row="4"
                       Grid.Column="2"
                       Style="{StaticResource ComboBoxStyle1}"
@@ -164,8 +178,8 @@
                         Tag="Выберите дату исполнения"
                         Style="{StaticResource DataPickerStyle}"
                         SelectedDate="{Binding ExecutionDate}"/>
-            <ComboBox Grid.Row="10"
-                      Grid.Column="4"
+            <ComboBox Grid.Row="6"
+                      Grid.Column="6"
                       Style="{StaticResource ComboBoxStyle1}"
                       Width="200"
                       x:Name="IdMarkExecutionCb"
@@ -173,6 +187,20 @@
                       SelectedItem="{Binding MarkExecution}"
                       DisplayMemberPath="NameMarkExecution" 
                       SelectedValuePath="IdMarkExecution"/>
+            <Button Grid.ColumnSpan="2"
+                    Grid.Column="6"
+                    x:Name="AddMarkDocBtn"
+                    Click="AddMarkDocBtn_Click"
+                    Style="{StaticResource BackBtn}"
+                    Background="Transparent"
+                    Grid.Row="6"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Margin="10 10 10 0"
+                    Height="20"
+                    Width="20">
+                <Image Source="/ResourceFolder/ImageFolder/Vector.png"/>
+            </Button>
             <TextBox Grid.Row="2"
                      Grid.Column="6"
                      Width="200"
@@ -189,12 +217,6 @@
                      Foreground="White"
                      x:Name="QuantityPageTb"
                      Text="{Binding QuantityPage}"/>
-            <TextBox x:Name="FileDOC" 
-                     Style="{StaticResource tboH}"
-                     Grid.Column="6"
-                     Grid.Row="6"
-                     Width="180"
-                     Text="{Binding FileDocuments}"/>
             <Button Content="Изменить документ" 
                     Grid.Row="8"
                     Width="150"
@@ -223,6 +245,7 @@
                             <Setter.Value>
                                 <ControlTemplate TargetType="Button">
                                     <Border Name="border"
+                                            CornerRadius="10"
                                                 BorderThickness="0"
                                                 BorderBrush="Black"
                                                 Background="{TemplateBinding Background}">

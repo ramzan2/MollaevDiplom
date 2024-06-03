@@ -175,5 +175,15 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
         {
              doc = DocumentClass.ConvertDocumentToByteArray();
         }
+
+        private void AddTypeDocBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new AddTypeDocWindow().Show();
+        }
+
+        private void AddMarkExBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new AddMarkExWindow().Show();
+        }
     }
 }

@@ -417,7 +417,7 @@
                                 Height="35"
                                 Width="210"
                                 BorderThickness="2"
-                                BorderBrush="{StaticResource cs_BorderBrush}"
+                                BorderBrush="Black"
                                 CornerRadius="5"
                                 Background="Transparent">
                             <Grid>

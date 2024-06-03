@@ -57,7 +57,8 @@
                   Style="{StaticResource  DataGridStyle1}"
                   RowStyle="{StaticResource DataGridRowStyle1}"
                   ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle1}"
-                  CellStyle="{StaticResource DataGridCellStyle1}">
+                  CellStyle="{StaticResource DataGridCellStyle1}"
+                      HeadersVisibility="None">
                 <DataGrid.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="Скачать документ"
@@ -66,47 +67,146 @@
                     </ContextMenu>
                 </DataGrid.ContextMenu>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding IdIncomingDocuments}"/>
-                    <DataGridTextColumn Header="Номер входящего документа" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding NumberIncoming}"/>
-                    <DataGridTextColumn Header="Наименование документа" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding NameIncoming}"/>
-                    <DataGridTextColumn Header="Дата входящего документа" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding DateIncoming,StringFormat='{}{0:dd/MM/yyyy}'}"/>
-                    <DataGridTextColumn Header="Тип документа" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding DocumentsCategory.NameCategory}"/>
+                    <DataGridTemplateColumn Header="Номер входящего документа" IsReadOnly="True" CanUserResize="False" Width="auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Margin="3">
+                                        <Run Text="Номер входящего документа :" FontWeight="SemiBold" FontSize="16"/>
+                                        <Run Text="{Binding NumberIncoming}" FontSize="16"/>
+                                    </TextBlock>
+                                    <TextBlock Margin="3">
+                                        <Run Text="Наименование документа :" FontWeight="SemiBold" FontSize="16"/>
+                                        <Run Text="{Binding NameIncoming}" FontSize="16"/>
+                                    </TextBlock>
+                                    <TextBlock Margin="3">
+                                        <Run Text="Дата входящего документа :" FontWeight="SemiBold" FontSize="16"/>
+                                        <Run Text="{Binding DateIncoming,StringFormat='{}{0:dd/MM/yyyy}'}" FontSize="16"/>
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Тип документа" IsReadOnly="True" CanUserResize="False" Width="auto" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Margin="3">
+                                        <Run Text="Тип документа :" FontWeight="SemiBold" FontSize="16"/>
+                                        <Run Text="{Binding DocumentsCategory.NameCategory}" FontSize="16"/>
+                                    </TextBlock>
+                                    <TextBlock Margin="3">
+                                        <Run Text="Наш исходящий номер :" FontWeight="SemiBold" FontSize="16"/>
+                                        <Run Text="{Binding OutgoingNumber}" FontSize="16"/>
+                                    </TextBlock>
+                                    <TextBlock Margin="3">
+                                        <Run Text="Отметка об исполнении :" FontWeight="SemiBold" FontSize="16"/>
+                                        <Run Text="{Binding MarkExecution.NameMarkExecution}" FontSize="16"/>
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                     <DataGridTemplateColumn Header="Отправитель" IsReadOnly="True" CanUserResize="False" Width="auto" >
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock>
-                                <Run Text="{Binding Sender.LastNameSender}"/>
-                                <Run Text="{Binding Sender.FirstNameSender}"/>
-                                <Run Text="{Binding Sender.MiddleNameSender}"/>
-                                </TextBlock>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Margin="3">
+                                        <Run Text="Фамилия отправителя :" FontWeight="SemiBold" FontSize="16"/>
+                                        <Run Text="{Binding Sender.LastNameSender}" FontSize="16"/>
+                                    </TextBlock>
+                                    <TextBlock Margin="3">
+                                        <Run Text="Имя отправителя :" FontWeight="SemiBold" FontSize="16"/>
+                                        <Run Text="{Binding Sender.FirstNameSender}" FontSize="16"/>
+                                    </TextBlock>
+                                    <TextBlock Margin="3">
+                                        <Run Text="Отчество отправителя :" FontWeight="SemiBold" FontSize="16"/>
+                                        <Run Text="{Binding Sender.MiddleNameSender}" FontSize="16"/>
+                                    </TextBlock>
+                                </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Номер телефона отправителя" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Sender.NumberPhone}"/>
-                    <DataGridTextColumn Header="Почта отправителя" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Sender.EmailSender}"/>
-                    <DataGridTextColumn Header="Краткое содержание" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding SummaryIncoming}"/>
+                    <DataGridTemplateColumn Header="Номер телефона отправителя" IsReadOnly="True" CanUserResize="False" Width="auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Margin="3">
+                                        <Run Text="Номер телефона отправителя :" FontWeight="SemiBold" FontSize="16"/>
+                                        <Run Text="{Binding Sender.NumberPhone}" FontSize="16"/>
+                                    </TextBlock>
+                                    <TextBlock Margin="3">
+                                        <Run Text="Почта отправителя :" FontWeight="SemiBold" FontSize="16"/>
+                                        <Run Text="{Binding Sender.EmailSender}" FontSize="16"/>
+                                    </TextBlock>
+                                    <TextBlock Margin="3">
+                                        <Run Text="Краткое содержание :" FontWeight="SemiBold" FontSize="16"/>
+                                        <Run Text="{Binding SummaryIncoming}" FontSize="16"/>
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                     <DataGridTemplateColumn Header="Получатель" IsReadOnly="True" CanUserResize="False" Width="auto" >
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock>
-                                    <TextBlock>
-                                <Run Text="{Binding Staff.LastNameStaff}"/>
-                                <Run Text="{Binding Staff.FirstNameStaff}"/>
-                                <Run Text="{Binding Staff.MiddleNameStaff}"/>
-                                </TextBlock>
-                                </TextBlock>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Margin="3">
+                                        <Run Text="Фамилия получателя :" FontWeight="SemiBold" FontSize="16"/>
+                                        <Run Text="{Binding Staff.LastNameStaff}" FontSize="16"/>
+                                    </TextBlock>
+                                    <TextBlock Margin="3">
+                                        <Run Text="Имя получателя :" FontWeight="SemiBold" FontSize="16"/>
+                                        <Run Text="{Binding Staff.FirstNameStaff}" FontSize="16"/>
+                                    </TextBlock>
+                                    <TextBlock Margin="3">
+                                        <Run Text="Отчество получателя :" FontWeight="SemiBold" FontSize="16"/>
+                                        <Run Text="{Binding Staff.MiddleNameStaff}" FontSize="16"/>
+                                    </TextBlock>
+                                </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Дата получения" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding DateOfReceipt,StringFormat='{}{0:dd/MM/yyyy}'}"/>
-                    <DataGridTextColumn Header="Наш исходящий номер" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding OutgoingNumber}"/>
-                    <DataGridTextColumn Header="Дата исходящего номера" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding DateOutgoingNumber,StringFormat='{}{0:dd/MM/yyyy}'}"/>
-                    <DataGridTextColumn Header="Дата контроля" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding ControlDate,StringFormat='{}{0:dd/MM/yyyy}'}"/>
-                    <DataGridTextColumn Header="Дата исполнения" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding ExecutionDate,StringFormat='{}{0:dd/MM/yyyy}'}"/>
-                    <DataGridTextColumn Header="Отметка об исполнении" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding MarkExecution.NameMarkExecution}"/>
-                    <DataGridTextColumn Header="Кол-во копий" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding QuantityОfСopies}"/>
-                    <DataGridTextColumn Header="Кол-во страниц" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding QuantityPage}"/>
-                    <DataGridTextColumn Header="Файл документа" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding FileDocuments}"/>
+                    <DataGridTemplateColumn Header="Дата получения" IsReadOnly="True" CanUserResize="False" Width="auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Margin="3">
+                                        <Run Text="Дата получения :" FontWeight="SemiBold" FontSize="16"/>
+                                        <Run Text="{Binding DateOfReceipt,StringFormat='{}{0:dd/MM/yyyy}'}" FontSize="16"/>
+                                    </TextBlock>
+                                    <TextBlock Margin="3">
+                                        <Run Text="Дата исходящего номера :" FontWeight="SemiBold" FontSize="16"/>
+                                        <Run Text="{Binding DateOutgoingNumber,StringFormat='{}{0:dd/MM/yyyy}'}" FontSize="16"/>
+                                    </TextBlock>
+                                    <TextBlock Margin="3">
+                                        <Run Text="Дата контроля :" FontWeight="SemiBold" FontSize="16"/>
+                                        <Run Text="{Binding ControlDate,StringFormat='{}{0:dd/MM/yyyy}'}" FontSize="16"/>
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Дата исполнения" IsReadOnly="True" CanUserResize="False" Width="auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Margin="3">
+                                        <Run Text="Дата исполнения :" FontWeight="SemiBold" FontSize="16"/>
+                                        <Run Text="{Binding ExecutionDate,StringFormat='{}{0:dd/MM/yyyy}'}" FontSize="16"/>
+                                    </TextBlock>
+                                    <TextBlock Margin="3">
+                                        <Run Text="Кол-во копий :" FontWeight="SemiBold" FontSize="16"/>
+                                        <Run Text="{Binding QuantityОfСopies}" FontSize="16"/>
+                                    </TextBlock>
+                                    <TextBlock Margin="3">
+                                        <Run Text="Кол-во страниц :" FontWeight="SemiBold" FontSize="16"/>
+                                        <Run Text="{Binding QuantityPage}" FontSize="16"/>
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>

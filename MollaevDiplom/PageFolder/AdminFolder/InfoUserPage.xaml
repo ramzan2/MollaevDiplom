@@ -5,9 +5,107 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MollaevDiplom.PageFolder.AdminFolder"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="Подробная информация">
+      d:DesignHeight="700" d:DesignWidth="800"
+      Title="Подробная информация" Style="{StaticResource Page_Style}"
+      Background="Transparent"
+      Margin="30 50 0 0">
+
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="75"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Style="{StaticResource Text_Style}">
+            <Run Text="Фамилия :" FontWeight="Bold"/>
+            <Run Text="{Binding LastNameStaff}" />
+        </TextBlock>
+        <TextBlock Style="{StaticResource Text_Style}"
+                   Grid.Row="2">
+            <Run Text="Имя :" FontWeight="Bold"/>
+            <Run Text="{Binding FirstNameStaff}" />
+        </TextBlock>
+        <TextBlock Style="{StaticResource Text_Style}"
+                   Grid.Row="4">
+            <Run Text="Отчество :" FontWeight="Bold"/>
+            <Run Text="{Binding MiddleNameStaff}" />
+        </TextBlock>
+        <TextBlock Style="{StaticResource Text_Style}"
+                   Grid.Row="6">
+            <Run Text="Номер телефона :" FontWeight="Bold"/>
+            <Run Text="{Binding PhoneNumberStaff}" />
+        </TextBlock>
+        <TextBlock Style="{StaticResource Text_Style}"
+                   Grid.Row="8">
+            <Run Text="Должность :" FontWeight="Bold"/>
+            <Run Text="{Binding Position.NamePosition}" />
+        </TextBlock>
+        <TextBlock Style="{StaticResource Text_Style}"
+                   Grid.Row="12"
+                   Grid.Column="0">
+            <Run Text="Отдел :" FontWeight="Bold"/>
+            <Run Text="{Binding Departments.NameDepartments}" />
+        </TextBlock>
+        <TextBlock Style="{StaticResource Text_Style}"
+                   Grid.Row="10"
+                   Grid.Column="0">
+            <Run Text="Статус :" FontWeight="Bold"/>
+            <Run Text="{Binding StatusStaff.NameStatusStaff}" />
+        </TextBlock>
+        <TextBlock Style="{StaticResource Text_Style}"
+                   Grid.Row="14"
+                   Grid.Column="0">
+            <Run Text="Статус пользователя :" FontWeight="Bold"/>
+            <Run Text="{Binding User.StatusUser.NameStatusUser}" />
+        </TextBlock>
+        <TextBlock Style="{StaticResource Text_Style}"
+                   Grid.Row="10"
+                   Grid.Column="1">
+            <Run Text="Логин :" FontWeight="Bold"/>
+            <Run Text="{Binding User.LoginUser}" />
+        </TextBlock>
+        <TextBlock Style="{StaticResource Text_Style}"
+                   Grid.Row="12"
+                   Grid.Column="1">
+            <Run Text="Пароль :" FontWeight="Bold"/>
+            <Run Text="{Binding User.PasswordUser}" />
+        </TextBlock>
+        <TextBlock Style="{StaticResource Text_Style}"
+                   Grid.Row="14"
+                   Grid.Column="1">
+            <Run Text="Роль :" FontWeight="Bold"/>
+            <Run Text="{Binding User.Role.NameRole}"/>
+        </TextBlock>
+        <Border
+                Grid.RowSpan="10" Margin="450,20,20,20"
+                CornerRadius="10" Grid.ColumnSpan="2" >
+            <Border.Background>
+                <ImageBrush ImageSource="{Binding PhotoStaff}"/>
+            </Border.Background>
+        </Border>
+        <Button x:Name="BackBtn"
+                Style="{StaticResource BackBtn}"
+                Click="BackBtn_Click"
+                Margin="10,-108,0,0">
+            <Button.Background>
+                <ImageBrush ImageSource="/ResourceFolder/ImageFolder/back.png"/>
+            </Button.Background>
+        </Button>
     </Grid>
 </Page>

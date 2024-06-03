@@ -228,6 +228,9 @@
     <Compile Include="WindowFolder\DirectorWindowFolder\AddIncomingDocWindow.xaml.cs">
       <DependentUpon>AddIncomingDocWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowFolder\DirectorWindowFolder\AddMarkExWindow.xaml.cs">
+      <DependentUpon>AddMarkExWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowFolder\DirectorWindowFolder\AddMeetingsWindow.xaml.cs">
       <DependentUpon>AddMeetingsWindow.xaml</DependentUpon>
     </Compile>
@@ -236,6 +239,9 @@
     </Compile>
     <Compile Include="WindowFolder\DirectorWindowFolder\AddStaffWindow.xaml.cs">
       <DependentUpon>AddStaffWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowFolder\DirectorWindowFolder\AddTypeDocWindow.xaml.cs">
+      <DependentUpon>AddTypeDocWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowFolder\DirectorWindowFolder\EditAttendanseWindow.xaml.cs">
       <DependentUpon>EditAttendanseWindow.xaml</DependentUpon>
@@ -414,6 +420,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WindowFolder\DirectorWindowFolder\AddMarkExWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WindowFolder\DirectorWindowFolder\AddMeetingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -423,6 +433,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowFolder\DirectorWindowFolder\AddStaffWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowFolder\DirectorWindowFolder\AddTypeDocWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

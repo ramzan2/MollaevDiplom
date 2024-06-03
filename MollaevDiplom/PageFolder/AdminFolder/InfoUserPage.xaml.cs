@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,12 @@ namespace MollaevDiplom.PageFolder.AdminFolder
         public InfoUserPage(Staff existingStaff)
         {
             InitializeComponent();
+            DataContext = existingStaff;
+        }
+
+        private void BackBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ListUserStaffPage());
         }
     }
 }
