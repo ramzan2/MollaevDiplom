@@ -17,6 +17,7 @@ namespace MollaevDiplom.DataFolder
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
+            this.RemembersTokken = new HashSet<RemembersTokken>();
             this.Staff = new HashSet<Staff>();
         }
     
@@ -26,6 +27,8 @@ namespace MollaevDiplom.DataFolder
         public int IdRole { get; set; }
         public Nullable<int> IdStatusUser { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RemembersTokken> RemembersTokken { get; set; }
         public virtual Role Role { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Staff> Staff { get; set; }

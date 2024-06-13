@@ -125,7 +125,7 @@
             </Button>
             <Button Content="Сохранить" 
                         Grid.Row="13"
-                        Grid.Column="0"                   
+                        Grid.Column="2"                   
                         Width="200" 
                         Height="35"
                         FontSize="16"
@@ -142,6 +142,7 @@
                             <Setter.Value>
                                 <ControlTemplate TargetType="Button">
                                     <Border Name="border"
+                                            CornerRadius="10"
                                                 BorderThickness="0"
                                                 BorderBrush="Black"
                                                 Background="{TemplateBinding Background}">

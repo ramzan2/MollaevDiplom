@@ -43,6 +43,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
@@ -71,6 +72,7 @@
     </Compile>
     <Compile Include="ClassFolder\DocumentClass.cs" />
     <Compile Include="ClassFolder\ImageClass.cs" />
+    <Compile Include="ClassFolder\SettingsManager.cs" />
     <Compile Include="DataFolder\Attendees.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -117,6 +119,9 @@
     <Compile Include="DataFolder\Position.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataFolder\RemembersTokken.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataFolder\Role.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -146,6 +151,9 @@
     </Compile>
     <Compile Include="DataFolder\User.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\AdminFolder\HelpPage.xaml.cs">
+      <DependentUpon>HelpPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageFolder\AdminFolder\InfoUserPage.xaml.cs">
       <DependentUpon>InfoUserPage.xaml</DependentUpon>
@@ -308,6 +316,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="PageFolder\AdminFolder\HelpPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PageFolder\AdminFolder\InfoUserPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -556,6 +568,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="ResourceFolder\ImageFolder\пустое фото профиля.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ResourceFolder\ImageFolder\icons8-chat-bubble-50.png" />
+    <Resource Include="ResourceFolder\ImageFolder\icons8-отправить-30.png" />
+    <Resource Include="ResourceFolder\ImageFolder\Rectangle 23%281%29.png" />
+    <Resource Include="ResourceFolder\ImageFolder\Rectangle 23.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="DataFolder\DBModel.Context.tt">

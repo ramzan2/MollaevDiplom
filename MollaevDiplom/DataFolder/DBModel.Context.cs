@@ -37,6 +37,7 @@ namespace MollaevDiplom.DataFolder
         public virtual DbSet<OutgoingDocuments> OutgoingDocuments { get; set; }
         public virtual DbSet<Performer> Performer { get; set; }
         public virtual DbSet<Position> Position { get; set; }
+        public virtual DbSet<RemembersTokken> RemembersTokken { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Sender> Sender { get; set; }
         public virtual DbSet<Staff> Staff { get; set; }

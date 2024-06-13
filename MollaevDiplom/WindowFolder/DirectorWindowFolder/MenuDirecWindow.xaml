@@ -14,25 +14,25 @@
             CornerRadius="8"
             MouseDown="Border_MouseDown"
             RenderTransformOrigin="0.5,0.5">
-        <Border.RenderTransform>
+        <!--<Border.RenderTransform>
             <ScaleTransform ScaleX="0" ScaleY="0"/>
         </Border.RenderTransform>
         <Border.Triggers>
             <EventTrigger RoutedEvent="FrameworkElement.Loaded">
                 <BeginStoryboard>
                     <Storyboard>
-                        <!-- Анимация для масштаба -->
+                        --><!-- Анимация для масштаба --><!--
                         <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
                                          From="0" To="1.0" Duration="0:0:0.5" />
                         <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
                                          From="0" To="1.0" Duration="0:0:0.5" />
-                        <!-- Анимация для прозрачности -->
+                        --><!-- Анимация для прозрачности --><!--
                         <DoubleAnimation Storyboard.TargetProperty="Opacity"
                                          From="0.0" To="1.0" Duration="0:0:0.5" />
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>
-        </Border.Triggers>
+        </Border.Triggers>-->
         <Grid x:Name="BigGrid"
               Background="#FF212529">
             <Grid.ColumnDefinitions>
@@ -132,21 +132,40 @@
                             </Grid>
                         </RadioButton>
                     </StackPanel>
-                    <RadioButton x:Name="EditAccBtn" Style="{StaticResource BtnStyle}"     
-                                    Click="EditAccBtn_Click"
+                    <StackPanel Orientation="Vertical"
+                                Grid.Row="1"
+                                VerticalAlignment="Bottom">
+                        <RadioButton x:Name="HelpBtn" Style="{StaticResource BtnStyle}"     
+                                    Click="HelpBtn_Click"
                                  VerticalAlignment="Bottom"
                                  Grid.Row="1"
-                                 ToolTip="Сменить аккаунт">
-                        <Grid>
-                            <Image Source="/ResourceFolder/ImageFolder/logout.png"
+                                 ToolTip="Чат с поддержкой">
+                            <Grid>
+                                <Image Source="/ResourceFolder/ImageFolder/icons8-chat-bubble-50.png"
                                        Stretch="Fill"
                                        Margin="12,0,0,0"
                                        Style="{StaticResource Image_Style}" />
 
-                            <TextBlock Text="Сменить аккаунт"
+                                <TextBlock Text="Чат с поддержкой"
                                        Style="{StaticResource Text_Style}" />
-                        </Grid>
-                    </RadioButton>
+                            </Grid>
+                        </RadioButton>
+                        <RadioButton x:Name="EditAccBtn" Style="{StaticResource BtnStyle}"     
+                                    Click="EditAccBtn_Click"
+                                 VerticalAlignment="Bottom"
+                                 Grid.Row="1"
+                                 ToolTip="Сменить аккаунт">
+                            <Grid>
+                                <Image Source="/ResourceFolder/ImageFolder/logout.png"
+                                       Stretch="Fill"
+                                       Margin="12,0,0,0"
+                                       Style="{StaticResource Image_Style}" />
+
+                                <TextBlock Text="Сменить аккаунт"
+                                       Style="{StaticResource Text_Style}" />
+                            </Grid>
+                        </RadioButton>
+                    </StackPanel>
                 </Grid>
             </Border>
 

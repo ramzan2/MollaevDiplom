@@ -119,6 +119,15 @@
           <Property Name="IdPosition" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NamePosition" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <EntityType Name="RemembersTokken">
+          <Key>
+            <PropertyRef Name="IdRemembersTokken" />
+          </Key>
+          <Property Name="IdRemembersTokken" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="Tokken" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="ExpiryDate" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="IdRole" />
@@ -397,6 +406,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_RemembersTokken_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="RemembersTokken" Type="Self.RemembersTokken" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="RemembersTokken">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Staff_Departments">
           <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
           <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
@@ -511,6 +532,7 @@
           <EntitySet Name="OutgoingDocuments" EntityType="Self.OutgoingDocuments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Performer" EntityType="Self.Performer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RemembersTokken" EntityType="Self.RemembersTokken" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sender" EntityType="Self.Sender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
@@ -586,6 +608,10 @@
           <AssociationSet Name="FK_Performer_Staff" Association="Self.FK_Performer_Staff">
             <End Role="Staff" EntitySet="Staff" />
             <End Role="Performer" EntitySet="Performer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RemembersTokken_User" Association="Self.FK_RemembersTokken_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="RemembersTokken" EntitySet="RemembersTokken" />
           </AssociationSet>
           <AssociationSet Name="FK_Staff_Departments" Association="Self.FK_Staff_Departments">
             <End Role="Departments" EntitySet="Departments" />
@@ -759,6 +785,16 @@
           <Property Name="NamePosition" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Staff" Relationship="Self.FK_Staff_Position" FromRole="Position" ToRole="Staff" />
         </EntityType>
+        <EntityType Name="RemembersTokken">
+          <Key>
+            <PropertyRef Name="IdRemembersTokken" />
+          </Key>
+          <Property Name="IdRemembersTokken" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="Tokken" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ExpiryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="User" Relationship="Self.FK_RemembersTokken_User" FromRole="RemembersTokken" ToRole="User" />
+        </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="IdRole" />
@@ -847,6 +883,7 @@
           <Property Name="PasswordUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IdRole" Type="Int32" Nullable="false" />
           <Property Name="IdStatusUser" Type="Int32" />
+          <NavigationProperty Name="RemembersTokken" Relationship="Self.FK_RemembersTokken_User" FromRole="User" ToRole="RemembersTokken" />
           <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
           <NavigationProperty Name="Staff" Relationship="Self.FK_Staff_User" FromRole="User" ToRole="Staff" />
           <NavigationProperty Name="StatusUser" Relationship="Self.FK_User_StatusUser" FromRole="User" ToRole="StatusUser" />
@@ -1079,6 +1116,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_RemembersTokken_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="RemembersTokken" Type="Self.RemembersTokken" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="RemembersTokken">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_Role">
           <End Role="Role" Type="Self.Role" Multiplicity="1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -1138,6 +1187,7 @@
           <EntitySet Name="OutgoingDocuments" EntityType="Self.OutgoingDocuments" />
           <EntitySet Name="Performer" EntityType="Self.Performer" />
           <EntitySet Name="Position" EntityType="Self.Position" />
+          <EntitySet Name="RemembersTokken" EntityType="Self.RemembersTokken" />
           <EntitySet Name="Role" EntityType="Self.Role" />
           <EntitySet Name="Sender" EntityType="Self.Sender" />
           <EntitySet Name="Staff" EntityType="Self.Staff" />
@@ -1221,6 +1271,10 @@
           <AssociationSet Name="FK_Staff_Position" Association="Self.FK_Staff_Position">
             <End Role="Position" EntitySet="Position" />
             <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RemembersTokken_User" Association="Self.FK_RemembersTokken_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="RemembersTokken" EntitySet="RemembersTokken" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
             <End Role="Role" EntitySet="Role" />
@@ -1407,6 +1461,16 @@
               <MappingFragment StoreEntitySet="Position">
                 <ScalarProperty Name="IdPosition" ColumnName="IdPosition" />
                 <ScalarProperty Name="NamePosition" ColumnName="NamePosition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RemembersTokken">
+            <EntityTypeMapping TypeName="DBModel.RemembersTokken">
+              <MappingFragment StoreEntitySet="RemembersTokken">
+                <ScalarProperty Name="IdRemembersTokken" ColumnName="IdRemembersTokken" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="Tokken" ColumnName="Tokken" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

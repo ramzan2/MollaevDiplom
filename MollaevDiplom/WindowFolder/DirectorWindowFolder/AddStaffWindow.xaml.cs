@@ -74,13 +74,12 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
         {
             if (string.IsNullOrWhiteSpace(LastNameTb.Text) ||
           string.IsNullOrWhiteSpace(FirstNameTb.Text) ||
-          string.IsNullOrWhiteSpace(MiddleNameTb.Text) ||
           string.IsNullOrWhiteSpace(PhoneNumberStaffTb.Text) ||
           string.IsNullOrWhiteSpace(PositionCb.Text) ||
           string.IsNullOrWhiteSpace(DepartmentsCb.Text) ||
           string.IsNullOrWhiteSpace(StatusCb.Text))
             {
-                MBClass.ErrorMB("Заполните все поля");
+                MBClass.ErrorMB("Заполните все необходимые поля");
             }
             else
             {
@@ -98,6 +97,7 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
                 DBEntities.GetContext().SaveChanges();
                 MBClass.InfoMB("Сотрудник успешно добавлен");
                 if (VariableClass.ListStaffPage1 != null) VariableClass.ListStaffPage1.UpdateList();
+                if (VariableClass.direcWindow != null) VariableClass.direcWindow.Update();
                 Close();
             }
         }

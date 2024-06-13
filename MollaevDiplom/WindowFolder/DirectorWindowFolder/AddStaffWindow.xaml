@@ -117,7 +117,7 @@
                     Grid.Row="13"
                     Width="200"
                     HorizontalAlignment="Center"
-                    Grid.Column="0"
+                    Grid.Column="2"
                     Height="35"
                     FontSize="16"
                     Foreground="White"
@@ -133,6 +133,7 @@
                             <Setter.Value>
                                 <ControlTemplate TargetType="Button">
                                     <Border Name="border"
+                                            CornerRadius="10"
                                                 BorderThickness="0"
                                                 BorderBrush="Black"
                                                 Background="{TemplateBinding Background}">

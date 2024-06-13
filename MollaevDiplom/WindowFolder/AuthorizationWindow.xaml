@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:MollaevDiplom.WindowFolder"
         mc:Ignorable="d"
         Title="Окно авторизации" 
-        Height="450" Width="450"
+        Height="450" Width="360"
         MaxHeight="450" MinHeight="450"
-        MaxWidth="450"  MinWidth="450"
+        MaxWidth="360"  MinWidth="360"
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         AllowsTransparency="True" Background="Transparent" 
         KeyDown="Window_KeyDown"
@@ -33,45 +33,53 @@
     <Border Background="#2E333A"
             CornerRadius="10 10 10 10"
                     RenderTransformOrigin="0.5,0.5">
-        <Border.RenderTransform>
+        <!--<Border.RenderTransform>
             <ScaleTransform ScaleX="0" ScaleY="0"/>
         </Border.RenderTransform>
         <Border.Triggers>
             <EventTrigger RoutedEvent="FrameworkElement.Loaded">
                 <BeginStoryboard>
                     <Storyboard>
-                        <!-- Анимация для масштаба -->
+                        -->
+        <!-- Анимация для масштаба -->
+        <!--
                         <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
                                          From="0" To="1.0" Duration="0:0:0.5" />
                         <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
                                          From="0" To="1.0" Duration="0:0:0.5" />
-                        <!-- Анимация для прозрачности -->
+                        -->
+        <!-- Анимация для прозрачности -->
+        <!--
                         <DoubleAnimation Storyboard.TargetProperty="Opacity"
                                          From="0.0" To="1.0" Duration="0:0:0.5" />
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>
-        </Border.Triggers>
+        </Border.Triggers>-->
         <Grid >
             <Grid.RowDefinitions>
-                <RowDefinition Height="60"/>
+                <RowDefinition Height="140"/>
                 <RowDefinition Height="10"/>
-                <RowDefinition Height="35"/>
-                <RowDefinition Height="10"/>
+                <RowDefinition Height="75"/>
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="10"/>
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="40"/>
-                <RowDefinition Height="70"/>
-                <RowDefinition Height="10"/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
-            <Border CornerRadius="10 10 0 0">
-                <Border.Background>
-                    <ImageBrush ImageSource="/ResourceFolder/ImageFolder/Group 37.png"
-                                RenderOptions.BitmapScalingMode="HighQuality" 
-                                RenderOptions.EdgeMode="Aliased"/>
-                </Border.Background>
-            </Border>
+            <Border Height="60"
+                    VerticalAlignment="Top"
+                    MouseDown="Border_MouseDown"/>
+            <StackPanel Orientation="Vertical">
+                <Image Source="/ResourceFolder/ImageFolder/Rectangle 23(1).png" 
+                   Height="100" Width="100"
+                       Margin="0 10 0 0"/>
+                <TextBlock Text="АВТОРИЗАЦИЯ"
+                           Style="{StaticResource Text_Style}"
+                           HorizontalAlignment="Center"
+                           Margin="10 10 0 0"
+                           FontWeight="Bold"/>
+            </StackPanel>
             <Image Source="/ResourceFolder/ImageFolder/close.png"
                        Style="{StaticResource imgClose}"
                        RenderOptions.BitmapScalingMode="HighQuality" 
@@ -81,22 +89,22 @@
                    Style="{StaticResource imgClose}"
                    Margin="0,8,43,0"
                    MouseLeftButtonUp="Image_MouseLeftButtonUp"/>
-            <TextBox Grid.Row="4"
+            <TextBox Grid.Row="2"
                      Style="{StaticResource tbox}"
                      Tag="Логин"
                      Height="45"
                      Foreground="White"
                      x:Name="LoginTb"
                      TextChanged="LoginTb_TextChanged"/>
-            <TextBox Grid.Row="6"
+            <TextBox Grid.Row="3"
                      Style="{StaticResource tboc}"
                      Tag="Пароль"
                      Height="45"
                      Visibility="Collapsed"
                      Foreground="White"
                      x:Name="LoginTBV"
-                     Margin="100,18,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Cursor="Hand"/>
-            <PasswordBox Grid.Row="6" 
+                     Margin="55,18,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Cursor="Hand"/>
+            <PasswordBox Grid.Row="3" 
                          Height="45"
                          Style="{StaticResource tpass}"
                          x:Name="PasswordTb"
@@ -106,9 +114,9 @@
             <TextBlock x:Name="placeholderText"
                        Text="Пароль"
                        FontSize="16"
-                       Grid.Row="6"
+                       Grid.Row="3"
                        Visibility="Visible"
-                       Margin="143,29,0,0"
+                       Margin="98,29,0,0"
                        VerticalAlignment="Top"
                        HorizontalAlignment="Left"
                        Foreground="White"
@@ -116,9 +124,8 @@
             <Image Source="/ResourceFolder/ImageFolder/hide.png"
                    Stretch="UniformToFill"
                    x:Name="HideIco"
-                   Width="20"
                    Height="20"
-                   Grid.Row="6" Margin="323,30,107,20"
+                   Grid.Row="3" Margin="270,30,67,20"
                    MouseDown="HideIco_MouseDown"
                    MouseUp="HideIco_MouseUp"/>
             <Image Source="/ResourceFolder/ImageFolder/eye.png"
@@ -127,11 +134,21 @@
                    Width="20"
                    Height="20"
                    Stretch="UniformToFill"
-                   Grid.Row="6" Margin="323,30,107,20"
+                   Grid.Row="3" Margin="270,30,67,20"
                    MouseDown="EyeIco_MouseDown"
                    MouseUp="EyeIco_MouseUp"/>
-            <Border Grid.Row="8"
-                    Margin="25 0 25 0"
+            <CheckBox Style="{StaticResource CheckBoxStyle1}"
+                      Grid.Row="5"
+                      Margin="55 0 0 0"
+                      Content="Запомнить меня ?"
+                      Foreground="White"
+                      FontSize="12"
+                      VerticalContentAlignment="Center"
+                      VerticalAlignment="Top"
+                      x:Name="checkbox"/>
+            <Border Grid.Row="5"
+                    Grid.RowSpan="2"
+                    Margin="25 20 25 0"
                     Height="35"
                     Width="100"
                     Background="Black"
@@ -215,15 +232,26 @@
                 </Button>
 
             </Border>
-            <TextBlock Grid.Row="8"
-                       Text="Забыли пароль?"
-                       Foreground="Gray"
-                       FontSize="12"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Top"
-                       MouseUp="TextBlock_MouseUp" Margin="0,59,0,0" Grid.RowSpan="2"/>
+            <StackPanel Orientation="Horizontal"
+                        Grid.Row="6"
+                        Grid.RowSpan="2"
+                        VerticalAlignment="Center">
+                <Separator Background="Gray"
+                           Width="100"
+                           Margin="10 20 0 0"/>
+                <TextBlock Text="Не можете войти ?"
+                           Style="{StaticResource Text_Style}"
+                           FontSize="13"
+                           Margin="15 20 0 0"
+                           Cursor="Hand"
+                           MouseUp="TextBlock_MouseUp"/>
+                <Separator Background="Gray"
+                           Width="100"
+                           Margin="10 20 0 0"/>
+            </StackPanel>
             <TextBlock x:Name="timerText"
                        Grid.Row="5"
+                       Visibility="Collapsed"
                        Grid.RowSpan="2"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Top"

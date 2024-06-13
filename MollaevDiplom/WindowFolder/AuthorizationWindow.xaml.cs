@@ -30,9 +30,42 @@ namespace MollaevDiplom.WindowFolder
         public AuthorizationWindow()
         {
             InitializeComponent();
+            LoadSavedCredentials();
+        }
+        private void LoadSavedCredentials()
+        {
+            if (SettingsManager.IsRememberMeChecked)
+            {
+                LoginTb.Text = SettingsManager.SavedLogin;
+                PasswordTb.Password = SettingsManager.SavedPassword;
+                checkbox.IsChecked = true;
+            }
         }
 
+        public string GenerateToken()
+        {
+            return Convert.ToBase64String(Guid.NewGuid().ToByteArray());
+        }
 
+        public void SaveRememberMeToken(int userId, string token)
+        {
+            using (var context = new DBEntities())
+            {
+                var rememberMeToken = new RemembersTokken
+                {
+                    IdUser = userId,
+                    Tokken = token,
+                    ExpiryDate = DateTime.Now.AddDays(30) // Токен действителен 30 дней
+                };
+                context.RemembersTokken.Add(rememberMeToken);
+                context.SaveChanges();
+            }
+        }
+        private void SetRememberMeToken(string token)
+        {
+            Properties.Settings.Default.RememberMeToken = token;
+            Properties.Settings.Default.Save();
+        }
         private void placeholderText_MouseDown(object sender, MouseButtonEventArgs e)
         {
             PasswordTb.Focus();
@@ -69,6 +102,23 @@ namespace MollaevDiplom.WindowFolder
                     var user = DBEntities.GetContext()
                         .User
                         .FirstOrDefault(u => u.LoginUser == LoginTb.Text);
+                    if (checkbox.IsChecked == true)
+                    {
+                        var token = GenerateToken();
+                        SaveRememberMeToken(user.IdUser, token);
+                        SetRememberMeToken(token);
+
+                        SettingsManager.SavedLogin = LoginTb.Text;
+                        SettingsManager.SavedPassword = PasswordTb.Password;
+                        SettingsManager.IsRememberMeChecked = true;
+                    }
+                    else
+                    {
+                        // Очистка сохраненных данных
+                        SettingsManager.SavedLogin = string.Empty;
+                        SettingsManager.SavedPassword = string.Empty;
+                        SettingsManager.IsRememberMeChecked = false;
+                    }
 
                     if (user == null)
                     {
@@ -271,16 +321,16 @@ namespace MollaevDiplom.WindowFolder
             EyeIco.Visibility = Visibility.Collapsed;
         }
 
+        private void TextBlock_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            MBClass.InfoMB("Для восстановление пароля обратитесь к администратору!" +
+                "Почта : admin@mail.ru");
+        }
 
-        private void Border_MouseDown_1(object sender, MouseButtonEventArgs e)
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
-        }
-
-        private void TextBlock_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            MBClass.InfoMB("Для восстановление пароля обратитесь к администратору!");
         }
     }
 }
