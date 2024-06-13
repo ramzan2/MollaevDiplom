@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MollaevDiplom.DataFolder;
 
 namespace MollaevDiplom.PageFolder.AdminFolder
 {
@@ -23,16 +25,48 @@ namespace MollaevDiplom.PageFolder.AdminFolder
         public HelpPage()
         {
             InitializeComponent();
+            ChatListBox.ItemsSource = DBEntities.GetContext()
+            .Messages.ToList().OrderBy(u => u.IdMessages);
         }
 
         private void SendButton_Click(object sender, RoutedEventArgs e)
         {
-
+            string messageText = MessageTextBox.Text;
+            if (!string.IsNullOrWhiteSpace(messageText))
+            {
+                DBEntities.GetContext().Messages.Add(new Messages()
+                {
+                    MesContent = MessageTextBox.Text
+                });
+                DBEntities.GetContext().SaveChanges();
+                ChatListBox.ItemsSource = DBEntities.GetContext()
+              .Messages.ToList().OrderBy(u => u.IdMessages);
+                //ChatListBox.ItemsSource = DBEntities.GetContext().
+                //    Messages.ToList();
+                MessageTextBox.Clear();
+            }
         }
 
-        private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void Page_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.Key == Key.Enter)
+            {
+                if (SearchBox.IsEnabled)
+                {
+                    SendButton_Click(sender, e);
+                    return;
+                }
 
+
+                if (SearchBox.IsFocused)
+                {
+                    SearchBox.Focus();
+                }
+                else
+                {
+                    SearchBox.Focus();
+                }
+            }
         }
     }
 }

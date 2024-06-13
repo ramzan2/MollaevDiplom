@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:MollaevDiplom.PageFolder.AdminFolder"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Чат с поддержкой">
+      Title="Чат с поддержкой" KeyDown="Page_KeyDown">
     <Grid>
         <Grid.RowDefinitions>
         <RowDefinition Height="*" />
@@ -38,9 +38,7 @@
                 <TextBox x:Name="SearchBox"
                      Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource SearchBoxStyle}" 
-                          Width="900"
-                         TextChanged="SearchBox_TextChanged"/>
-
+                          Width="900"/>
                 <StackPanel Orientation="Horizontal"
                             Margin="10">
                     <TextBlock Text="Введите сообщение"
