@@ -7,7 +7,23 @@
     <PathGeometry x:Key="close" Figures="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z" />
     <PathGeometry x:Key="info" Figures="M13.4545 31V13.5455H16.1364V31H13.4545ZM14.8182 10.6364C14.2955 10.6364 13.8447 10.4583 13.4659 10.1023C13.0947 9.74621 12.9091 9.31818 12.9091 8.81818C12.9091 8.31818 13.0947 7.89015 13.4659 7.53409C13.8447 7.17803 14.2955 7 14.8182 7C15.3409 7 15.7879 7.17803 16.1591 7.53409C16.5379 7.89015 16.7273 8.31818 16.7273 8.81818C16.7273 9.31818 16.5379 9.74621 16.1591 10.1023C15.7879 10.4583 15.3409 10.6364 14.8182 10.6364Z"/>
 
-
+    <Style x:Key="MessageBtn" TargetType="{x:Type Button}">
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border >
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="Transparent"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <Style x:Key="AddPlusBtn" TargetType="{x:Type Button}">
         <Setter Property="FontSize" Value="15"/>
         <Setter Property="Foreground" Value="White"/>

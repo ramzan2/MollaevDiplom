@@ -27,9 +27,10 @@
         </ListView.ItemTemplate>
     </ListView>
 
-    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10">
+    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10"
+                HorizontalAlignment="Center">
             <Grid Height="40"
-              Width="700"
+              Width="900"
               Grid.ColumnSpan="2"
               HorizontalAlignment="Left"
               VerticalAlignment="Center"
@@ -37,7 +38,7 @@
                 <TextBox x:Name="SearchBox"
                      Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource SearchBoxStyle}" 
-                          Width="700"
+                          Width="900"
                          TextChanged="SearchBox_TextChanged"/>
 
                 <StackPanel Orientation="Horizontal"
@@ -49,7 +50,8 @@
             <Button 
                 Click="SendButton_Click"
                 Background="Transparent"
-                BorderBrush="Transparent">
+                BorderBrush="Transparent"
+                Style="{StaticResource MessageBtn}">
                 <StackPanel>
                     <Grid>
                         <Ellipse Width="45"

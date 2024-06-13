@@ -64,7 +64,7 @@
         </StackPanel>
         <ScrollViewer Grid.Row="1"
                       HorizontalScrollBarVisibility="Auto"
-                      VerticalScrollBarVisibility="Hidden"
+                      VerticalScrollBarVisibility="Disabled"
                       x:Name="scrollViewer" Style="{StaticResource FavsScrollViewer}">
             <DataGrid Grid.Row="1"
                   x:Name="ListMeetingsDT"

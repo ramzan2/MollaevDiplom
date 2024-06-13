@@ -11,25 +11,8 @@
         MaxWidth="360"  MinWidth="360"
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         AllowsTransparency="True" Background="Transparent" 
-        KeyDown="Window_KeyDown"
+        KeyDown="Window_KeyDown" ResizeMode="NoResize"
         Icon="/ResourceFolder/ImageFolder/logo.png">
-    <!--<Window.Triggers>
-        <EventTrigger RoutedEvent="Window.Loaded">
-            <BeginStoryboard>
-                <Storyboard>
-                    <DoubleAnimation Storyboard.TargetProperty="(Window.RenderTransform).(ScaleTransform.ScaleX)"
-                                     From="0.5" To="1.0" Duration="0:0:0.5" />
-                    <DoubleAnimation Storyboard.TargetProperty="(Window.RenderTransform).(ScaleTransform.ScaleY)"
-                                     From="0.5" To="1.0" Duration="0:0:0.5" />
-                    <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                     From="0.0" To="1.0" Duration="0:0:0.5" />
-                </Storyboard>
-            </BeginStoryboard>
-        </EventTrigger>
-    </Window.Triggers>
-    <Window.RenderTransform>
-        <ScaleTransform ScaleX="1" ScaleY="1" CenterX="0.5" CenterY="0.5"/>
-    </Window.RenderTransform>-->
     <Border Background="#2E333A"
             CornerRadius="10 10 10 10"
                     RenderTransformOrigin="0.5,0.5">
@@ -67,9 +50,6 @@
                 <RowDefinition Height="40"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Border Height="60"
-                    VerticalAlignment="Top"
-                    MouseDown="Border_MouseDown"/>
             <StackPanel Orientation="Vertical">
                 <Image Source="/ResourceFolder/ImageFolder/Rectangle 23(1).png" 
                    Height="100" Width="100"

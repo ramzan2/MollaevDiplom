@@ -149,26 +149,6 @@
                                         <Trigger Property="IsMouseOver" Value="True">
                                             <Setter Property="Background" Value="#FF464545"/>
                                         </Trigger>
-                                        <EventTrigger RoutedEvent="PreviewMouseDown">
-                                            <BeginStoryboard>
-                                                <Storyboard>
-                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin"
-                                                                            Duration="0:0:0.100" To="2,2,0,0"/>
-                                                    <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                        To="#FF464545" Duration="0:0:0.0002"/>
-                                                </Storyboard>
-                                            </BeginStoryboard>
-                                        </EventTrigger>
-                                        <EventTrigger RoutedEvent="PreviewMouseUp">
-                                            <BeginStoryboard>
-                                                <Storyboard>
-                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin"
-                                                                            Duration="0:0:0.100" To="0"/>
-                                                    <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                        To="Black" Duration="0:0:0.0002"/>
-                                                </Storyboard>
-                                            </BeginStoryboard>
-                                        </EventTrigger>
                                     </ControlTemplate.Triggers>
                                 </ControlTemplate>
                             </Setter.Value>
