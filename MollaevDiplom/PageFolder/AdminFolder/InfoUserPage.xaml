@@ -84,7 +84,7 @@
                    Grid.Row="12"
                    Grid.Column="1">
             <Run Text="Пароль :" FontWeight="Bold"/>
-            <Run Text="{Binding User.PasswordUser}" />
+            <Run Text="*****" />
         </TextBlock>
         <TextBlock Style="{StaticResource Text_Style}"
                    Grid.Row="14"
