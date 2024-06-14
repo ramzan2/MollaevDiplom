@@ -31,19 +31,19 @@ namespace MollaevDiplom.PageFolder.AdminFolder
 
         private void SendButton_Click(object sender, RoutedEventArgs e)
         {
-            string messageText = MessageTextBox.Text;
+            string messageText = SearchBox.Text;
             if (!string.IsNullOrWhiteSpace(messageText))
             {
                 DBEntities.GetContext().Messages.Add(new Messages()
                 {
-                    MesContent = MessageTextBox.Text
+                    ContentMessages = SearchBox.Text
                 });
                 DBEntities.GetContext().SaveChanges();
                 ChatListBox.ItemsSource = DBEntities.GetContext()
               .Messages.ToList().OrderBy(u => u.IdMessages);
                 //ChatListBox.ItemsSource = DBEntities.GetContext().
                 //    Messages.ToList();
-                MessageTextBox.Clear();
+                SearchBox.Clear();
             }
         }
 

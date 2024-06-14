@@ -74,6 +74,7 @@
                      x:Name="NumberIncomingTb"
                      Text="{Binding NumberIncoming}"/>
             <DatePicker Grid.Row="6"
+                        Width="200"
                         Grid.Column="0"
                         x:Name="DateIncomingDT"
                         Tag="Выберите дату входящяго"

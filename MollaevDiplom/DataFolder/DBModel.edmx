@@ -25,7 +25,7 @@
             <PropertyRef Name="IdDocuments" />
           </Key>
           <Property Name="IdDocuments" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TitleDocuments" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="TitleDocuments" Type="nvarchar(max)" Nullable="false" />
           <Property Name="DescriptionDocuments" Type="text" />
           <Property Name="IdCategory" Type="int" Nullable="false" />
           <Property Name="IdStaff" Type="int" Nullable="false" />
@@ -55,7 +55,7 @@
           <Property Name="FileDocuments" Type="varbinary(max)" />
           <Property Name="IdSender" Type="int" Nullable="false" />
           <Property Name="NameIncoming" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="SummaryIncoming" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="SummaryIncoming" Type="nvarchar(max)" Nullable="false" />
           <Property Name="IdStaff" Type="int" Nullable="false" />
           <Property Name="DateOfReceipt" Type="date" Nullable="false" />
           <Property Name="OutgoingNumber" Type="int" Nullable="false" />
@@ -86,6 +86,15 @@
           <Property Name="IdDepartments" Type="int" Nullable="false" />
           <Property Name="IdStatusMeetings" Type="int" />
         </EntityType>
+        <EntityType Name="Messages">
+          <Key>
+            <PropertyRef Name="IdMessages" />
+          </Key>
+          <Property Name="IdMessages" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUser" Type="int" />
+          <Property Name="ContentMessages" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="DateTamp" Type="datetime" />
+        </EntityType>
         <EntityType Name="OutgoingDocuments">
           <Key>
             <PropertyRef Name="IdOutgoingDocuments" />
@@ -96,7 +105,7 @@
           <Property Name="IdCategory" Type="int" Nullable="false" />
           <Property Name="IdPerformer" Type="int" Nullable="false" />
           <Property Name="NameOutgoingDocuments" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="SummaryOutgoing" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="SummaryOutgoing" Type="nvarchar(max)" Nullable="false" />
           <Property Name="IdStaff" Type="int" Nullable="false" />
           <Property Name="ControlDate" Type="date" Nullable="false" />
           <Property Name="ExecutionDate" Type="date" Nullable="false" />
@@ -346,6 +355,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Messages_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_OutgoingDocuments_DocumentsCategory">
           <End Role="DocumentsCategory" Type="Self.DocumentsCategory" Multiplicity="1" />
           <End Role="OutgoingDocuments" Type="Self.OutgoingDocuments" Multiplicity="*" />
@@ -529,6 +550,7 @@
           <EntitySet Name="IncomingDocuments" EntityType="Self.IncomingDocuments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MarkExecution" EntityType="Self.MarkExecution" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Meetings" EntityType="Self.Meetings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Messages" EntityType="Self.Messages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OutgoingDocuments" EntityType="Self.OutgoingDocuments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Performer" EntityType="Self.Performer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
@@ -588,6 +610,10 @@
           <AssociationSet Name="FK_Meetings_StatusMeetings" Association="Self.FK_Meetings_StatusMeetings">
             <End Role="StatusMeetings" EntitySet="StatusMeetings" />
             <End Role="Meetings" EntitySet="Meetings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_User" Association="Self.FK_Messages_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Messages" EntitySet="Messages" />
           </AssociationSet>
           <AssociationSet Name="FK_OutgoingDocuments_DocumentsCategory" Association="Self.FK_OutgoingDocuments_DocumentsCategory">
             <End Role="DocumentsCategory" EntitySet="DocumentsCategory" />
@@ -667,7 +693,7 @@
             <PropertyRef Name="IdDocuments" />
           </Key>
           <Property Name="IdDocuments" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TitleDocuments" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TitleDocuments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DescriptionDocuments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IdCategory" Type="Int32" Nullable="false" />
           <Property Name="IdStaff" Type="Int32" Nullable="false" />
@@ -703,7 +729,7 @@
           <Property Name="FileDocuments" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="IdSender" Type="Int32" Nullable="false" />
           <Property Name="NameIncoming" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="SummaryIncoming" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SummaryIncoming" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IdStaff" Type="Int32" Nullable="false" />
           <Property Name="DateOfReceipt" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="OutgoingNumber" Type="Int32" Nullable="false" />
@@ -745,6 +771,16 @@
           <NavigationProperty Name="Staff" Relationship="Self.FK_Meetings_Staff" FromRole="Meetings" ToRole="Staff" />
           <NavigationProperty Name="StatusMeetings" Relationship="Self.FK_Meetings_StatusMeetings" FromRole="Meetings" ToRole="StatusMeetings" />
         </EntityType>
+        <EntityType Name="Messages">
+          <Key>
+            <PropertyRef Name="IdMessages" />
+          </Key>
+          <Property Name="IdMessages" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUser" Type="Int32" />
+          <Property Name="ContentMessages" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateTamp" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Messages_User" FromRole="Messages" ToRole="User" />
+        </EntityType>
         <EntityType Name="OutgoingDocuments">
           <Key>
             <PropertyRef Name="IdOutgoingDocuments" />
@@ -755,7 +791,7 @@
           <Property Name="IdCategory" Type="Int32" Nullable="false" />
           <Property Name="IdPerformer" Type="Int32" Nullable="false" />
           <Property Name="NameOutgoingDocuments" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="SummaryOutgoing" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SummaryOutgoing" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IdStaff" Type="Int32" Nullable="false" />
           <Property Name="ControlDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="ExecutionDate" Type="DateTime" Nullable="false" Precision="0" />
@@ -883,6 +919,7 @@
           <Property Name="PasswordUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IdRole" Type="Int32" Nullable="false" />
           <Property Name="IdStatusUser" Type="Int32" />
+          <NavigationProperty Name="Messages" Relationship="Self.FK_Messages_User" FromRole="User" ToRole="Messages" />
           <NavigationProperty Name="RemembersTokken" Relationship="Self.FK_RemembersTokken_User" FromRole="User" ToRole="RemembersTokken" />
           <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
           <NavigationProperty Name="Staff" Relationship="Self.FK_Staff_User" FromRole="User" ToRole="Staff" />
@@ -1068,6 +1105,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Messages_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_OutgoingDocuments_Performer">
           <End Role="Performer" Type="Self.Performer" Multiplicity="1" />
           <End Role="OutgoingDocuments" Type="Self.OutgoingDocuments" Multiplicity="*" />
@@ -1184,6 +1233,7 @@
           <EntitySet Name="IncomingDocuments" EntityType="Self.IncomingDocuments" />
           <EntitySet Name="MarkExecution" EntityType="Self.MarkExecution" />
           <EntitySet Name="Meetings" EntityType="Self.Meetings" />
+          <EntitySet Name="Messages" EntityType="Self.Messages" />
           <EntitySet Name="OutgoingDocuments" EntityType="Self.OutgoingDocuments" />
           <EntitySet Name="Performer" EntityType="Self.Performer" />
           <EntitySet Name="Position" EntityType="Self.Position" />
@@ -1255,6 +1305,10 @@
           <AssociationSet Name="FK_Meetings_StatusMeetings" Association="Self.FK_Meetings_StatusMeetings">
             <End Role="StatusMeetings" EntitySet="StatusMeetings" />
             <End Role="Meetings" EntitySet="Meetings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_User" Association="Self.FK_Messages_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Messages" EntitySet="Messages" />
           </AssociationSet>
           <AssociationSet Name="FK_OutgoingDocuments_Performer" Association="Self.FK_OutgoingDocuments_Performer">
             <End Role="Performer" EntitySet="Performer" />
@@ -1425,6 +1479,16 @@
                 <ScalarProperty Name="IdStaff" ColumnName="IdStaff" />
                 <ScalarProperty Name="IdDepartments" ColumnName="IdDepartments" />
                 <ScalarProperty Name="IdStatusMeetings" ColumnName="IdStatusMeetings" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="DBModel.Messages">
+              <MappingFragment StoreEntitySet="Messages">
+                <ScalarProperty Name="IdMessages" ColumnName="IdMessages" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="ContentMessages" ColumnName="ContentMessages" />
+                <ScalarProperty Name="DateTamp" ColumnName="DateTamp" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

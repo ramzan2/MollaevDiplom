@@ -431,7 +431,7 @@
                         <Border x:Name="Border"
                                 Grid.ColumnSpan="2"
                                 Height="35"
-                                Width="210"
+                                Width="200"
                                 BorderThickness="2"
                                 BorderBrush="Black"
                                 CornerRadius="5"
@@ -447,7 +447,7 @@
                                                    Grid.Column="0"
                                                    FontFamily="Roboto"
                                                    FontSize="11"
-                                                   Foreground="{StaticResource cs_Cloud}"
+                                                   Foreground="White"
                                                    VerticalAlignment="Center"
                                                    Padding="13 4 0 0"/>
                                 <Button x:Name="PART_Button"

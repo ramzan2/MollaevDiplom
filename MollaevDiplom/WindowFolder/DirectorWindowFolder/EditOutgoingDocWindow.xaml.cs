@@ -27,8 +27,11 @@ namespace MollaevDiplom.WindowFolder.DirectorWindowFolder
             InitializeComponent();
             DBEntities.NullContext();
             originalOutgoingDocuments = DBEntities.GetContext().OutgoingDocuments
-                .FirstOrDefault(u => u.IdOutgoingDocuments == outgoingDocuments.IdStaff);
+                .FirstOrDefault(u => u.IdOutgoingDocuments == outgoingDocuments.IdOutgoingDocuments);
+
             DataContext = originalOutgoingDocuments;
+
+
             CategoryCb.ItemsSource = DBEntities.GetContext()
                  .DocumentsCategory.ToList();
             LastNamePerformerCb.ItemsSource = DBEntities.GetContext()

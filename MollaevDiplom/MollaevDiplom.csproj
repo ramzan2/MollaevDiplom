@@ -110,6 +110,9 @@
     <Compile Include="DataFolder\Meetings.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataFolder\Messages.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataFolder\OutgoingDocuments.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>

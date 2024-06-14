@@ -97,7 +97,8 @@
                       Tag="Выберите тип документа"
                       SelectedItem="{Binding DocumentsCategory}"
                       DisplayMemberPath="NameCategory" 
-                      SelectedValuePath="IdCategory" Cursor="Hand"/>
+                      SelectedValuePath="IdCategory" 
+                      Cursor="Hand"/>
             <Button Grid.ColumnSpan="2"
                     Grid.Column="2"
                     x:Name="AddTypeDocBtn"
